@@ -36,7 +36,7 @@ const NEIGHBOURHOODS = [
   {
     code: "RC2",
     conceptId: 7,
-    usage: "mixed-use",
+    usage: "residential",
     context: "suburban",
     density: "low",
     layout: "curvilinear",
@@ -58,7 +58,7 @@ const NEIGHBOURHOODS = [
   {
     code: "RC4",
     conceptId: 6,
-    usage: "mixed-use",
+    usage: "residential",
     context: "suburban",
     density: "medium",
     layout: "grid",
@@ -69,7 +69,7 @@ const NEIGHBOURHOODS = [
   {
     code: "RC5",
     conceptId: 3,
-    usage: "mixed-use",
+    usage: "residential",
     context: "urban",
     density: "high",
     layout: "grid",
@@ -80,7 +80,7 @@ const NEIGHBOURHOODS = [
   {
     code: "RC6",
     conceptId: 6,
-    usage: "mixed-use",
+    usage: "residential",
     context: "suburban",
     density: "medium",
     layout: "grid",
@@ -91,7 +91,7 @@ const NEIGHBOURHOODS = [
   {
     code: "RC7",
     conceptId: 4,
-    usage: "mixed-use",
+    usage: "residential",
     context: "suburban",
     density: "high",
     layout: "grid",
@@ -102,7 +102,7 @@ const NEIGHBOURHOODS = [
   {
     code: "RC8",
     conceptId: 2,
-    usage: "mixed-use",
+    usage: "residential",
     context: "urban",
     density: "high",
     layout: "grid",
