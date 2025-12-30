@@ -1,0 +1,27 @@
+Neighbourhood,NUs Type,Concept,Content
+RC1,Residential,9.Rural Cluster,24 detached (two-storey house) homes
+RC2,Residential,7. Suburban Outer,48 detached (two-storey house) homes
+RC3,Residential,8. Townhouse Cluster,56 attached units
+RC4,Residential,6. Modern Suburb,8 Midrise
+RC5,Residential,3. Urban Transition-Zone,12 Midrise
+RC6,Residential,6. Modern Suburb,4 Mid-Rise + 14 Attached
+RC7,Residential,4. Suburban Transit-Zone,2 High-Rise (10-St) + 4 Mid-Rise (4-St)
+RC8,Residential,2. Dense Residential,8 High-Rise Towers (10-Story)
+CR,Core-cluster,7. Suburban Outer,21 attached + small office + small retail + quick service restaurant
+CR/I V1,Core-cluster,5. Streetcar Suburb,21 attached + 2 Mid-Rise + primary school + small office + supermarket + quick service restaurant + full service restaurant
+CR/I V2,Core-cluster,5. Streetcar Suburb,5 Mid-Rise + secondary school + small office + supermarket + quick service restaurant + full service restaurant
+MU1,Mixed-use,7. Suburban Outer,24 detached + primary school
+MU2,Mixed-use,5. Streetcar Suburb,6 Midrise apartments + secondary school
+MU3,Mixed-use,2. Dense Residential,3 highrise (10 story) + large office + Standalone Retail + large hotel + quick service restaurant+ full service restaurant
+MU3/L,Mixed-use,2. Dense Residential,3 highrise (10 story) + quick service restaurant + full service restaurant + Small retail
+MU4,Mixed-use,3. Urban Transition-Zone,"4 mid-rise, hospital, small hotel, retail store, 2 medium offices, two restaurants"
+MU-S,Mixed-use,6. Modern Suburb,5 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + Standalone Retail + supermarket -
+MU-S/L,Mixed-use,6. Modern Suburb,5 midrise + Standalone Retail + supermarket
+MU-P V1,Mixed-use,4. Suburban Transit-Zone,2 highrise + 2 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + hospital + small retail
+MU-P V2,Mixed-use,4. Suburban Transit-Zone,4 highrise + large office + large hotel + Standalone Retail + 2 quick service restaurant + 2 full service restaurant
+MU-P V2/L,Mixed-use,4. Suburban Transit-Zone,4 highrise + large office + Standalone Retail
+CC1,Commercial,10. Commercial Park,supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant + full service restaurant + small office + medium office
+CC1 /L,Commercial,10. Commercial Park,supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant
+CC2,Commercial,1. Financial Dist,supermarket + Standalone Retail +large hotel + quick service restaurant + full service restaurant + large office + medium office
+IND-HIGH,Industrial,11. Data Center Node,4 Data center
+IND-LOW,Industrial,12. Logistics/Industrial,4 Warehouse + 4 Small Office
