@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Design positive-energy district neighbourhoods by selecting parameters.">
+  <title>Neighbourhood Design Interface | Positive-Energy Districts</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>Neighbourhood Design Interface</h1>
+    <p>Design positive-energy district neighbourhoods by selecting parameters below.</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Parameters Section -->
+    <section class="parameters-section">
+
+      <!-- USAGE - With Images -->
+      <div class="parameter-group">
+        <div class="parameter-label">Usage</div>
+        <div class="usage-cards">
+          <button class="usage-card" data-category="usage" data-value="residential">
+            <img src="Content/Images_Usage_Parameters/residential.png" alt="Residential">
+            <span>residential</span>
+          </button>
+          <button class="usage-card" data-category="usage" data-value="commercial">
+            <img src="Content/Images_Usage_Parameters/commercial.png" alt="Commercial">
+            <span>commercial</span>
+          </button>
+          <button class="usage-card" data-category="usage" data-value="mixed-use">
+            <img src="Content/Images_Usage_Parameters/mixed-use.png" alt="Mixed-use">
+            <span>mixed-use</span>
+          </button>
+          <button class="usage-card" data-category="usage" data-value="industrial">
+            <img src="Content/Images_Usage_Parameters/industrial.png" alt="Industrial">
+            <span>industrial</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CONTEXT - With Images -->
+      <div class="parameter-group">
+        <div class="parameter-label">Context</div>
+        <div class="context-cards">
+          <button class="context-card" data-category="context" data-value="urban">
+            <img src="Content/Images_Context_Parameters/urban.png" alt="Urban">
+            <span>urban</span>
+          </button>
+          <button class="context-card" data-category="context" data-value="suburban">
+            <img src="Content/Images_Context_Parameters/suburban.png" alt="Suburban">
+            <span>suburban</span>
+          </button>
+          <button class="context-card" data-category="context" data-value="rural">
+            <img src="Content/Images_Context_Parameters/rural.png" alt="Rural">
+            <span>rural</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- DENSITY - With Images -->
+      <div class="parameter-group">
+        <div class="parameter-label">Density</div>
+        <div class="density-cards">
+          <button class="density-card" data-category="density" data-value="high">
+            <img src="Content/Images_Density_Parameters/high.png" alt="High">
+            <span>high</span>
+          </button>
+          <button class="density-card" data-category="density" data-value="medium">
+            <img src="Content/Images_Density_Parameters/medium.png" alt="Medium">
+            <span>medium</span>
+          </button>
+          <button class="density-card" data-category="density" data-value="low">
+            <img src="Content/Images_Density_Parameters/low.png" alt="Low">
+            <span>low</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- LAYOUT - With Images -->
+      <div class="parameter-group">
+        <div class="parameter-label">Layout</div>
+        <div class="layout-cards">
+          <button class="layout-card" data-category="layout" data-value="grid">
+            <img src="Content/Images_Layout_Parameters/Grid.png" alt="Grid">
+            <span>grid</span>
+          </button>
+          <button class="layout-card" data-category="layout" data-value="curvilinear">
+            <img src="Content/Images_Layout_Parameters/Curvilinear.png" alt="Curvilinear">
+            <span>curvilinear</span>
+          </button>
+          <button class="layout-card" data-category="layout" data-value="superblock">
+            <img src="Content/Images_Layout_Parameters/Superblock.png" alt="Superblock">
+            <span>superblock</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="submit-section">
+        <button id="view-results-btn" class="submit-btn">View Neighbourhoods</button>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

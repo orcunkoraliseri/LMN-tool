@@ -1,0 +1,353 @@
+/**
+ * Neighbourhood Design Interface - Application Logic
+ * Handles parameter selection and navigation
+ */
+
+// Current filter state (single selection per category)
+const activeFilters = {
+    usage: null,
+    context: null,
+    density: null,
+    layout: null
+};
+
+/**
+ * Initialize the Welcome Page
+ */
+function initWelcomePage() {
+    setupToggleButtons();
+    setupUsageCards();
+    setupContextCards();
+    setupDensityCards();
+    setupLayoutCards();
+    setupSubmitButton();
+}
+
+/**
+ * Set up toggle button event listeners (single selection)
+ */
+function setupToggleButtons() {
+    const buttons = document.querySelectorAll('.toggle-btn');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.category;
+            const value = button.dataset.value;
+
+            // Deselect all other buttons in this category
+            buttons.forEach(btn => {
+                if (btn.dataset.category === category && btn !== button) {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Toggle this button
+            button.classList.toggle('active');
+
+            // Update filter state (single value or null)
+            if (button.classList.contains('active')) {
+                activeFilters[category] = value;
+            } else {
+                activeFilters[category] = null;
+            }
+        });
+    });
+}
+
+/**
+ * Set up usage image card event listeners (single selection)
+ */
+function setupUsageCards() {
+    const cards = document.querySelectorAll('.usage-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            const value = card.dataset.value;
+
+            // Deselect all other cards in this category
+            cards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Toggle this card
+            card.classList.toggle('active');
+
+            // Update filter state (single value or null)
+            if (card.classList.contains('active')) {
+                activeFilters[category] = value;
+            } else {
+                activeFilters[category] = null;
+            }
+        });
+    });
+}
+
+/**
+ * Set up context image card event listeners (single selection)
+ */
+function setupContextCards() {
+    const cards = document.querySelectorAll('.context-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            const value = card.dataset.value;
+
+            // Deselect all other cards in this category
+            cards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Toggle this card
+            card.classList.toggle('active');
+
+            // Update filter state (single value or null)
+            if (card.classList.contains('active')) {
+                activeFilters[category] = value;
+            } else {
+                activeFilters[category] = null;
+            }
+        });
+    });
+}
+
+/**
+ * Set up density image card event listeners (single selection)
+ */
+function setupDensityCards() {
+    const cards = document.querySelectorAll('.density-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            const value = card.dataset.value;
+
+            // Deselect all other cards in this category
+            cards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Toggle this card
+            card.classList.toggle('active');
+
+            // Update filter state (single value or null)
+            if (card.classList.contains('active')) {
+                activeFilters[category] = value;
+            } else {
+                activeFilters[category] = null;
+            }
+        });
+    });
+}
+
+/**
+ * Set up layout image card event listeners (single selection)
+ */
+function setupLayoutCards() {
+    const cards = document.querySelectorAll('.layout-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            const value = card.dataset.value;
+
+            // Deselect all other cards in this category
+            cards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Toggle this card
+            card.classList.toggle('active');
+
+            // Update filter state (single value or null)
+            if (card.classList.contains('active')) {
+                activeFilters[category] = value;
+            } else {
+                activeFilters[category] = null;
+            }
+        });
+    });
+}
+
+/**
+ * Set up submit button to navigate to output page
+ */
+function setupSubmitButton() {
+    const submitBtn = document.getElementById('view-results-btn');
+
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+            // Store filters in sessionStorage
+            sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+
+            // Navigate to output page
+            window.location.href = 'output.html';
+        });
+    }
+}
+
+/**
+ * Initialize the Output Page
+ */
+function initOutputPage() {
+    const filtersJson = sessionStorage.getItem('activeFilters');
+
+    if (!filtersJson) {
+        // No filters selected, redirect to welcome page
+        window.location.href = 'index.html';
+        return;
+    }
+
+    const filters = JSON.parse(filtersJson);
+    renderOutputTable(filters);
+}
+
+/**
+ * Render the output table based on filter selections
+ * @param {Object} filters - The active filter selections (single value per category)
+ */
+function renderOutputTable(filters) {
+    const tableBody = document.getElementById('results-body');
+    if (!tableBody) return;
+
+    // Filter neighbourhoods directly based on their own properties
+    const matchingNeighbourhoods = NEIGHBOURHOODS.filter(neighbourhood => {
+        return checkNeighbourhoodMatchesFilters(neighbourhood, filters);
+    });
+
+    // Get concept for each matching neighbourhood
+    const results = matchingNeighbourhoods.map(neighbourhood => {
+        const concept = CONCEPTS.find(c => c.id === neighbourhood.conceptId);
+        return { concept, neighbourhood };
+    });
+
+    tableBody.innerHTML = '';
+
+    if (results.length === 0) {
+        tableBody.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+          <h3>No matching neighbourhoods</h3>
+          <p>Try adjusting your parameter selections.</p>
+        </td>
+      </tr>
+    `;
+        return;
+    }
+
+    results.forEach(({ concept, neighbourhood }) => {
+        const row = createResultRow(concept, neighbourhood);
+        tableBody.appendChild(row);
+    });
+}
+
+/**
+ * Check if a neighbourhood matches the filter criteria (single selection per category)
+ * @param {Object} neighbourhood - The neighbourhood to check
+ * @param {Object} filters - The active filters
+ * @returns {boolean} Whether the neighbourhood matches
+ */
+function checkNeighbourhoodMatchesFilters(neighbourhood, filters) {
+    // If no filters are active, show all
+    const hasActiveFilters = Object.values(filters).some(val => val !== null);
+    if (!hasActiveFilters) return true;
+
+    // Check each category - neighbourhood must match the selected value
+    for (const [category, value] of Object.entries(filters)) {
+        if (value !== null) {
+            const neighbourhoodValue = neighbourhood[category];
+            if (neighbourhoodValue !== value) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+/**
+ * Create a result table row
+ * @param {Object} concept - The concept data
+ * @param {Object} neighbourhood - The neighbourhood data
+ * @returns {HTMLElement} The table row element
+ */
+function createResultRow(concept, neighbourhood) {
+    const row = document.createElement('tr');
+
+    // Concept cell
+    const conceptCell = document.createElement('td');
+    conceptCell.innerHTML = `
+    <div class="concept-cell">
+      <img src="${concept.image}" alt="${concept.name}" onerror="this.style.display='none'">
+      <span>${concept.name}</span>
+    </div>
+  `;
+
+    // Neighbourhood cell
+    const neighbourhoodCell = document.createElement('td');
+    const nuImage = neighbourhood.image || 'https://via.placeholder.com/200x150?text=' + encodeURIComponent(neighbourhood.code);
+    neighbourhoodCell.innerHTML = `
+    <div class="neighbourhood-cell">
+      <img src="${nuImage}" alt="${neighbourhood.code}" onerror="this.src='https://via.placeholder.com/200x150?text=${encodeURIComponent(neighbourhood.code)}'">
+      <span class="code">${neighbourhood.code}</span>
+    </div>
+  `;
+
+    // Properties cell - use neighbourhood's own properties
+    const propertiesCell = document.createElement('td');
+    propertiesCell.innerHTML = `
+    <div class="properties-cell">
+      <p><strong>Context:</strong> ${neighbourhood.context}</p>
+      <p><strong>Usage:</strong> ${neighbourhood.usage}</p>
+      <p><strong>Layout:</strong> ${neighbourhood.layout}</p>
+      <p><strong>Density:</strong> ${neighbourhood.density}</p>
+    </div>
+  `;
+
+    // Buildings cell
+    const buildingsCell = document.createElement('td');
+    buildingsCell.className = 'buildings-cell';
+
+    neighbourhood.buildings.forEach(building => {
+        const buildingDiv = document.createElement('div');
+        buildingDiv.className = 'building-icon';
+
+        const imagePath = BUILDING_IMAGES[building];
+        if (imagePath) {
+            buildingDiv.innerHTML = `
+        <img src="${imagePath}" alt="${building}" onerror="this.style.display='none'">
+        <span>${building}</span>
+      `;
+        } else {
+            buildingDiv.innerHTML = `<span>${building}</span>`;
+        }
+
+        buildingsCell.appendChild(buildingDiv);
+    });
+
+    row.appendChild(conceptCell);
+    row.appendChild(neighbourhoodCell);
+    row.appendChild(propertiesCell);
+    row.appendChild(buildingsCell);
+
+    return row;
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Check which page we're on
+    if (document.querySelector('.usage-cards')) {
+        initWelcomePage();
+    } else if (document.getElementById('results-body')) {
+        initOutputPage();
+    }
+});
