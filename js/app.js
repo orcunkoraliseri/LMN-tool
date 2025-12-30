@@ -81,6 +81,9 @@ function setupUsageCards() {
             } else {
                 activeFilters[category] = null;
             }
+
+            // Update available options in other parameters
+            updateAvailableOptions();
         });
     });
 }
@@ -112,6 +115,9 @@ function setupContextCards() {
             } else {
                 activeFilters[category] = null;
             }
+
+            // Update available options in other parameters
+            updateAvailableOptions();
         });
     });
 }
@@ -143,6 +149,9 @@ function setupDensityCards() {
             } else {
                 activeFilters[category] = null;
             }
+
+            // Update available options in other parameters
+            updateAvailableOptions();
         });
     });
 }
@@ -174,7 +183,84 @@ function setupLayoutCards() {
             } else {
                 activeFilters[category] = null;
             }
+
+            // Update available options in other parameters
+            updateAvailableOptions();
         });
+    });
+}
+
+/**
+ * Update available options based on current selections
+ * Disables cards that have no matching neighbourhoods
+ */
+function updateAvailableOptions() {
+    // Get all matching neighbourhoods based on current filters
+    const matchingNeighbourhoods = NEIGHBOURHOODS.filter(n => {
+        for (const [category, value] of Object.entries(activeFilters)) {
+            if (value !== null && n[category] !== value) {
+                return false;
+            }
+        }
+        return true;
+    });
+
+    // Collect available values for each category from matching neighbourhoods
+    const availableValues = {
+        usage: new Set(),
+        context: new Set(),
+        density: new Set(),
+        layout: new Set()
+    };
+
+    matchingNeighbourhoods.forEach(n => {
+        availableValues.usage.add(n.usage);
+        availableValues.context.add(n.context);
+        availableValues.density.add(n.density);
+        availableValues.layout.add(n.layout);
+    });
+
+    // If no filters are active, enable all cards
+    const hasActiveFilters = Object.values(activeFilters).some(val => val !== null);
+
+    // Update usage cards
+    document.querySelectorAll('.usage-card').forEach(card => {
+        const value = card.dataset.value;
+        if (!hasActiveFilters || availableValues.usage.has(value) || activeFilters.usage === value) {
+            card.classList.remove('disabled');
+        } else {
+            card.classList.add('disabled');
+        }
+    });
+
+    // Update context cards
+    document.querySelectorAll('.context-card').forEach(card => {
+        const value = card.dataset.value;
+        if (!hasActiveFilters || availableValues.context.has(value) || activeFilters.context === value) {
+            card.classList.remove('disabled');
+        } else {
+            card.classList.add('disabled');
+        }
+    });
+
+    // Update density cards
+    document.querySelectorAll('.density-card').forEach(card => {
+        const value = card.dataset.value;
+        if (!hasActiveFilters || availableValues.density.has(value) || activeFilters.density === value) {
+            card.classList.remove('disabled');
+        } else {
+            card.classList.add('disabled');
+        }
+    });
+
+    // Update layout cards
+    document.querySelectorAll('.layout-card').forEach(card => {
+        const value = card.dataset.value;
+        if (!hasActiveFilters || availableValues.layout.has(value) || activeFilters.layout === value) {
+            card.classList.remove('disabled');
+        } else {
+            card.classList.add('disabled');
+        }
     });
 }
 

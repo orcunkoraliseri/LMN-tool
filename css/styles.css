@@ -216,6 +216,25 @@ h3 {
   box-shadow: 0 0 20px rgba(196, 181, 253, 0.4);
 }
 
+/* Disabled state for all parameter cards */
+.usage-card.disabled,
+.context-card.disabled,
+.density-card.disabled,
+.layout-card.disabled {
+  opacity: 0.3;
+  filter: grayscale(100%);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.usage-card.disabled:hover,
+.context-card.disabled:hover,
+.density-card.disabled:hover,
+.layout-card.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 /* Context Image Cards - Compact */
 .context-cards {
   display: flex;
