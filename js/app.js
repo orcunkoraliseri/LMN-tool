@@ -369,6 +369,10 @@ function checkNeighbourhoodMatchesFilters(neighbourhood, filters) {
 function createResultRow(concept, neighbourhood) {
     const row = document.createElement('tr');
 
+    // EUI range constants for color scaling
+    const EUI_MIN = 56;
+    const EUI_MAX = 240;
+
     // Concept cell
     const conceptCell = document.createElement('td');
     conceptCell.innerHTML = `
@@ -377,6 +381,49 @@ function createResultRow(concept, neighbourhood) {
       <span>${concept.name}</span>
     </div>
   `;
+
+    // EUI (Energy) cell
+    const euiCell = document.createElement('td');
+    if (neighbourhood.eui !== null && neighbourhood.eui !== undefined) {
+        const euiValue = neighbourhood.eui;
+        // Calculate position on scale (0-100%)
+        const position = Math.min(100, Math.max(0, ((euiValue - EUI_MIN) / (EUI_MAX - EUI_MIN)) * 100));
+
+        // Calculate color based on position (green -> yellow -> red)
+        let color;
+        if (position <= 50) {
+            // Green to Yellow
+            const ratio = position / 50;
+            const r = Math.round(34 + (234 - 34) * ratio);
+            const g = Math.round(197 + (179 - 197) * ratio);
+            const b = Math.round(94 + (8 - 94) * ratio);
+            color = `rgb(${r}, ${g}, ${b})`;
+        } else {
+            // Yellow to Red
+            const ratio = (position - 50) / 50;
+            const r = Math.round(234 + (239 - 234) * ratio);
+            const g = Math.round(179 + (68 - 179) * ratio);
+            const b = Math.round(8 + (68 - 8) * ratio);
+            color = `rgb(${r}, ${g}, ${b})`;
+        }
+
+        euiCell.innerHTML = `
+        <div class="eui-cell">
+          <span class="eui-value" style="color: ${color}">${euiValue.toFixed(1)}</span>
+          <span class="eui-unit">kWh/m²·yr</span>
+          <div class="eui-bar">
+            <div class="eui-indicator" style="left: ${position}%"></div>
+          </div>
+        </div>
+      `;
+    } else {
+        euiCell.innerHTML = `
+        <div class="eui-cell">
+          <span class="eui-value" style="color: #888">N/A</span>
+          <span class="eui-unit">kWh/m²·yr</span>
+        </div>
+      `;
+    }
 
     // Neighbourhood cell
     const neighbourhoodCell = document.createElement('td');
@@ -401,7 +448,8 @@ function createResultRow(concept, neighbourhood) {
 
     // Buildings cell
     const buildingsCell = document.createElement('td');
-    buildingsCell.className = 'buildings-cell';
+    const buildingsWrapper = document.createElement('div');
+    buildingsWrapper.className = 'buildings-cell';
 
     neighbourhood.buildings.forEach(building => {
         const buildingDiv = document.createElement('div');
@@ -417,9 +465,12 @@ function createResultRow(concept, neighbourhood) {
             buildingDiv.innerHTML = `<span>${building}</span>`;
         }
 
-        buildingsCell.appendChild(buildingDiv);
+        buildingsWrapper.appendChild(buildingDiv);
     });
 
+    buildingsCell.appendChild(buildingsWrapper);
+
+    row.appendChild(euiCell);
     row.appendChild(conceptCell);
     row.appendChild(neighbourhoodCell);
     row.appendChild(propertiesCell);
