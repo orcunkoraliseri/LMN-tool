@@ -20,25 +20,36 @@ Select neighbourhood parameters using toggle buttons:
 - **Usage**: Residential, Commercial, Mixed-use, Industrial
 - **Density**: High, Medium, Low
 - **Layout**: Grid, Clustered, Superblock
-- **Diversity**: High, Medium, Low
 
 ### Output Page
 View matching neighbourhoods with:
+- **EUI (Energy Use Intensity)** - Color-coded values with green-yellow-red scale, clickable for detailed breakdown
+- **PV (Generation)** - Solar PV generation potential percentages
 - Concept visualization images
 - 3D neighbourhood layouts
-- Property details
-- Building type compositions
+- Property details (Context, Usage, Layout, Density)
+- Building type compositions with icons
+
+### Energy Treemap Page
+Interactive visualization of energy demand breakdown:
+- **Treemap layout** - Rectangles sized proportionally to energy consumption
+- **13 energy categories** - Heating, Cooling, Lighting, Equipment, etc.
+- **Color-coded categories** - Each energy type has a distinct color
+- **Legend** - Shows all categories with values and percentages
+- Click any EUI value in the output table to view the treemap
 
 ## Project Structure
 
 ```
 Interface/
-├── index.html           - Welcome page
-├── output.html          - Output page
+├── index.html           - Welcome page (parameter selection)
+├── output.html          - Output page (results table)
+├── energy.html          - Energy treemap visualization
 ├── css/styles.css       - Shared styles
 ├── js/
-│   ├── data.js          - Neighbourhood data
-│   └── app.js           - Application logic
+│   ├── data.js          - Neighbourhood & energy data
+│   ├── app.js           - Application logic
+│   └── energy.js        - Treemap rendering
 ├── Content/
 │   ├── Images_Concept/  - Concept images
 │   ├── Images_Neighbourhoods/ - 3D neighbourhood images
@@ -52,6 +63,8 @@ Interface/
 
 1. Clone the repository
 2. Open `index.html` in a web browser
+3. Select parameters and view matching neighbourhoods
+4. Click on EUI values to explore energy breakdown
 
 ## License
 
