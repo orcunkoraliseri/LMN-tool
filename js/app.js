@@ -416,11 +416,42 @@ function createResultRow(concept, neighbourhood) {
           </div>
         </div>
       `;
+
+        // Make EUI cell clickable to view energy breakdown
+        euiCell.style.cursor = 'pointer';
+        euiCell.addEventListener('click', () => {
+            window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
+        });
     } else {
         euiCell.innerHTML = `
         <div class="eui-cell">
           <span class="eui-value" style="color: #888">N/A</span>
           <span class="eui-unit">kWh/m²·yr</span>
+        </div>
+      `;
+    }
+
+    // Generation (PV) cell
+    const generationCell = document.createElement('td');
+    const genValue = neighbourhood.generation;
+    if (genValue !== null && genValue !== undefined) {
+        // Color from green (high generation) to gray (low generation)
+        const genRatio = genValue / 100;
+        const r = Math.round(107 - 73 * genRatio);
+        const g = Math.round(114 + 83 * genRatio);
+        const b = Math.round(128 - 34 * genRatio);
+        const genColor = `rgb(${r}, ${g}, ${b})`;
+
+        generationCell.innerHTML = `
+        <div class="generation-cell">
+          <span class="generation-value" style="color: ${genColor}">${genValue}%</span>
+          <span class="generation-unit">PV</span>
+        </div>
+      `;
+    } else {
+        generationCell.innerHTML = `
+        <div class="generation-cell">
+          <span class="generation-value" style="color: #888">N/A</span>
         </div>
       `;
     }
@@ -471,6 +502,7 @@ function createResultRow(concept, neighbourhood) {
     buildingsCell.appendChild(buildingsWrapper);
 
     row.appendChild(euiCell);
+    row.appendChild(generationCell);
     row.appendChild(conceptCell);
     row.appendChild(neighbourhoodCell);
     row.appendChild(propertiesCell);

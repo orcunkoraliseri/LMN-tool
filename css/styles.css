@@ -618,35 +618,42 @@ h3 {
   table-layout: fixed;
 }
 
-/* Column widths - 5 columns */
+/* Column widths - 6 columns */
 /* Energy - first column */
 .results-table th:nth-child(1),
 .results-table td:nth-child(1) {
-  width: 10%;
+  width: 7%;
+  text-align: center;
+}
+
+/* Generation */
+.results-table th:nth-child(2),
+.results-table td:nth-child(2) {
+  width: 8%;
   text-align: center;
 }
 
 /* Concepts */
-.results-table th:nth-child(2),
-.results-table td:nth-child(2) {
+.results-table th:nth-child(3),
+.results-table td:nth-child(3) {
   width: 15%;
 }
 
 /* Neighbourhoods */
-.results-table th:nth-child(3),
-.results-table td:nth-child(3) {
-  width: 20%;
+.results-table th:nth-child(4),
+.results-table td:nth-child(4) {
+  width: 17%;
 }
 
 /* Properties */
-.results-table th:nth-child(4),
-.results-table td:nth-child(4) {
-  width: 20%;
+.results-table th:nth-child(5),
+.results-table td:nth-child(5) {
+  width: 18%;
 }
 
 /* Buildings */
-.results-table th:nth-child(5),
-.results-table td:nth-child(5) {
+.results-table th:nth-child(6),
+.results-table td:nth-child(6) {
   width: 35%;
 }
 
@@ -687,8 +694,26 @@ h3 {
   transform: translateX(-50%);
 }
 
+/* Generation Cell Styling */
+.generation-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.generation-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.generation-unit {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+}
+
 .results-table th {
-  text-align: left;
+  text-align: center;
   padding: var(--spacing-md);
   background: var(--bg-secondary);
   font-family: var(--font-display);
@@ -756,12 +781,12 @@ h3 {
   margin-bottom: 0.25rem;
 }
 
-/* Buildings Cell - single row layout */
+/* Buildings Cell - 4 columns grid layout */
 .buildings-cell {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
-  align-items: flex-start;
+  align-items: start;
   width: 100%;
 }
 
@@ -774,14 +799,125 @@ h3 {
 }
 
 .building-icon img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
 .building-icon span {
   font-size: 0.7rem;
   color: var(--text-secondary);
+}
+
+/* ========================================
+   Treemap Visualization
+   ======================================== */
+
+.treemap-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: var(--spacing-lg) auto;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.treemap-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.treemap-item:hover {
+  transform: scale(1.02);
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.treemap-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.treemap-value {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.treemap-percent {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Legend */
+.treemap-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: var(--spacing-md) auto;
+  padding: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legend-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.legend-value {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+/* EUI Clickable */
+.eui-cell {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.eui-cell:hover {
+  transform: scale(1.05);
+}
+
+.error-message {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 }
 
 /* ========================================
