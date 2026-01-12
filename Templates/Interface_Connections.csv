@@ -1,27 +1,27 @@
-Concept,Neighbourhood,Usage,Context,Density,Layout,Energy Status,Generation (PV),Buildings
-9.Rural Cluster,RC1,Residential,Rural,Low,Curvilinear,Positive,75,24 detached (two-storey house) homes
-7. Suburban Outer,RC2,Residential,Suburban,Low,Curvilinear,Positive,75,48 detached (two-storey house) homes
-8. Townhouse Cluster,RC3,Residential,Suburban,Low,Curvilinear,Positive,75,56 attached units
-6. Modern Suburb,RC4,Residential,Suburban,Medium,Grid,Negative,49,8 Midrise
-3. Urban Transition-Zone,RC5,Residential,Urban,High,Grid,Negative,49,12 Midrise
-6. Modern Suburb,RC6,Residential,Suburban,Medium,Grid,Negative,54,4 Mid-Rise + 14 Attached
-4. Suburban Transit-Zone,RC7,Residential,Suburban,High,Grid,Negative,70,2 High-Rise (10-St) + 4 Mid-Rise (4-St)
-2. Dense Residential,RC8,Residential,Urban,High,Grid,Negative,70,8 High-Rise Towers (10-Story)
-7. Suburban Outer,CR,Mixed-use,Suburban,Low,Curvilinear,Positive,20,21 attached + small office + small retail + quick service restaurant
-5. Streetcar Suburb,CR/I V1,Mixed-use,Suburban,Medium,Grid,Positive,20,21 attached + 2 Mid-Rise + primary school + small office + supermarket + quick service restaurant + full service restaurant
-5. Streetcar Suburb,CR/I V2,Mixed-use,Suburban,Medium,Grid,Neutral,20,5 Mid-Rise + secondary school + small office + supermarket + quick service restaurant + full service restaurant
-7. Suburban Outer,MU1,Mixed-use,Suburban,Low,Curvilinear,Neutral,55,24 detached + primary school
-5. Streetcar Suburb,MU2,Mixed-use,Suburban,Medium,Grid,Neutral,49,6 Midrise apartments + secondary school
-2. Dense Residential,MU3,Mixed-use,Urban,High,Grid,Negative,49,3 highrise (10 story) + large office + Standalone Retail + large hotel + quick service restaurant+ full service restaurant
-2. Dense Residential,MU3/L,Mixed-use,Urban,High,Grid,Negative,15,3 highrise (10 story) + quick service restaurant + full service restaurant + Small retail
-3. Urban Transition-Zone,MU4,Mixed-use,Urban,High,Grid,Negative,20,"4 mid-rise, hospital, small hotel, retail store, 2 medium offices, two restaurants"
-6. Modern Suburb,MU-S,Mixed-use,Suburban,Medium,Grid,Negative,15,5 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + Standalone Retail + supermarket -
-6. Modern Suburb,MU-S/L,Mixed-use,Suburban,Medium,Grid,Negative,15,5 midrise + Standalone Retail + supermarket
-4. Suburban Transit-Zone,MU-P V1,Mixed-use,Suburban,High,Grid,Negative,12,2 highrise + 2 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + hospital + small retail
-4. Suburban Transit-Zone,MU-P V2,Mixed-use,Suburban,High,Grid,Negative,12,4 highrise + large office + large hotel + Standalone Retail + 2 quick service restaurant + 2 full service restaurant
-4. Suburban Transit-Zone,MU-P V2/L,Mixed-use,Suburban,High,Grid,Negative,10,4 highrise + large office + Standalone Retail
-10. Commercial Park,CC1,Commercial,Suburban,Low,Superblock,Positive,25,supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant + full service restaurant + small office + medium office
-10. Commercial Park,CC1/L,Commercial,Suburban,Low,Superblock,Positive,25,supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant
-1. Financial Dist,CC2,Commercial,Urban,High,Grid,Negative,25,supermarket + Standalone Retail +large hotel + quick service restaurant + full service restaurant + large office + medium office
-11. Data Center Node,IND-HIGH,Industrial,Suburban,High,Superblock,Negative,40,4 Data center
-12. Logistics/Industrial,IND-LOW,Industrial,Suburban,Low,Superblock,Positive,45,4 Warehouse + 4 Small Office
+Concept,Neighbourhood,Function,Context,Density,Layout,Energy Status,Buildings
+9.Rural Cluster,RC1,Residential,Rural,Low,Curvilinear,Positive,24 detached (two-storey house) homes
+7. Suburban Outer,RC2,Residential,Suburban,Low,Curvilinear,Positive,48 detached (two-storey house) homes
+8. Townhouse Cluster,RC3,Residential,Suburban,Low,Curvilinear,Positive,56 attached units
+6. Modern Suburb,RC4,Residential,Suburban,Medium,Grid,Negative,8 Midrise
+3. Urban Transition-Zone,RC5,Residential,Urban,High,Grid,Negative,12 Midrise
+6. Modern Suburb,RC6,Residential,Suburban,Medium,Grid,Negative,4 Mid-Rise + 14 Attached
+4. Suburban Transit-Zone,RC7,Residential,Suburban,High,Grid,Negative,2 High-Rise (10-St) + 4 Mid-Rise (4-St)
+2. Dense Residential,RC8,Residential,Urban,High,Grid,Negative,8 High-Rise Towers (10-Story)
+7. Suburban Outer,CR,Mixed-use,Suburban,Low,Curvilinear,Positive,21 attached + small office + small retail + quick service restaurant
+5. Streetcar Suburb,CR/I V1,Mixed-use,Suburban,Medium,Grid,Positive,21 attached + 2 Mid-Rise + primary school + small office + supermarket + quick service restaurant + full service restaurant
+5. Streetcar Suburb,CR/I V2,Mixed-use,Suburban,Medium,Grid,Neutral,5 Mid-Rise + secondary school + small office + supermarket + quick service restaurant + full service restaurant
+7. Suburban Outer,MU1,Mixed-use,Suburban,Low,Curvilinear,Neutral,24 detached + primary school
+5. Streetcar Suburb,MU2,Mixed-use,Suburban,Medium,Grid,Neutral,6 Midrise apartments + secondary school
+2. Dense Residential,MU3,Mixed-use,Urban,High,Grid,Negative,3 highrise (10 story) + large office + Standalone Retail + large hotel + quick service restaurant+ full service restaurant
+2. Dense Residential,MU3/L,Mixed-use,Urban,High,Grid,Negative,3 highrise (10 story) + quick service restaurant + full service restaurant + Small retail
+3. Urban Transition-Zone,MU4,Mixed-use,Urban,High,Grid,Negative,"4 mid-rise, hospital, small hotel, retail store, 2 medium offices, two restaurants"
+6. Modern Suburb,MU-S,Mixed-use,Suburban,Medium,Grid,Negative,5 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + Standalone Retail + supermarket -
+6. Modern Suburb,MU-S/L,Mixed-use,Suburban,Medium,Grid,Negative,5 midrise + Standalone Retail + supermarket
+4. Suburban Transit-Zone,MU-P V1,Mixed-use,Suburban,High,Grid,Negative,2 highrise + 2 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + hospital + small retail
+4. Suburban Transit-Zone,MU-P V2,Mixed-use,Suburban,High,Grid,Negative,4 highrise + large office + large hotel + Standalone Retail + 2 quick service restaurant + 2 full service restaurant
+4. Suburban Transit-Zone,MU-P V2/L,Mixed-use,Suburban,High,Grid,Negative,4 highrise + large office + Standalone Retail
+10. Commercial Park,CC1,Commercial,Suburban,Low,Superblock,Positive,supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant + full service restaurant + small office + medium office
+10. Commercial Park,CC1/L,Commercial,Suburban,Low,Superblock,Positive,supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant
+1. Financial Dist,CC2,Commercial,Urban,High,Grid,Negative,supermarket + Standalone Retail +large hotel + quick service restaurant + full service restaurant + large office + medium office
+11. Data Center Node,IND-HIGH,Industrial,Suburban,High,Superblock,Negative,4 Data center
+12. Logistics/Industrial,IND-LOW,Industrial,Suburban,Low,Superblock,Positive,4 Warehouse + 4 Small Office
