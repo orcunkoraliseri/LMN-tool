@@ -694,22 +694,17 @@ h3 {
   transform: translateX(-50%);
 }
 
-/* Generation Cell Styling */
-.generation-cell {
+/* Energy Status Cell Styling */
+.energy-status-cell {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.1rem;
 }
 
-.generation-value {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.generation-unit {
-  font-size: 0.65rem;
-  color: var(--text-secondary);
+.status-icon {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
 }
 
 .results-table th {

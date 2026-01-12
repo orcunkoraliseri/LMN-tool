@@ -431,27 +431,21 @@ function createResultRow(concept, neighbourhood) {
       `;
     }
 
-    // Generation (PV) cell
-    const generationCell = document.createElement('td');
-    const genValue = neighbourhood.generation;
-    if (genValue !== null && genValue !== undefined) {
-        // Color from green (high generation) to gray (low generation)
-        const genRatio = genValue / 100;
-        const r = Math.round(107 - 73 * genRatio);
-        const g = Math.round(114 + 83 * genRatio);
-        const b = Math.round(128 - 34 * genRatio);
-        const genColor = `rgb(${r}, ${g}, ${b})`;
+    // Energy Status cell
+    const statusCell = document.createElement('td');
+    const status = neighbourhood.energyStatus;
+    const statusImage = ENERGY_STATUS_IMAGES[status];
 
-        generationCell.innerHTML = `
-        <div class="generation-cell">
-          <span class="generation-value" style="color: ${genColor}">${genValue}%</span>
-          <span class="generation-unit">PV</span>
+    if (status && statusImage) {
+        statusCell.innerHTML = `
+        <div class="energy-status-cell">
+          <img src="${statusImage}" alt="${status}" title="${status}" class="status-icon">
         </div>
       `;
     } else {
-        generationCell.innerHTML = `
-        <div class="generation-cell">
-          <span class="generation-value" style="color: #888">N/A</span>
+        statusCell.innerHTML = `
+        <div class="energy-status-cell">
+          <span style="color: #888">N/A</span>
         </div>
       `;
     }
@@ -502,7 +496,7 @@ function createResultRow(concept, neighbourhood) {
     buildingsCell.appendChild(buildingsWrapper);
 
     row.appendChild(euiCell);
-    row.appendChild(generationCell);
+    row.appendChild(statusCell);
     row.appendChild(conceptCell);
     row.appendChild(neighbourhoodCell);
     row.appendChild(propertiesCell);

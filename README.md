@@ -24,7 +24,7 @@ Select neighbourhood parameters using toggle buttons:
 ### Output Page
 View matching neighbourhoods with:
 - **EUI (Energy Use Intensity)** - Color-coded values with green-yellow-red scale, clickable for detailed breakdown
-- **PV (Generation)** - Solar PV generation potential percentages
+- **Energy Status** - Visual indicator (Positive, Neutral, Negative) showing energy performance status
 - Concept visualization images
 - 3D neighbourhood layouts
 - Property details (Context, Usage, Layout, Density)

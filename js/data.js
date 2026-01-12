@@ -30,7 +30,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "curvilinear",
     eui: 65.098,
-    generation: 75,
+    energyStatus: "Positive",
     content: "24 detached (two-storey house) homes",
     image: "Content/Images_Neighbourhoods/NUs_RC1.png",
     buildings: ["Two-Storey House"]
@@ -43,7 +43,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "curvilinear",
     eui: 65.098,
-    generation: 75,
+    energyStatus: "Positive",
     content: "48 detached (two-storey house) homes",
     image: "Content/Images_Neighbourhoods/NUs_RC2.png",
     buildings: ["Two-Storey House"]
@@ -56,7 +56,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "curvilinear",
     eui: 60.082,
-    generation: 75,
+    energyStatus: "Positive",
     content: "56 attached units",
     image: "Content/Images_Neighbourhoods/NUs_RC3.png",
     buildings: ["Attached House"]
@@ -69,7 +69,7 @@ const NEIGHBOURHOODS = [
     density: "medium",
     layout: "grid",
     eui: 68.829,
-    generation: 49,
+    energyStatus: "Negative",
     content: "8 Midrise",
     image: "Content/Images_Neighbourhoods/NUS_RC4.png",
     buildings: ["midrise apartment"]
@@ -82,7 +82,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 69.837,
-    generation: 49,
+    energyStatus: "Negative",
     content: "12 Midrise",
     image: "Content/Images_Neighbourhoods/NUS_RC5.png",
     buildings: ["midrise apartment"]
@@ -95,7 +95,7 @@ const NEIGHBOURHOODS = [
     density: "medium",
     layout: "grid",
     eui: 65.885,
-    generation: 54,
+    energyStatus: "Negative",
     content: "4 Mid-Rise + 14 Attached",
     image: "Content/Images_Neighbourhoods/NUs_RC6.png",
     buildings: ["midrise apartment", "Attached House"]
@@ -108,7 +108,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 118.146,
-    generation: 70,
+    energyStatus: "Negative",
     content: "2 High-Rise (10-St) + 4 Mid-Rise (4-St)",
     image: "Content/Images_Neighbourhoods/NUs_RC7.png",
     buildings: ["Highrise Apartment", "midrise apartment"]
@@ -121,7 +121,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 150.122,
-    generation: 70,
+    energyStatus: "Negative",
     content: "8 High-Rise Towers (10-Story)",
     image: "Content/Images_Neighbourhoods/NUs_RC8.png",
     buildings: ["Highrise Apartment"]
@@ -134,7 +134,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "curvilinear",
     eui: 94.31,
-    generation: 20,
+    energyStatus: "Positive",
     content: "21 attached + small office + small retail + quick service restaurant",
     image: "Content/Images_Neighbourhoods/NUS_CR.png",
     buildings: ["Attached House", "Small Office", "Small Retail", "quick service restaurant"]
@@ -147,7 +147,7 @@ const NEIGHBOURHOODS = [
     density: "medium",
     layout: "grid",
     eui: 93.386,
-    generation: 20,
+    energyStatus: "Positive",
     content: "21 attached + 2 Mid-Rise + primary school + small office + supermarket + quick service restaurant + full service restaurant",
     image: "Content/Images_Neighbourhoods/NUS_CR I-V1.png",
     buildings: ["Attached House", "midrise apartment", "Primary School", "Small Office", "Supermarket", "quick service restaurant", "Full service restaurant"]
@@ -160,7 +160,7 @@ const NEIGHBOURHOODS = [
     density: "medium",
     layout: "grid",
     eui: 126.789,
-    generation: 20,
+    energyStatus: "Neutral",
     content: "5 Mid-Rise + secondary school + small office + supermarket + quick service restaurant + full service restaurant",
     image: "Content/Images_Neighbourhoods/NUs_CR-I V2.png",
     buildings: ["midrise apartment", "secondary school", "Small Office", "Supermarket", "quick service restaurant", "Full service restaurant"]
@@ -173,7 +173,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "curvilinear",
     eui: 81.128,
-    generation: 55,
+    energyStatus: "Neutral",
     content: "24 detached + primary school",
     image: "Content/Images_Neighbourhoods/NUs_MU1.png",
     buildings: ["Two-Storey House", "Primary School"]
@@ -186,7 +186,7 @@ const NEIGHBOURHOODS = [
     density: "medium",
     layout: "grid",
     eui: 94.491,
-    generation: 49,
+    energyStatus: "Neutral",
     content: "6 Midrise apartments + secondary school",
     image: "Content/Images_Neighbourhoods/NUs_MU2.png",
     buildings: ["midrise apartment", "secondary school"]
@@ -199,7 +199,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 212.067,
-    generation: 49,
+    energyStatus: "Negative",
     content: "3 highrise (10 story) + large office + Standalone Retail + large hotel + quick service restaurant + full service restaurant",
     image: "Content/Images_Neighbourhoods/NUs_MU3.png",
     buildings: ["Highrise Apartment", "Large Office", "Standalone Retail", "Large Hotel", "quick service restaurant", "Full service restaurant"]
@@ -212,7 +212,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 211.438,
-    generation: 15,
+    energyStatus: "Negative",
     content: "3 highrise (10 story) + quick service restaurant + full service restaurant + Small retail",
     image: "Content/Images_Neighbourhoods/NUs_MU3-L.png",
     buildings: ["Highrise Apartment", "quick service restaurant", "Full service restaurant", "Small Retail"]
@@ -225,7 +225,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 224.431,
-    generation: 20,
+    energyStatus: "Negative",
     content: "4 mid-rise, hospital, small hotel, retail store, 2 medium offices, two restaurants",
     image: "Content/Images_Neighbourhoods/NUs_MU4.png",
     buildings: ["midrise apartment", "Hospital", "Small Hotel", "Small Retail", "Medium Office", "quick service restaurant", "Full service restaurant"]
@@ -238,7 +238,7 @@ const NEIGHBOURHOODS = [
     density: "medium",
     layout: "grid",
     eui: 178.367,
-    generation: 15,
+    energyStatus: "Negative",
     content: "5 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + Standalone Retail + supermarket",
     image: "Content/Images_Neighbourhoods/NUs_MUS-L.png",
     buildings: ["midrise apartment", "Medium Office", "quick service restaurant", "Full service restaurant", "Small Hotel", "Standalone Retail", "Supermarket"]
@@ -251,7 +251,7 @@ const NEIGHBOURHOODS = [
     density: "medium",
     layout: "grid",
     eui: 173.754,
-    generation: 15,
+    energyStatus: "Negative",
     content: "5 midrise + Standalone Retail + supermarket",
     image: "Content/Images_Neighbourhoods/NUs_MUS-L.png",
     buildings: ["midrise apartment", "Standalone Retail", "Supermarket"]
@@ -264,7 +264,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 227.182,
-    generation: 12,
+    energyStatus: "Negative",
     content: "2 highrise + 2 midrise + medium office + 2 quick service restaurant + 2 full service restaurant + small hotel + hospital + small retail",
     image: "Content/Images_Neighbourhoods/NUs_MU-P V1.png",
     buildings: ["Highrise Apartment", "midrise apartment", "Medium Office", "quick service restaurant", "Full service restaurant", "Small Hotel", "Hospital", "Small Retail"]
@@ -277,7 +277,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 239.391,
-    generation: 12,
+    energyStatus: "Negative",
     content: "4 highrise + large office + large hotel + Standalone Retail + 2 quick service restaurant + 2 full service restaurant",
     image: "Content/Images_Neighbourhoods/NUs_MU-P V2.png",
     buildings: ["Highrise Apartment", "Large Office", "Large Hotel", "Standalone Retail", "quick service restaurant", "Full service restaurant"]
@@ -290,7 +290,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 166.368,
-    generation: 10,
+    energyStatus: "Negative",
     content: "4 highrise + large office + Standalone Retail",
     image: "Content/Images_Neighbourhoods/NUs_MU-P V2-L.png",
     buildings: ["Highrise Apartment", "Large Office", "Standalone Retail"]
@@ -303,7 +303,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "superblock",
     eui: 180.704,
-    generation: 25,
+    energyStatus: "Positive",
     content: "supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant + full service restaurant + small office + medium office",
     image: "Content/Images_Neighbourhoods/NUs_CC1.png",
     buildings: ["Supermarket", "Retail Strip Mall", "Standalone Retail", "quick service restaurant", "Full service restaurant", "Small Office", "Medium Office"]
@@ -316,7 +316,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "superblock",
     eui: 194.366,
-    generation: 25,
+    energyStatus: "Positive",
     content: "supermarket + retail strip mall + 2 Standalone Retail + 2 quick service restaurant",
     image: "Content/Images_Neighbourhoods/NUs_CC1-L.png",
     buildings: ["Supermarket", "Retail Strip Mall", "Standalone Retail", "quick service restaurant"]
@@ -329,7 +329,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "grid",
     eui: 231.41,
-    generation: 25,
+    energyStatus: "Negative",
     content: "supermarket + Standalone Retail + large hotel + quick service restaurant + full service restaurant + large office + medium office",
     image: "Content/Images_Neighbourhoods/NUs_CC2.png",
     buildings: ["Supermarket", "Standalone Retail", "Large Hotel", "quick service restaurant", "Full service restaurant", "Large Office", "Medium Office"]
@@ -342,7 +342,7 @@ const NEIGHBOURHOODS = [
     density: "high",
     layout: "superblock",
     eui: null,
-    generation: 40,
+    energyStatus: "Negative",
     content: "4 Data center",
     image: "Content/Images_Neighbourhoods/NUs_IND-HIGH.png",
     buildings: ["Data Center"]
@@ -355,7 +355,7 @@ const NEIGHBOURHOODS = [
     density: "low",
     layout: "superblock",
     eui: 56.179,
-    generation: 45,
+    energyStatus: "Positive",
     content: "4 Warehouse + 4 Small Office",
     image: "Content/Images_Neighbourhoods/NUs_IND-LOW.png",
     buildings: ["Warehouse", "Small Office"]
@@ -863,7 +863,13 @@ const ENERGY_DATA = {
   }
 };
 
+const ENERGY_STATUS_IMAGES = {
+  "Positive": "Content/Images_EnergyStatus/Positive.png",
+  "Neutral": "Content/Images_EnergyStatus/Neutral.png",
+  "Negative": "Content/Images_EnergyStatus/Negative.png"
+};
+
 // Export for use in app.js
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA };
+  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA, ENERGY_STATUS_IMAGES };
 }
