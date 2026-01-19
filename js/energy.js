@@ -13,6 +13,54 @@ function getNeighbourhoodFromURL() {
 }
 
 /**
+ * Render the EUI scale bar showing where this neighbourhood's energy usage falls
+ * @param {number} euiValue - The EUI value for the neighbourhood
+ */
+function renderEUIScale(euiValue) {
+    const container = document.getElementById('eui-scale-container');
+    if (!container) return;
+
+    // EUI range constants (same as in app.js)
+    const EUI_MIN = 56;
+    const EUI_MAX = 240;
+
+    // Calculate position on scale (0-100%)
+    const position = Math.min(100, Math.max(0, ((euiValue - EUI_MIN) / (EUI_MAX - EUI_MIN)) * 100));
+
+    // Calculate color based on position (green -> yellow -> red)
+    let color;
+    if (position <= 50) {
+        // Green to Yellow
+        const ratio = position / 50;
+        const r = Math.round(34 + (234 - 34) * ratio);
+        const g = Math.round(197 + (234 - 197) * ratio);
+        const b = Math.round(94 + (8 - 94) * ratio);
+        color = `rgb(${r}, ${g}, ${b})`;
+    } else {
+        // Yellow to Red
+        const ratio = (position - 50) / 50;
+        const r = Math.round(234 + (239 - 234) * ratio);
+        const g = Math.round(179 + (68 - 179) * ratio);
+        const b = Math.round(8 + (68 - 8) * ratio);
+        color = `rgb(${r}, ${g}, ${b})`;
+    }
+
+    container.innerHTML = `
+        <div class="eui-scale-display">
+            <span class="eui-scale-value" style="color: ${color}">${euiValue.toFixed(1)}</span>
+            <span class="eui-scale-unit">kWh/m²·yr</span>
+            <div class="eui-scale-bar">
+                <div class="eui-scale-indicator" style="left: ${position}%"></div>
+            </div>
+            <div class="eui-scale-labels">
+                <span>${EUI_MIN}</span>
+                <span>${EUI_MAX}</span>
+            </div>
+        </div>
+    `;
+}
+
+/**
  * Calculate percentage of each energy category
  * @param {Array} breakdown - Array of energy breakdown items
  * @param {number} total - Total energy value
@@ -156,7 +204,6 @@ function worstAspectRatio(row, rowTotal, total, width, height, isVertical) {
 function renderTreemap(neighbourhoodCode) {
     const container = document.getElementById('treemap-container');
     const titleElement = document.getElementById('neighbourhood-title');
-    const euiElement = document.getElementById('total-eui');
     const legendContainer = document.getElementById('legend');
 
     // Get energy data
@@ -165,13 +212,20 @@ function renderTreemap(neighbourhoodCode) {
     if (!energyData) {
         container.innerHTML = '<p class="error-message">Energy data not found for this neighbourhood.</p>';
         titleElement.textContent = 'Energy Breakdown';
-        euiElement.textContent = 'Neighbourhood not found';
         return;
     }
 
-    // Update header
-    titleElement.textContent = `${neighbourhoodCode} - Energy Breakdown`;
-    euiElement.textContent = `Total: ${energyData.total.toFixed(1)} kWh/m²·yr`;
+    // Update header with new title format
+    titleElement.textContent = `Step 1: Energy Breakdown of ${neighbourhoodCode}`;
+
+    // Render EUI Scale
+    renderEUIScale(energyData.total);
+
+    // Set next step button href
+    const nextStepBtn = document.getElementById('next-step-btn');
+    if (nextStepBtn) {
+        nextStepBtn.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+    }
 
     // Calculate percentages and filter zero values
     const breakdown = calculatePercentages(energyData.breakdown, energyData.total);

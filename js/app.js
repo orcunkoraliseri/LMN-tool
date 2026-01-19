@@ -382,54 +382,54 @@ function createResultRow(concept, neighbourhood) {
     </div>
   `;
 
-    // EUI (Energy) cell
-    const euiCell = document.createElement('td');
-    if (neighbourhood.eui !== null && neighbourhood.eui !== undefined) {
-        const euiValue = neighbourhood.eui;
-        // Calculate position on scale (0-100%)
-        const position = Math.min(100, Math.max(0, ((euiValue - EUI_MIN) / (EUI_MAX - EUI_MIN)) * 100));
+    // EUI (Energy) cell - COMMENTED OUT (preserved for future use)
+    // const euiCell = document.createElement('td');
+    // if (neighbourhood.eui !== null && neighbourhood.eui !== undefined) {
+    //     const euiValue = neighbourhood.eui;
+    //     // Calculate position on scale (0-100%)
+    //     const position = Math.min(100, Math.max(0, ((euiValue - EUI_MIN) / (EUI_MAX - EUI_MIN)) * 100));
 
-        // Calculate color based on position (green -> yellow -> red)
-        let color;
-        if (position <= 50) {
-            // Green to Yellow
-            const ratio = position / 50;
-            const r = Math.round(34 + (234 - 34) * ratio);
-            const g = Math.round(197 + (179 - 197) * ratio);
-            const b = Math.round(94 + (8 - 94) * ratio);
-            color = `rgb(${r}, ${g}, ${b})`;
-        } else {
-            // Yellow to Red
-            const ratio = (position - 50) / 50;
-            const r = Math.round(234 + (239 - 234) * ratio);
-            const g = Math.round(179 + (68 - 179) * ratio);
-            const b = Math.round(8 + (68 - 8) * ratio);
-            color = `rgb(${r}, ${g}, ${b})`;
-        }
+    //     // Calculate color based on position (green -> yellow -> red)
+    //     let color;
+    //     if (position <= 50) {
+    //         // Green to Yellow
+    //         const ratio = position / 50;
+    //         const r = Math.round(34 + (234 - 34) * ratio);
+    //         const g = Math.round(197 + (234 - 197) * ratio);
+    //         const b = Math.round(94 + (8 - 94) * ratio);
+    //         color = `rgb(${r}, ${g}, ${b})`;
+    //     } else {
+    //         // Yellow to Red
+    //         const ratio = (position - 50) / 50;
+    //         const r = Math.round(234 + (239 - 234) * ratio);
+    //         const g = Math.round(179 + (68 - 179) * ratio);
+    //         const b = Math.round(8 + (68 - 8) * ratio);
+    //         color = `rgb(${r}, ${g}, ${b})`;
+    //     }
 
-        euiCell.innerHTML = `
-        <div class="eui-cell">
-          <span class="eui-value" style="color: ${color}">${euiValue.toFixed(1)}</span>
-          <span class="eui-unit">kWh/m²·yr</span>
-          <div class="eui-bar">
-            <div class="eui-indicator" style="left: ${position}%"></div>
-          </div>
-        </div>
-      `;
+    //     euiCell.innerHTML = `
+    //     <div class="eui-cell">
+    //       <span class="eui-value" style="color: ${color}">${euiValue.toFixed(1)}</span>
+    //       <span class="eui-unit">kWh/m²·yr</span>
+    //       <div class="eui-bar">
+    //         <div class="eui-indicator" style="left: ${position}%"></div>
+    //       </div>
+    //     </div>
+    //   `;
 
-        // Make EUI cell clickable to view energy breakdown
-        euiCell.style.cursor = 'pointer';
-        euiCell.addEventListener('click', () => {
-            window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
-        });
-    } else {
-        euiCell.innerHTML = `
-        <div class="eui-cell">
-          <span class="eui-value" style="color: #888">N/A</span>
-          <span class="eui-unit">kWh/m²·yr</span>
-        </div>
-      `;
-    }
+    //     // Make EUI cell clickable to view energy breakdown
+    //     euiCell.style.cursor = 'pointer';
+    //     euiCell.addEventListener('click', () => {
+    //         window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
+    //     });
+    // } else {
+    //     euiCell.innerHTML = `
+    //     <div class="eui-cell">
+    //       <span class="eui-value" style="color: #888">N/A</span>
+    //       <span class="eui-unit">kWh/m²·yr</span>
+    //     </div>
+    //   `;
+    // }
 
     // Energy Status cell
     const statusCell = document.createElement('td');
@@ -442,6 +442,12 @@ function createResultRow(concept, neighbourhood) {
           <img src="${statusImage}" alt="${status}" title="${status}" class="status-icon">
         </div>
       `;
+
+        // Make Energy Status cell clickable to view energy breakdown
+        statusCell.style.cursor = 'pointer';
+        statusCell.addEventListener('click', () => {
+            window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
+        });
     } else {
         statusCell.innerHTML = `
         <div class="energy-status-cell">
@@ -495,7 +501,7 @@ function createResultRow(concept, neighbourhood) {
 
     buildingsCell.appendChild(buildingsWrapper);
 
-    row.appendChild(euiCell);
+    // row.appendChild(euiCell);  // COMMENTED OUT (preserved for future use)
     row.appendChild(statusCell);
     row.appendChild(conceptCell);
     row.appendChild(neighbourhoodCell);
