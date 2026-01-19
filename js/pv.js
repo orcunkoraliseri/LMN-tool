@@ -1,5 +1,5 @@
 /**
- * PV Generation Page
+ * PV Profile Page
  * Handles the PV generation profile visualization
  */
 
@@ -13,6 +13,55 @@ function getNeighbourhoodFromURL() {
 }
 
 /**
+ * Render the PV scale bar
+ * @param {number} value - The PV generation value
+ */
+function renderPVScale(value) {
+    const container = document.getElementById('pv-scale-container');
+    if (!container) return;
+
+    // Scale range 0-100
+    const MIN = 0;
+    const MAX = 100;
+
+    // Calculate position on scale (0-100%)
+    const position = Math.min(100, Math.max(0, ((value - MIN) / (MAX - MIN)) * 100));
+
+    // Calculate color based on position (Green -> Yellow -> Red)
+    // Using the same logic as EUI scale for visual consistency
+    let color;
+    if (position <= 50) {
+        // Green to Yellow
+        const ratio = position / 50;
+        const r = Math.round(34 + (234 - 34) * ratio);
+        const g = Math.round(197 + (234 - 197) * ratio);
+        const b = Math.round(94 + (8 - 94) * ratio);
+        color = `rgb(${r}, ${g}, ${b})`;
+    } else {
+        // Yellow to Red
+        const ratio = (position - 50) / 50;
+        const r = Math.round(234 + (239 - 234) * ratio);
+        const g = Math.round(179 + (68 - 179) * ratio);
+        const b = Math.round(8 + (68 - 8) * ratio);
+        color = `rgb(${r}, ${g}, ${b})`;
+    }
+
+    container.innerHTML = `
+        <div class="eui-scale-display">
+            <span class="eui-scale-value" style="color: ${color}">${value.toFixed(1)}</span>
+            <span class="eui-scale-unit">kWh/m²·yr</span>
+            <div class="eui-scale-bar">
+                <div class="eui-scale-indicator" style="left: ${position}%"></div>
+            </div>
+            <div class="eui-scale-labels">
+                <span>${MIN}</span>
+                <span>${MAX}</span>
+            </div>
+        </div>
+    `;
+}
+
+/**
  * Initialize the PV page
  */
 function initPVPage() {
@@ -20,6 +69,9 @@ function initPVPage() {
     const titleElement = document.getElementById('neighbourhood-title');
     const backStepBtn = document.getElementById('back-step-btn');
     const nextStepBtn = document.getElementById('next-step-btn');
+
+    // Render scale with random orange value (approx 70 for orange-ish in Green-Yellow-Red scale)
+    renderPVScale(70.5);
 
     if (neighbourhoodCode) {
         // Update title
@@ -30,14 +82,12 @@ function initPVPage() {
             backStepBtn.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
-        // Set next step button href (placeholder for now)
+        // Set next step button href
         if (nextStepBtn) {
             nextStepBtn.href = `ev.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
     } else {
         titleElement.textContent = 'PV Generation Profile';
-        document.querySelector('.pv-content-placeholder').innerHTML =
-            '<p class="error-message">No neighbourhood specified. Please select a neighbourhood from the results page.</p>';
     }
 }
 

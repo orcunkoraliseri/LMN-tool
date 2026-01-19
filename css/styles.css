@@ -635,7 +635,7 @@ h3 {
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-/* PV Content Placeholder */
+/* PV Content Placeholder - deprecated, keeping for reference */
 .pv-content-placeholder {
   display: flex;
   justify-content: center;
@@ -647,7 +647,170 @@ h3 {
   font-size: 1.1rem;
 }
 
-/* EV Content Placeholder */
+/* ========================================
+   PV Profile Page Styles
+   ======================================== */
+
+/* Two Column Layout */
+.pv-profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  height: calc(100vh - 200px);
+  max-height: calc(100vh - 200px);
+  min-height: 450px;
+  overflow: hidden;
+}
+
+.pv-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  height: 100%;
+  overflow: hidden;
+}
+
+.pv-right-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Section Styling */
+.pv-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Inputs section gets more space */
+.pv-inputs-section {
+  flex: 2;
+}
+
+/* KPIs section gets less space */
+.pv-kpis-section {
+  flex: 1;
+}
+
+/* Parameter Groups - deprecated */
+.pv-parameter-group {
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.pv-parameter-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* PV Parameter Values - Pink theme - deprecated */
+.pv-parameter-value {
+  padding: 0.5rem 1rem;
+  background: rgba(200, 150, 150, 0.3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: inline-block;
+}
+
+/* PV Input Bars - New horizontal style */
+.pv-input-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: 1rem 1.5rem;
+  background: rgba(200, 150, 150, 0.35);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-md);
+  border: 1px solid rgba(150, 100, 100, 0.2);
+}
+
+.pv-input-label {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pv-input-value {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+/* KPIs Section */
+.pv-kpi-item {
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.pv-kpi-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.pv-kpi-value {
+  padding: 0.75rem 1.5rem;
+  background: rgba(180, 200, 200, 0.3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Chart Containers */
+.pv-chart-container {
+  flex: 1;
+  margin-bottom: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pv-chart-container:last-child {
+  margin-bottom: 0;
+}
+
+.pv-chart-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+/* Responsive for PV Profile */
+@media (max-width: 992px) {
+  .pv-profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* EV Content Placeholder - deprecated, keeping for reference */
 .ev-content-placeholder {
   display: flex;
   justify-content: center;
@@ -659,7 +822,161 @@ h3 {
   font-size: 1.1rem;
 }
 
-/* LPV Content Placeholder */
+/* ========================================
+   EV Profile Page Styles
+   ======================================== */
+
+/* Two Column Layout */
+.ev-profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  height: calc(100vh - 200px);
+  max-height: calc(100vh - 200px);
+  min-height: 450px;
+  overflow: hidden;
+}
+
+.ev-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  height: 100%;
+  overflow: hidden;
+}
+
+.ev-right-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Section Styling */
+.ev-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ev-section-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+/* Parameter Groups */
+.ev-parameter-group {
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.ev-parameter-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.ev-parameter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  justify-content: center;
+}
+
+/* EV Toggle Buttons */
+.ev-toggle-btn {
+  padding: 0.6rem 1.25rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  background: rgba(200, 150, 150, 0.2);
+  color: var(--text-primary);
+}
+
+.ev-toggle-btn:hover {
+  background: rgba(200, 150, 150, 0.4);
+  transform: translateY(-2px);
+}
+
+.ev-toggle-btn.active {
+  background: rgba(180, 120, 120, 0.5);
+  border-color: rgba(150, 80, 80, 0.6);
+  box-shadow: 0 2px 8px rgba(150, 80, 80, 0.2);
+}
+
+/* KPIs Section */
+.ev-kpi-item {
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.ev-kpi-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.ev-kpi-value {
+  padding: 0.75rem 1.5rem;
+  background: rgba(200, 180, 160, 0.3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Chart Containers */
+.ev-chart-container {
+  flex: 1;
+  margin-bottom: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ev-chart-container:last-child {
+  margin-bottom: 0;
+}
+
+.ev-chart-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+/* Responsive for EV Profile */
+@media (max-width: 992px) {
+  .ev-profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LPV Content Placeholder - deprecated, keeping for reference */
 .lpv-content-placeholder {
   display: flex;
   justify-content: center;
@@ -669,6 +986,170 @@ h3 {
   border-radius: var(--radius-md);
   color: var(--text-secondary);
   font-size: 1.1rem;
+}
+
+/* ========================================
+   LPV Profile Page Styles
+   ======================================== */
+
+/* Two Column Layout */
+.lpv-profile-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  height: calc(100vh - 200px);
+  max-height: calc(100vh - 200px);
+  min-height: 450px;
+  overflow: hidden;
+}
+
+.lpv-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  height: 100%;
+  overflow: hidden;
+}
+
+.lpv-right-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Section Styling */
+.lpv-section {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Inputs section gets more space */
+.lpv-left-column .lpv-section:first-child {
+  flex: 2;
+}
+
+/* KPIs section gets less space */
+.lpv-left-column .lpv-section:last-child {
+  flex: 1;
+}
+
+.lpv-section-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+/* Parameter Groups */
+.lpv-parameter-group {
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.lpv-parameter-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.lpv-parameter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  justify-content: center;
+}
+
+/* LPV Toggle Buttons - Purple theme */
+.lpv-toggle-btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  background: rgba(180, 160, 200, 0.2);
+  color: var(--text-primary);
+}
+
+.lpv-toggle-btn:hover {
+  background: rgba(180, 160, 200, 0.4);
+  transform: translateY(-2px);
+}
+
+.lpv-toggle-btn.active {
+  background: rgba(150, 120, 180, 0.5);
+  border-color: rgba(120, 80, 160, 0.6);
+  box-shadow: 0 2px 8px rgba(120, 80, 160, 0.2);
+}
+
+/* KPIs Section */
+.lpv-kpi-item {
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.lpv-kpi-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.lpv-kpi-value {
+  padding: 0.75rem 1.5rem;
+  background: rgba(180, 200, 200, 0.3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Chart Containers */
+.lpv-chart-container {
+  flex: 1;
+  margin-bottom: var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lpv-chart-container:last-child {
+  margin-bottom: 0;
+}
+
+.lpv-chart-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+/* Responsive for LPV Profile */
+@media (max-width: 992px) {
+  .lpv-profile-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Results Table - Extended Width */

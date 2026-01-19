@@ -1,6 +1,6 @@
 /**
  * EV Profile Page
- * Handles the EV profile visualization
+ * Handles the EV profile visualization and toggle button interactions
  */
 
 /**
@@ -10,6 +10,31 @@
 function getNeighbourhoodFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('neighbourhood');
+}
+
+/**
+ * Setup toggle button interactions for EV parameters
+ */
+function setupEVToggleButtons() {
+    const buttons = document.querySelectorAll('.ev-toggle-btn');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.category;
+
+            // Deselect all other buttons in this category
+            buttons.forEach(btn => {
+                if (btn.dataset.category === category && btn !== button) {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Toggle this button (or ensure it stays active for single selection)
+            if (!button.classList.contains('active')) {
+                button.classList.add('active');
+            }
+        });
+    });
 }
 
 /**
@@ -36,9 +61,10 @@ function initEVPage() {
         }
     } else {
         titleElement.textContent = 'EV Profile';
-        document.querySelector('.ev-content-placeholder').innerHTML =
-            '<p class="error-message">No neighbourhood specified. Please select a neighbourhood from the results page.</p>';
     }
+
+    // Setup toggle buttons
+    setupEVToggleButtons();
 }
 
 // Initialize on page load
