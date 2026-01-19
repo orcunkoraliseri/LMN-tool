@@ -48,17 +48,15 @@ function initEVPage() {
 
     if (neighbourhoodCode) {
         // Update title
-        titleElement.textContent = `Step 3: EV Profile of ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 3: Mobility of ${neighbourhoodCode}`;
 
-        // Set back button href to PV page with neighbourhood param
+        // Set back button href to LPV page with neighbourhood param
         if (backStepBtn) {
-            backStepBtn.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `lpv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
-        // Set next step button href (placeholder for LPV page)
-        if (nextStepBtn) {
-            nextStepBtn.href = `lpv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
-        }
+        // Next step button is disabled (Layer 4: Green Infrastructure - coming soon)
+        // No navigation set for next button
     } else {
         titleElement.textContent = 'EV Profile';
     }

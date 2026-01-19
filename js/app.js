@@ -431,32 +431,26 @@ function createResultRow(concept, neighbourhood) {
     //   `;
     // }
 
-    // Energy Status cell
-    const statusCell = document.createElement('td');
-    const status = neighbourhood.energyStatus;
-    const statusImage = ENERGY_STATUS_IMAGES[status];
+    // Energy Status cell - COMMENTED OUT (moved to Energy page)
+    // const statusCell = document.createElement('td');
+    // const status = neighbourhood.energyStatus;
+    // const statusImage = ENERGY_STATUS_IMAGES[status];
 
-    if (status && statusImage) {
-        statusCell.innerHTML = `
-        <div class="energy-status-cell">
-          <img src="${statusImage}" alt="${status}" title="${status}" class="status-icon">
-        </div>
-      `;
+    // if (status && statusImage) {
+    //     statusCell.innerHTML = `
+    //     <div class="energy-status-cell">
+    //       <img src="${statusImage}" alt="${status}" title="${status}" class="status-icon">
+    //     </div>
+    //   `;
+    // } else {
+    //     statusCell.innerHTML = `
+    //     <div class="energy-status-cell">
+    //       <span style="color: #888">N/A</span>
+    //     </div>
+    //   `;
+    // }
 
-        // Make Energy Status cell clickable to view energy breakdown
-        statusCell.style.cursor = 'pointer';
-        statusCell.addEventListener('click', () => {
-            window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
-        });
-    } else {
-        statusCell.innerHTML = `
-        <div class="energy-status-cell">
-          <span style="color: #888">N/A</span>
-        </div>
-      `;
-    }
-
-    // Neighbourhood cell
+    // Neighbourhood cell - clickable to view energy breakdown
     const neighbourhoodCell = document.createElement('td');
     const nuImage = neighbourhood.image || 'https://via.placeholder.com/200x150?text=' + encodeURIComponent(neighbourhood.code);
     neighbourhoodCell.innerHTML = `
@@ -465,6 +459,12 @@ function createResultRow(concept, neighbourhood) {
       <span class="code">${neighbourhood.code}</span>
     </div>
   `;
+
+    // Make Neighbourhood cell clickable to go to energy selection page
+    neighbourhoodCell.style.cursor = 'pointer';
+    neighbourhoodCell.addEventListener('click', () => {
+        window.location.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
+    });
 
     // Properties cell - use neighbourhood's own properties
     const propertiesCell = document.createElement('td');
@@ -502,7 +502,7 @@ function createResultRow(concept, neighbourhood) {
     buildingsCell.appendChild(buildingsWrapper);
 
     // row.appendChild(euiCell);  // COMMENTED OUT (preserved for future use)
-    row.appendChild(statusCell);
+    // row.appendChild(statusCell);  // COMMENTED OUT (moved to Energy page)
     row.appendChild(conceptCell);
     row.appendChild(neighbourhoodCell);
     row.appendChild(propertiesCell);

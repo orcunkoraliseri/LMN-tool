@@ -13,7 +13,11 @@
     <!-- Header -->
     <header class="header">
         <h1 id="neighbourhood-title">PV Generation Profile</h1>
-        <div id="pv-scale-container" class="eui-scale-container"></div>
+        <!-- Energy indicators row: Energy Status + PV Scale -->
+        <div class="energy-indicators-row">
+            <div id="energy-status-container" class="energy-status-header"></div>
+            <div id="pv-scale-container" class="eui-scale-container"></div>
+        </div>
     </header>
 
     <!-- Main Content -->
@@ -26,10 +30,10 @@
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                Back to Step 1
+                Back to Layer 2
             </a>
             <a id="next-step-btn" href="#" class="next-button">
-                Step 3: EV Profile
+                Layer 2: Land-PV Generation
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>

@@ -61,6 +61,33 @@ function renderEUIScale(euiValue) {
 }
 
 /**
+ * Render the Energy Status icon
+ * @param {string} neighbourhoodCode - The neighbourhood code
+ */
+function renderEnergyStatus(neighbourhoodCode) {
+    const container = document.getElementById('energy-status-container');
+    if (!container) return;
+
+    // Find the neighbourhood to get its energy status
+    const neighbourhood = NEIGHBOURHOODS.find(n => n.code === neighbourhoodCode);
+    if (!neighbourhood || !neighbourhood.energyStatus) {
+        container.innerHTML = '';
+        return;
+    }
+
+    const status = neighbourhood.energyStatus;
+    const statusImage = ENERGY_STATUS_IMAGES[status];
+
+    if (statusImage) {
+        container.innerHTML = `
+            <div class="energy-status-header-display">
+                <img src="${statusImage}" alt="${status}" title="${status}" class="energy-status-header-icon">
+            </div>
+        `;
+    }
+}
+
+/**
  * Calculate percentage of each energy category
  * @param {Array} breakdown - Array of energy breakdown items
  * @param {number} total - Total energy value
@@ -216,10 +243,19 @@ function renderTreemap(neighbourhoodCode) {
     }
 
     // Update header with new title format
-    titleElement.textContent = `Step 1: Energy Breakdown of ${neighbourhoodCode}`;
+    titleElement.textContent = `Layer 2: Energy Breakdown of ${neighbourhoodCode}`;
 
     // Render EUI Scale
     renderEUIScale(energyData.total);
+
+    // Render Energy Status icon
+    renderEnergyStatus(neighbourhoodCode);
+
+    // Set back step button href to energy selection page
+    const backStepBtn = document.getElementById('back-step-btn');
+    if (backStepBtn) {
+        backStepBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+    }
 
     // Set next step button href
     const nextStepBtn = document.getElementById('next-step-btn');

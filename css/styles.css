@@ -397,6 +397,119 @@ h3 {
   box-shadow: 0 0 20px rgba(253, 164, 175, 0.4);
 }
 
+/* ========================================
+   Energy Selection Page Cards
+   ======================================== */
+
+/* Consumption Cards Container */
+.consumption-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+/* Consumption Card - Blue/Electric theme */
+.consumption-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  width: 180px;
+}
+
+.consumption-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  transition: transform var(--transition-normal);
+}
+
+.consumption-card span {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: capitalize;
+}
+
+.consumption-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.consumption-card:hover img {
+  transform: scale(1.05);
+}
+
+.consumption-card.active {
+  border-color: var(--accent-start);
+  background: rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Generation Cards Container */
+.generation-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+/* Generation Card - Green/Energy theme */
+.generation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  width: 180px;
+}
+
+.generation-card img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition-normal);
+}
+
+.generation-card span {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: capitalize;
+}
+
+.generation-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.generation-card:hover img {
+  transform: scale(1.02);
+}
+
+.generation-card.active {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
 /* Submit Button - Compact */
 .submit-section {
   text-align: center;
@@ -1162,36 +1275,29 @@ h3 {
   table-layout: fixed;
 }
 
-/* Column widths - 5 columns (EUI removed) */
-/* Energy Status - first column */
+/* Column widths - 4 columns (Energy Status removed) */
+/* Concepts - first column */
 .results-table th:nth-child(1),
 .results-table td:nth-child(1) {
-  width: 12%;
-  text-align: center;
-}
-
-/* Concepts */
-.results-table th:nth-child(2),
-.results-table td:nth-child(2) {
   width: 18%;
 }
 
 /* Neighbourhoods */
-.results-table th:nth-child(3),
-.results-table td:nth-child(3) {
-  width: 20%;
+.results-table th:nth-child(2),
+.results-table td:nth-child(2) {
+  width: 22%;
 }
 
 /* Properties - decreased width */
-.results-table th:nth-child(4),
-.results-table td:nth-child(4) {
-  width: 14%;
+.results-table th:nth-child(3),
+.results-table td:nth-child(3) {
+  width: 15%;
 }
 
-/* Buildings */
-.results-table th:nth-child(5),
-.results-table td:nth-child(5) {
-  width: 36%;
+/* Buildings - increased width */
+.results-table th:nth-child(4),
+.results-table td:nth-child(4) {
+  width: 45%;
 }
 
 /* EUI Cell Styling */
@@ -1506,6 +1612,34 @@ h3 {
   font-size: 0.75rem;
   color: var(--text-secondary);
   margin-top: 0.25rem;
+}
+
+/* Energy Indicators Row (Energy Status + EUI Scale) */
+.energy-indicators-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-sm);
+}
+
+/* Energy Status Header Display */
+.energy-status-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.energy-status-header-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.energy-status-header-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
 /* ========================================

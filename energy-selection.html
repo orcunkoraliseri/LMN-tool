@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Select energy parameters for neighbourhood energy analysis.">
+    <title>Energy Selection | Neighbourhood Design Interface</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1 id="neighbourhood-title">Layer 2: Energy Design Interface</h1>
+        <p>Select energy consumption and generation parameters for your analysis.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Navigation Back Button -->
+        <a id="back-btn" href="output.html" class="back-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Layer 1
+        </a>
+
+        <!-- Parameters Section -->
+        <section class="parameters-section">
+
+            <!-- ENERGY CONSUMPTION -->
+            <div class="parameter-group">
+                <div class="parameter-label">Energy Consumption</div>
+                <div class="consumption-cards">
+                    <button class="consumption-card" data-category="consumption" data-value="thermal">
+                        <img src="Content/Images_Layer2_EnergyConsumption/Thermal.png" alt="Thermal">
+                        <span>Thermal</span>
+                    </button>
+                    <button class="consumption-card" data-category="consumption" data-value="electric">
+                        <img src="Content/Images_Layer2_EnergyConsumption/Electric.png" alt="Electric">
+                        <span>Electric</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ENERGY GENERATION -->
+            <div class="parameter-group">
+                <div class="parameter-label">Energy Generation</div>
+                <div class="generation-cards">
+                    <button class="generation-card" data-category="generation" data-value="solar">
+                        <img src="Content/Images_Layer2_EnergyGeneration/Solar.png" alt="Solar">
+                        <span>Solar</span>
+                    </button>
+                    <button class="generation-card" data-category="generation" data-value="wind">
+                        <img src="Content/Images_Layer2_EnergyGeneration/Wind.png" alt="Wind">
+                        <span>Wind</span>
+                    </button>
+                    <button class="generation-card" data-category="generation" data-value="geothermal">
+                        <img src="Content/Images_Layer2_EnergyGeneration/Geothermal.png" alt="Geothermal">
+                        <span>Geothermal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-section">
+                <button id="view-energy-btn" class="submit-btn">View Energy Performance</button>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/energy-selection.js"></script>
+</body>
+
+</html>

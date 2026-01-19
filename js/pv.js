@@ -62,6 +62,33 @@ function renderPVScale(value) {
 }
 
 /**
+ * Render the Energy Status icon
+ * @param {string} neighbourhoodCode - The neighbourhood code
+ */
+function renderEnergyStatus(neighbourhoodCode) {
+    const container = document.getElementById('energy-status-container');
+    if (!container) return;
+
+    // Find the neighbourhood to get its energy status
+    const neighbourhood = NEIGHBOURHOODS.find(n => n.code === neighbourhoodCode);
+    if (!neighbourhood || !neighbourhood.energyStatus) {
+        container.innerHTML = '';
+        return;
+    }
+
+    const status = neighbourhood.energyStatus;
+    const statusImage = ENERGY_STATUS_IMAGES[status];
+
+    if (statusImage) {
+        container.innerHTML = `
+            <div class="energy-status-header-display">
+                <img src="${statusImage}" alt="${status}" title="${status}" class="energy-status-header-icon">
+            </div>
+        `;
+    }
+}
+
+/**
  * Initialize the PV page
  */
 function initPVPage() {
@@ -70,12 +97,17 @@ function initPVPage() {
     const backStepBtn = document.getElementById('back-step-btn');
     const nextStepBtn = document.getElementById('next-step-btn');
 
-    // Render scale with random orange value (approx 70 for orange-ish in Green-Yellow-Red scale)
+    // Render scale with random value (0-100 range as proxy)
     renderPVScale(70.5);
+
+    // Render Energy Status icon
+    if (neighbourhoodCode) {
+        renderEnergyStatus(neighbourhoodCode);
+    }
 
     if (neighbourhoodCode) {
         // Update title
-        titleElement.textContent = `Step 2: PV Generation Profile of ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 2: PV Generation of ${neighbourhoodCode}`;
 
         // Set back button href to energy page with neighbourhood param
         if (backStepBtn) {
@@ -84,7 +116,7 @@ function initPVPage() {
 
         // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `ev.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            nextStepBtn.href = `lpv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
     } else {
         titleElement.textContent = 'PV Generation Profile';
