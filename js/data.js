@@ -87,6 +87,7 @@ const NEIGHBOURHOODS = [
     image: "Content/Images_Neighbourhoods/NUS_RC5.png",
     buildings: ["midrise apartment"]
   },
+  /*
   {
     code: "RC6",
     conceptId: 6,
@@ -360,6 +361,8 @@ const NEIGHBOURHOODS = [
     image: "Content/Images_Neighbourhoods/NUs_IND-LOW.png",
     buildings: ["Warehouse", "Small Office"]
   }
+  */
+
 ];
 
 // Building image mapping
@@ -501,6 +504,7 @@ const ENERGY_DATA = {
       { name: "FCU Fans", value: 0 }
     ]
   },
+  /*
   "RC6": {
     total: 65.885,
     breakdown: [
@@ -798,17 +802,19 @@ const ENERGY_DATA = {
       { name: "Electric Equipment", value: 65.436 },
       { name: "Exterior Lighting", value: 5.837 },
       { name: "Equipment (Gas)", value: 18.003 },
+  
+  
       { name: "Elevators", value: 0.612 },
-      { name: "Water Systems", value: 3.904 },
-      { name: "Fans", value: 16.556 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0.007 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
+  { name: "Water Systems", value: 3.904 },
+  { name: "Fans", value: 16.556 },
+  { name: "VAV Fans", value: 0 },
+  { name: "Pump (Electric)", value: 0.007 },
+  { name: "Heat Rejection", value: 0 },
+  { name: "FCU Fans", value: 0 }
     ]
   },
   "CC2": {
-    total: 231.41,
+  total: 231.41,
     breakdown: [
       { name: "Heating", value: 78.557 },
       { name: "Cooling", value: 21.846 },
@@ -826,7 +832,7 @@ const ENERGY_DATA = {
     ]
   },
   "CC1/L": {
-    total: 194.366,
+  total: 194.366,
     breakdown: [
       { name: "Heating", value: 31.089 },
       { name: "Cooling", value: 14.793 },
@@ -844,7 +850,7 @@ const ENERGY_DATA = {
     ]
   },
   "IND-LOW": {
-    total: 56.179,
+  total: 56.179,
     breakdown: [
       { name: "Heating", value: 10.378 },
       { name: "Cooling", value: 2.177 },
@@ -861,6 +867,7 @@ const ENERGY_DATA = {
       { name: "FCU Fans", value: 0 }
     ]
   }
+    */
 };
 
 const ENERGY_STATUS_IMAGES = {
