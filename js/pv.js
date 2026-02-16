@@ -111,7 +111,7 @@ function initPVPage() {
 
         // Set back button href to energy page with neighbourhood param
         if (backStepBtn) {
-            backStepBtn.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         // Set next step button href

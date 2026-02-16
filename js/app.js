@@ -11,6 +11,9 @@ const activeFilters = {
     layout: null
 };
 
+// Selection state for navigation to Layer 2
+let selectedNeighbourhoodCode = null;
+
 /**
  * Initialize the Welcome Page
  */
@@ -295,6 +298,21 @@ function initOutputPage() {
 
     const filters = JSON.parse(filtersJson);
     renderOutputTable(filters);
+    setupLayer2Button();
+}
+
+/**
+ * Setup "Layer 2: Energy" button navigation
+ */
+function setupLayer2Button() {
+    const layer2Btn = document.getElementById('layer2-energy-btn');
+    if (layer2Btn) {
+        layer2Btn.addEventListener('click', () => {
+            if (selectedNeighbourhoodCode) {
+                window.location.href = `energy-selection.html?neighbourhood=${encodeURIComponent(selectedNeighbourhoodCode)}`;
+            }
+        });
+    }
 }
 
 /**
@@ -450,7 +468,7 @@ function createResultRow(concept, neighbourhood) {
     //   `;
     // }
 
-    // Neighbourhood cell - clickable to view energy breakdown
+    // Neighbourhood cell
     const neighbourhoodCell = document.createElement('td');
     const nuImage = neighbourhood.image || 'https://via.placeholder.com/200x150?text=' + encodeURIComponent(neighbourhood.code);
     neighbourhoodCell.innerHTML = `
@@ -460,10 +478,21 @@ function createResultRow(concept, neighbourhood) {
     </div>
   `;
 
-    // Make Neighbourhood cell clickable to go to energy selection page
-    neighbourhoodCell.style.cursor = 'pointer';
-    neighbourhoodCell.addEventListener('click', () => {
-        window.location.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
+    // Handle row selection
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', () => {
+        // Deselect previous
+        document.querySelectorAll('.results-table tr').forEach(r => r.classList.remove('selected'));
+
+        // Select current
+        row.classList.add('selected');
+        selectedNeighbourhoodCode = neighbourhood.code;
+
+        // Enable next button
+        const nextBtn = document.getElementById('layer2-energy-btn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+        }
     });
 
     // Properties cell - use neighbourhood's own properties

@@ -49,19 +49,55 @@
             <!-- ENERGY GENERATION -->
             <div class="parameter-group">
                 <div class="parameter-label">Energy Generation</div>
-                <div class="generation-cards">
-                    <button class="generation-card" data-category="generation" data-value="solar">
-                        <img src="Content/Images_Layer2_EnergyGeneration/Solar.png" alt="Solar">
-                        <span>Solar</span>
-                    </button>
-                    <button class="generation-card" data-category="generation" data-value="wind">
-                        <img src="Content/Images_Layer2_EnergyGeneration/Wind.png" alt="Wind">
-                        <span>Wind</span>
-                    </button>
-                    <button class="generation-card" data-category="generation" data-value="geothermal">
-                        <img src="Content/Images_Layer2_EnergyGeneration/Geothermal.png" alt="Geothermal">
-                        <span>Geothermal</span>
-                    </button>
+                <div class="generation-container">
+                    <!-- Row 1: PV -->
+                    <div class="generation-row">
+                        <button class="generation-card" data-category="generation" data-value="pv_roof">
+                            <img src="Content/Images_Layer2_EnergyGeneration/PV on roof.png" alt="PV on Roof">
+                            <span>PV on Roof</span>
+                        </button>
+                        <button class="generation-card" data-category="generation" data-value="pv_facade">
+                            <img src="Content/Images_Layer2_EnergyGeneration/PV on facade.png" alt="PV on Facade">
+                            <span>PV on Facade</span>
+                        </button>
+                    </div>
+                    <!-- Row 2: PV-T -->
+                    <div class="generation-row">
+                        <button class="generation-card" data-category="generation" data-value="pvt_roof">
+                            <img src="Content/Images_Layer2_EnergyGeneration/PV-T on roof.png" alt="PV-T on Roof">
+                            <span>PV-T on Roof</span>
+                        </button>
+                        <button class="generation-card" data-category="generation" data-value="pvt_facade">
+                            <img src="Content/Images_Layer2_EnergyGeneration/PV-T on facade.png" alt="PV-T on Facade">
+                            <span>PV-T on Facade</span>
+                        </button>
+                    </div>
+                    <!-- Row 3: STC -->
+                    <div class="generation-row">
+                        <button class="generation-card" data-category="generation" data-value="stc_roof">
+                            <img src="Content/Images_Layer2_EnergyGeneration/STC on roof.png" alt="STC on Roof">
+                            <span>STC on Roof</span>
+                        </button>
+                        <button class="generation-card" data-category="generation" data-value="stc_facade">
+                            <img src="Content/Images_Layer2_EnergyGeneration/STC on facade.png" alt="STC on Facade">
+                            <span>STC on Facade</span>
+                        </button>
+                    </div>
+                    <!-- Row 4: Biomass, Wind, Geothermal -->
+                    <div class="generation-row">
+                        <button class="generation-card" data-category="generation" data-value="biomass">
+                            <img src="Content/Images_Layer2_EnergyGeneration/Biomass.png" alt="Biomass">
+                            <span>Biomass</span>
+                        </button>
+                        <button class="generation-card" data-category="generation" data-value="wind">
+                            <img src="Content/Images_Layer2_EnergyGeneration/Wind.png" alt="Wind">
+                            <span>Wind</span>
+                        </button>
+                        <button class="generation-card" data-category="generation" data-value="geothermal">
+                            <img src="Content/Images_Layer2_EnergyGeneration/Geothermal.png" alt="Geothermal">
+                            <span>Geothermal</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 

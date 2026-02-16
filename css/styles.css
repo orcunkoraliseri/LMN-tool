@@ -456,6 +456,20 @@ h3 {
 }
 
 /* Generation Cards Container */
+.generation-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.generation-row {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .generation-cards {
   display: flex;
   flex-wrap: wrap;
@@ -746,6 +760,13 @@ h3 {
 .next-button:hover {
   transform: translateX(5px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.next-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(1);
 }
 
 /* PV Content Placeholder - deprecated, keeping for reference */
@@ -1300,6 +1321,43 @@ h3 {
   width: 45%;
 }
 
+/* Energy Results Table Column Widths (6 columns) */
+.energy-results-table th:nth-child(1),
+.energy-results-table td:nth-child(1) {
+  width: 18%;
+  /* Match output.html */
+}
+
+.energy-results-table th:nth-child(2),
+.energy-results-table td:nth-child(2) {
+  width: 22%;
+  /* Match output.html */
+}
+
+.energy-results-table th:nth-child(3),
+.energy-results-table td:nth-child(3) {
+  width: 15%;
+  /* Match output.html */
+}
+
+.energy-results-table th:nth-child(4),
+.energy-results-table td:nth-child(4) {
+  width: 15%;
+  /* Taken from 45% Buildings */
+}
+
+.energy-results-table th:nth-child(5),
+.energy-results-table td:nth-child(5) {
+  width: 15%;
+  /* Taken from 45% Buildings */
+}
+
+.energy-results-table th:nth-child(6),
+.energy-results-table td:nth-child(6) {
+  width: 15%;
+  /* Taken from 45% Buildings */
+}
+
 /* EUI Cell Styling */
 .eui-cell {
   display: flex;
@@ -1368,6 +1426,43 @@ h3 {
 
 .results-table tr:hover td {
   background: rgba(0, 0, 0, 0.02);
+}
+
+.results-table tr.selected td {
+  background: rgba(102, 126, 234, 0.1);
+  border-bottom: 2px solid rgba(102, 126, 234, 0.5);
+}
+
+/* Table Interaction Styles */
+.clickable-cell {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  position: relative;
+}
+
+.clickable-cell:hover {
+  background-color: rgba(99, 102, 241, 0.08) !important;
+}
+
+.clickable-cell:active {
+  transform: scale(0.98);
+}
+
+.clickable-cell::after {
+  content: '→';
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  color: var(--primary);
+  font-size: 1.2rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.clickable-cell:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(5px);
 }
 
 /* Concept Cell */
@@ -1444,6 +1539,35 @@ h3 {
 
 .building-icon span {
   font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+/* Energy Selection Cell Styling */
+.energy-selection-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.energy-selection-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.energy-selection-item img {
+  width: 50px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.energy-selection-item span {
+  font-size: 0.75rem;
+  font-weight: 500;
   color: var(--text-secondary);
 }
 

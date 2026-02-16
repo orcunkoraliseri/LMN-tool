@@ -33,10 +33,20 @@ Allow users to select specific energy consumption and generation parameters for 
 - **Purpose**: Select types of energy consumption to analyze
 
 #### 2. Energy Generation Parameters
-- **Options**: Solar, Wind, Geothermal (3 options)
+- **Layout**: 4-row structure
+- **Row 1**: PV on roof, PV on facade (2 columns)
+- **Row 2**: PV-T on roof, PV-T on facade (2 columns)
+- **Row 3**: STC on roof, STC on facade (2 columns)
+- **Row 4**: Biomass, Wind, Geothermal (3 columns)
 - **Selection Type**: Toggle (can select multiple)
 - **Images**: `/Content/Images_Layer2_EnergyGeneration/`
-  - `Solar.png`
+  - `PV on roof.png`
+  - `PV on facade.png`
+  - `PV-T on roof.png`
+  - `PV-T on facade.png`
+  - `STC on roof.png`
+  - `STC on facade.png`
+  - `Biomass.png`
   - `Wind.png`
   - `Geothermal.png`
 - **Purpose**: Select renewable energy generation sources to analyze
@@ -66,10 +76,15 @@ Allow users to select specific energy consumption and generation parameters for 
 |    +------------------+------------------+
 |                                          |
 |    Energy Generation                     |
-|    +--------+--------+--------+          |
-|    | Solar  |  Wind  |Geother.|          |
-|    | [Img]  | [Img]  | [Img]  |          |
-|    +--------+--------+--------+          |
+|    +------------------------------------+
+|    | [PV Roof]       | [PV Facade]     |
+|    +------------------------------------+
+|    | [PV-T Roof]     | [PV-T Facade]   |
+|    +------------------------------------+
+|    | [STC Roof]      | [STC Facade]    |
+|    +------------------------------------+
+|    | [Biomass] | [Wind] | [Geothermal] |
+|    +------------------------------------+
 |                                          |
 |   [View Energy Performance Button]       |
 +------------------------------------------+

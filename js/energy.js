@@ -254,13 +254,13 @@ function renderTreemap(neighbourhoodCode) {
     // Set back step button href to energy selection page
     const backStepBtn = document.getElementById('back-step-btn');
     if (backStepBtn) {
-        backStepBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backStepBtn.href = `output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 
     // Set next step button href
     const nextStepBtn = document.getElementById('next-step-btn');
     if (nextStepBtn) {
-        nextStepBtn.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        nextStepBtn.href = `ev.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=consumption`;
     }
 
     // Calculate percentages and filter zero values

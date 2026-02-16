@@ -54,7 +54,7 @@ Display neighbourhood configurations that match the user's selected parameters a
 |              Header                      |
 | "Layer 1: Buildings and Neighbourhoods" |
 +------------------------------------------+
-|  [← Back to Parameters]                  |
+| [← Back Parameters]  [Layer 2: Energy →] |
 |                                          |
 | +--------------------------------------+ |
 | | Concepts | Neighbourhoods | Props   | |
@@ -88,18 +88,16 @@ Display neighbourhood configurations that match the user's selected parameters a
    - Filter neighbourhood data
    - Render matching neighbourhoods in table
 
-2. **Browse Results**
-   - User scrolls through filtered neighbourhoods
-   - Views concept images, 3D layouts, properties
-   - Examines building compositions
+2. **Browse & Select**
+   - User scrolls through filtered neighbourhoods.
+   - User clicks on a neighbourhood row to select it.
+   - Row displays a highlight, and "Layer 2: Energy" button enables.
 
-3. **Select Neighbourhood**
-   - User clicks on a neighbourhood row
-   - Row highlights on hover
-   - Selection triggers navigation
+3. **Navigate**
+   - User clicks the "Layer 2: Energy" button to proceed to energy analysis for the selected neighbourhood.
 
 4. **Navigation Options**
-   - **Select Neighbourhood**: Proceeds to Energy Selection Page
+   - **Layer 2: Energy**: Proceeds to Energy Selection Page
    - **Back Button**: Returns to Welcome Page to modify filters
 
 ---
@@ -133,12 +131,28 @@ function renderResults(filteredNeighbourhoods) {
 }
 ```
 
-#### Row Click Handler
+#### Row Selection Handler
 ```javascript
-// Store selected neighbourhood and navigate
+// Handle row selection instead of immediate navigation
 row.addEventListener('click', () => {
-  sessionStorage.setItem('selectedNeighbourhood', nu.code);
-  window.location.href = 'energy-selection.html';
+    // Clear previous selection
+    clearSelections();
+    // Highlight current row
+    row.classList.add('selected');
+    // Store selected code
+    selectedNeighbourhoodCode = code;
+    // Enable navigation button
+    enableLayer2Button();
+});
+```
+
+#### Layer 2 Button Handler
+```javascript
+// Navigate using the selected code
+layer2Btn.addEventListener('click', () => {
+  if (selectedCode) {
+    window.location.href = `energy-selection.html?neighbourhood=${encodeURIComponent(selectedCode)}`;
+  }
 });
 ```
 

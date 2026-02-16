@@ -86,10 +86,9 @@ function setupSubmitButton() {
             // Store selections in sessionStorage (for future use)
             sessionStorage.setItem('energySelections', JSON.stringify(energySelections));
 
-            // Navigate to energy page with neighbourhood parameter
-            // Note: Demo mode - always goes to same energy page regardless of selection
+            // Navigate to output energy page with neighbourhood parameter
             if (neighbourhoodCode) {
-                window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                window.location.href = `output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             } else {
                 // Fallback - try to get from sessionStorage or go to output
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
