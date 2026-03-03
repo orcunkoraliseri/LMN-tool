@@ -254,13 +254,13 @@ function renderTreemap(neighbourhoodCode) {
     // Set back step button href to energy selection page
     const backStepBtn = document.getElementById('back-step-btn');
     if (backStepBtn) {
-        backStepBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backStepBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 
     // Set next step button href
     const nextStepBtn = document.getElementById('next-step-btn');
     if (nextStepBtn) {
-        nextStepBtn.href = `ev.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=consumption`;
+        nextStepBtn.href = `layer2_ev_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=consumption`;
     }
 
     // Read consumption selections from sessionStorage
@@ -382,9 +382,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const backBtn = document.getElementById('back-step-btn');
         const nextBtn = document.getElementById('next-step-btn');
 
-        if (backBtn) backBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        if (backBtn) backBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         // Assume next page from Energy should be PV Generation or LPV (since we consolidated output_energy)
-        if (nextBtn) nextBtn.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        if (nextBtn) nextBtn.href = `layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
 
         // Re-render on window resize
         let resizeTimer;

@@ -105,10 +105,8 @@ function setupSubmitButton() {
  * Transition the page from selection mode to visuals/results mode
  */
 function enterResultsMode(neighbourhoodCode) {
-    // 1. Update the title
-    const titleElement = document.getElementById('neighbourhood-title');
     if (titleElement) {
-        titleElement.textContent = `Layer 2: Energy Selection Results for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 1: Energy Selection Results for ${neighbourhoodCode}`;
     }
 
     // 2. Hide the selection form
@@ -118,7 +116,7 @@ function enterResultsMode(neighbourhoodCode) {
     }
 
     // 3. Rebuild sidebar in 'visuals' mode to show the new additions block
-    buildSidebar('energy-selection', 'visuals');
+    buildSidebar('layer1_selection', 'visuals');
 
     // 4. Show a placeholder or instructions to click the sidebar to reveal visuals
     const visualContent = document.getElementById('visual-content');
@@ -142,15 +140,15 @@ function initEnergySelectionPage() {
 
     if (neighbourhoodCode) {
         // Update title with neighbourhood code
-        titleElement.textContent = `Layer 2: Energy Design Interface for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 1: Energy Design Interface for ${neighbourhoodCode}`;
 
-        // Update back button to maintain context (go back to output page)
+        // Update back button to maintain context (go back to selection page)
         if (backBtn) {
-            backBtn.href = 'output.html';
+            backBtn.href = 'layer0_NUs_selection.html';
         }
 
         // Build the initial sidebar in selection mode
-        buildSidebar('energy-selection', 'selection');
+        buildSidebar('layer1_selection', 'selection');
     }
 
     // Setup interactive elements

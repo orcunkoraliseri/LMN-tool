@@ -12,7 +12,7 @@
 <body>
   <!-- Header -->
   <header class="header">
-    <h1>LMN tool: Design positive-energy district neighbourhoods</h1>
+    <h1>Layer 0: Neighbourhood Selection</h1>
     <p>Select parameters below to begin your design.</p>
   </header>
 
@@ -103,7 +103,27 @@
 
       <!-- Submit Button -->
       <div class="submit-section">
-        <button id="view-results-btn" class="submit-btn">View Neighbourhoods</button>
+        <button id="view-results-btn" class="submit-btn" disabled>View Neighbourhoods</button>
+      </div>
+
+      <!-- Results Table (Initially Hidden) -->
+      <div id="results-section" class="results-section" style="display: none; margin-top: var(--spacing-xl);">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Compatible Neighbourhoods</h2>
+        <div class="table-container">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Concepts</th>
+                <th>Neighbourhoods</th>
+                <th>Properties</th>
+                <th>Buildings</th>
+              </tr>
+            </thead>
+            <tbody id="results-body">
+              <!-- Results will be dynamically inserted here by app.js -->
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </section>

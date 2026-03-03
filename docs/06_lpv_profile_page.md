@@ -1,9 +1,9 @@
 # LPV Profile Page Documentation
 
 ## Overview
-The LPV Profile Page (`lpv.html`) provides detailed analysis of Landscape-integrated Photovoltaics with urban heat island (UHI) impact assessment for the selected neighbourhood.
+The LPV Profile Page (`llayer1_pv_breakdown.html`) provides detailed analysis of Landscape-integrated Photovoltaics with urban heat island (UHI) impact assessment for the selected neighbourhood.
 
-**File Path**: `/Interface/lpv.html`  
+**File Path**: `/Interface/llayer1_pv_breakdown.html`  
 **Related Files**: 
 - JavaScript: `js/lpv.js`, `js/data.js`
 - Styles: `css/styles.css`

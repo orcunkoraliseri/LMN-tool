@@ -140,12 +140,12 @@ function initLPVPage() {
 
         // Set back button href to PV page with neighbourhood param
         if (backStepBtn) {
-            backStepBtn.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         // Set next step button href to EV/Mobility page
         if (nextStepBtn) {
-            nextStepBtn.href = `ev.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=generation`;
+            nextStepBtn.href = `layer2_ev_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=generation`;
         }
     } else {
         titleElement.textContent = 'LPV Profile';

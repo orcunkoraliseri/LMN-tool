@@ -174,7 +174,7 @@ function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode
             const displayVal = val.charAt(0).toUpperCase() + val.slice(1);
             const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
             const activeClass = (isClickable && currentLayer === 'energy') ? 'sidebar-item--active' : '';
-            const dataset = isClickable ? `data-target="energy.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+            const dataset = isClickable ? `data-target="layer1_energy_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
 
             html += `
                 <div class="sidebar-item ${clickableClass} ${activeClass}" ${dataset}>
@@ -206,7 +206,7 @@ function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode
             const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
             // Make generation active if currentLayer is 'pv' AND it's a visualization mode
             const activeClass = (isClickable && currentLayer === 'pv') ? 'sidebar-item--active' : '';
-            const dataset = isClickable ? `data-target="pv.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+            const dataset = isClickable ? `data-target="layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
 
             html += `
                 <div class="sidebar-item ${clickableClass} ${activeClass}" ${dataset}>

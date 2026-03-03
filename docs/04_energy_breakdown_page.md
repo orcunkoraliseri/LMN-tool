@@ -1,9 +1,9 @@
 # Energy Breakdown Page Documentation
 
 ## Overview
-The Energy Breakdown Page (`energy.html`) provides an interactive treemap visualization of energy demand breakdown for the selected neighbourhood, displaying 13 different energy categories.
+The Energy Breakdown Page (`layer1_energy_breakdown.html`) provides an interactive treemap visualization of energy demand breakdown for the selected neighbourhood, displaying 13 different energy categories.
 
-**File Path**: `/Interface/energy.html`  
+**File Path**: `/Interface/layer1_energy_breakdown.html`  
 **Related Files**: 
 - JavaScript: `js/energy.js`, `js/data.js`
 - Styles: `css/styles.css`

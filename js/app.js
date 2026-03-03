@@ -265,10 +265,24 @@ function updateAvailableOptions() {
             card.classList.add('disabled');
         }
     });
+
+    // Check if all filters are selected to enable results button
+    checkAllFiltersSelected();
 }
 
 /**
- * Set up submit button to navigate to output page
+ * Check if ALL filters are selected (to enable submit)
+ */
+function checkAllFiltersSelected() {
+    const isComplete = Object.values(activeFilters).every(val => val !== null);
+    const submitBtn = document.getElementById('view-results-btn');
+    if (submitBtn) {
+        submitBtn.disabled = !isComplete;
+    }
+}
+
+/**
+ * Set up submit button to show results inline
  */
 function setupSubmitButton() {
     const submitBtn = document.getElementById('view-results-btn');
@@ -278,8 +292,16 @@ function setupSubmitButton() {
             // Store filters in sessionStorage
             sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
 
-            // Navigate to output page
-            window.location.href = 'output.html';
+            // Show results on the same page
+            const resultsSection = document.getElementById('results-section');
+            if (resultsSection) {
+                resultsSection.style.display = 'block';
+                renderOutputTable(activeFilters);
+                setupLayer2Button();
+
+                // Scroll to results
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     }
 }
@@ -292,7 +314,7 @@ function initOutputPage() {
 
     if (!filtersJson) {
         // No filters selected, redirect to welcome page
-        window.location.href = 'index.html';
+        window.location.href = 'layer0_NUs_selection.html';
         return;
     }
 
@@ -309,7 +331,7 @@ function setupLayer2Button() {
     if (layer2Btn) {
         layer2Btn.addEventListener('click', () => {
             if (selectedNeighbourhoodCode) {
-                window.location.href = `energy-selection.html?neighbourhood=${encodeURIComponent(selectedNeighbourhoodCode)}`;
+                window.location.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(selectedNeighbourhoodCode)}`;
             }
         });
     }
@@ -438,7 +460,7 @@ function createResultRow(concept, neighbourhood) {
     //     // Make EUI cell clickable to view energy breakdown
     //     euiCell.style.cursor = 'pointer';
     //     euiCell.addEventListener('click', () => {
-    //         window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
+    //         window.location.href = `layer1_energy_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhood.code)}`;
     //     });
     // } else {
     //     euiCell.innerHTML = `
@@ -546,10 +568,19 @@ function createResultRow(concept, neighbourhood) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    // Check which page we're on
+    // Welcome Page (now Layer 0 selection + results)
     if (document.querySelector('.usage-cards')) {
         initWelcomePage();
-    } else if (document.getElementById('results-body')) {
-        initOutputPage();
+
+        // If results table structure exists, check for existing session data
+        if (document.getElementById('results-body')) {
+            const filtersJson = sessionStorage.getItem('activeFilters');
+            if (filtersJson) {
+                const resultsSection = document.getElementById('results-section');
+                if (resultsSection) resultsSection.style.display = 'block';
+                renderOutputTable(JSON.parse(filtersJson));
+                setupLayer2Button();
+            }
+        }
     }
 });

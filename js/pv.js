@@ -116,12 +116,12 @@ function initPVPage() {
 
         // Set back button href to energy-selection page
         if (backStepBtn) {
-            backStepBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `lpv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            nextStepBtn.href = `llayer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
     } else {
         titleElement.textContent = 'PV Generation Profile';

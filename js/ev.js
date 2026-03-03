@@ -57,12 +57,12 @@ function initEVPage() {
 
         // Set back button href based on 'from' parameter or default to LPV
         if (backStepBtn) {
-            backStepBtn.href = `lpv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `llayer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `output.html`; // Or wherever it makes sense to go back to start
+            nextStepBtn.href = `layer0_NUs_selection.html`; // Or wherever it makes sense to go back to start
         }
     } else {
         titleElement.textContent = 'EV Profile';

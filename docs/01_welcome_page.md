@@ -1,9 +1,9 @@
 # Welcome Page Documentation
 
 ## Overview
-The Welcome Page (`index.html`) serves as the initial entry point for the Neighbourhood Design Interface, providing an intuitive parameter selection interface for neighbourhood design.
+The Welcome Page (`layer0_NUs_selection.html`) serves as the initial entry point for the Neighbourhood Design Interface, providing an intuitive parameter selection interface for neighbourhood design.
 
-**File Path**: `/Interface/index.html`  
+**File Path**: `/Interface/layer0_NUs_selection.html`  
 **Related Files**: 
 - JavaScript: `js/app.js`
 - Data: `js/data.js`
@@ -107,7 +107,7 @@ Enable users to select neighbourhood design parameters through an image-based se
    - Filters stored in `sessionStorage`
 
 4. **Navigation**
-   - Automatic redirect to Output Page (`output.html`)
+   - Automatic redirect to Output Page (`layer0_NUs_selection.html`)
    - Selected parameters preserved for filtering
 
 ---
@@ -141,7 +141,7 @@ sessionStorage.setItem('selectedFilters', JSON.stringify({
 // Submit button handler
 - Reads all selected parameters
 - Stores in sessionStorage
-- Redirects to output.html
+- Redirects to layer0_NUs_selection.html
 ```
 
 ### Data Source

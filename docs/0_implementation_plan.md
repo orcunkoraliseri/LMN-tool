@@ -10,12 +10,12 @@ A multi-layered web-based interface for designing and analyzing positive-energy 
 
 ```
 /Interface/
-├── index.html                      # Welcome Page (Layer 0: Parameter Selection)
-├── output.html                     # Output Page (Layer 1: Buildings and Neighbourhoods)
-├── energy-selection.html           # Energy Selection Page (Layer 2: Energy Design Interface)
-├── energy.html                     # Energy Breakdown Page (Layer 2: Energy Performance)
-├── pv.html                         # PV Generation Profile (Layer 2: Solar Energy)
-├── lpv.html                        # Land-PV Profile (Layer 2: Landscape PV)
+├── layer0_NUs_selection.html                      # Welcome Page (Layer 0: Parameter Selection)
+├── layer0_NUs_selection.html                     # Output Page (Layer 1: Buildings and Neighbourhoods)
+├── layer1_energy_selection.html           # Energy Selection Page (Layer 2: Energy Design Interface)
+├── layer1_energy_breakdown.html                     # Energy Breakdown Page (Layer 2: Energy Performance)
+├── layer1_pv_breakdown.html                         # PV Generation Profile (Layer 2: Solar Energy)
+├── llayer1_pv_breakdown.html                        # Land-PV Profile (Layer 2: Landscape PV)
 ├── ev.html                         # EV Profile (Layer 3: Mobility)
 │
 ├── css/
@@ -69,15 +69,15 @@ A multi-layered web-based interface for designing and analyzing positive-energy 
 
 ```mermaid
 graph TD
-    A[Welcome Page<br/>index.html] -->|Select Parameters| B[Output Page<br/>output.html]
+    A[Welcome Page<br/>layer0_NUs_selection.html] -->|Select Parameters| B[Output Page<br/>layer0_NUs_selection.html]
     B -->|Back| A
-    B -->|Click on Neighbourhood| C[Energy Selection Page<br/>energy-selection.html]
+    B -->|Click on Neighbourhood| C[Energy Selection Page<br/>layer1_energy_selection.html]
     C -->|Back to Layer 1| B
-    C -->|Select Energy Parameters| D[Energy Breakdown<br/>energy.html]
+    C -->|Select Energy Parameters| D[Energy Breakdown<br/>layer1_energy_breakdown.html]
     D -->|Back to Energy Design| C
-    D -->|Layer 2: PV Generation| E[PV Profile<br/>pv.html]
+    D -->|Layer 2: PV Generation| E[PV Profile<br/>layer1_pv_breakdown.html]
     E -->|Back to Layer 2| D
-    E -->|Layer 2: Land-PV| F[LPV Profile<br/>lpv.html]
+    E -->|Layer 2: Land-PV| F[LPV Profile<br/>llayer1_pv_breakdown.html]
     F -->|Back to Layer 2| E
     F -->|Layer 3: Mobility| G[EV Profile<br/>ev.html]
     G -->|Back to Layer 2| F
@@ -87,7 +87,7 @@ graph TD
 
 ## Page Summaries
 
-### 1. Welcome Page (`index.html`)
+### 1. Welcome Page (`layer0_NUs_selection.html`)
 **Layer 0: Parameter Selection**
 
 Initial entry point where users select neighbourhood design parameters through image-based cards. Features four parameter groups: Function (residential, commercial, mixed-use, industrial), Context (urban, suburban, rural), Density (high, medium, low), and Layout (grid, curvilinear, superblock). Uses toggle selection to store preferences in sessionStorage before navigating to the Output Page.
@@ -96,7 +96,7 @@ Initial entry point where users select neighbourhood design parameters through i
 
 ---
 
-### 2. Output Page (`output.html`)
+### 2. Output Page (`layer0_NUs_selection.html`)
 **Layer 1: Buildings and Neighbourhoods**
 
 Displays filtered neighbourhood configurations in a 4-column table showing concepts, 3D neighbourhood layouts, properties, and building composition. Dynamically filters results based on Welcome Page selections. Clicking any neighbourhood row stores the selection and navigates to the Energy Selection Page.
@@ -105,7 +105,7 @@ Displays filtered neighbourhood configurations in a 4-column table showing conce
 
 ---
 
-### 3. Energy Selection Page (`energy-selection.html`)
+### 3. Energy Selection Page (`layer1_energy_selection.html`)
 **Layer 2: Energy Design Interface**
 
 Intermediate selection page for choosing energy analysis parameters. Features two groups: Energy (Thermal Load, Electric) and Energy Generation (Solar, Wind, Geothermal). Selections stored in sessionStorage before proceeding to the detailed Energy Breakdown visualization.
@@ -114,7 +114,7 @@ Intermediate selection page for choosing energy analysis parameters. Features tw
 
 ---
 
-### 4. Energy Breakdown Page (`energy.html`)
+### 4. Energy Breakdown Page (`layer1_energy_breakdown.html`)
 **Layer 2: Energy Performance**
 
 Interactive treemap visualization displaying energy categories (Heating, Cooling, Lighting, Equipment, etc.) sized proportionally to demand. Includes Energy Status indicators (Positive/Neutral/Negative) and EUI scale. Features dynamic filtering based on selection.
@@ -123,7 +123,7 @@ Interactive treemap visualization displaying energy categories (Heating, Cooling
 
 ---
 
-### 5. PV Profile Page (`pv.html`)
+### 5. PV Profile Page (`layer1_pv_breakdown.html`)
 **Layer 2: Solar Energy**
 
 Two-column layout showing PV generation analysis. Left column displays input parameters (PV Surface, Efficiency, Tilt Angle, Ground Coverage) as pink horizontal bars and KPIs (Annual Generation, Ratio of Performance). Right column features Solar Irradiation 3D model and Monthly Generation chart visualizations.
@@ -132,7 +132,7 @@ Two-column layout showing PV generation analysis. Left column displays input par
 
 ---
 
-### 6. LPV Profile Page (`lpv.html`)
+### 6. LPV Profile Page (`llayer1_pv_breakdown.html`)
 **Layer 2: Landscape PV**
 
 Landscape-integrated photovoltaic analysis with three configurable parameters: Application Location (Parking, Walking Lanes, Bus Stops), Height of Structure (Pedestrian, Vehicle, Service), and Transparency (25%, 50%, 75%). Displays Land Use Efficiency and UHI impact metrics with heatmap and cross-section visualizations.

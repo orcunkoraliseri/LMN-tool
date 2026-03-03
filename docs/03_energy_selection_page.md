@@ -1,9 +1,9 @@
 # Energy Selection Page Documentation
 
 ## Overview
-The Energy Selection Page (`energy-selection.html`) serves as an intermediate selection interface for energy analysis parameters between the neighbourhood selection and detailed energy breakdown.
+The Energy Selection Page (`layer1_energy_selection.html`) serves as an intermediate selection interface for energy analysis parameters between the neighbourhood selection and detailed energy breakdown.
 
-**File Path**: `/Interface/energy-selection.html`  
+**File Path**: `/Interface/layer1_energy_selection.html`  
 **Related Files**: 
 - JavaScript: `js/energy-selection.js`, `js/data.js`
 - Styles: `css/styles.css`
@@ -166,7 +166,7 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
     generation
   }));
   
-  window.location.href = 'energy.html';
+  window.location.href = 'layer1_energy_breakdown.html';
 });
 ```
 
@@ -225,7 +225,7 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
 
 ### Navigation Buttons
 ```html
-<a id="back-btn" href="output.html" class="back-button">
+<a id="back-btn" href="layer0_NUs_selection.html" class="back-button">
   <svg><!-- Back arrow icon --></svg>
   Back to Layer 1
 </a>

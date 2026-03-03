@@ -107,7 +107,7 @@ function renderOutputEnergyTable() {
 
     // Navigation for consumption
     consumptionCell.addEventListener('click', () => {
-        window.location.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        window.location.href = `layer1_energy_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     });
 
     // Energy Generation cell
@@ -146,7 +146,7 @@ function renderOutputEnergyTable() {
 
     // Navigation for generation
     generationCell.addEventListener('click', () => {
-        window.location.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        window.location.href = `layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     });
 
     // Append cells to row
@@ -168,7 +168,7 @@ function setupNavigation() {
     const neighbourhoodCode = getNeighbourhoodFromURL();
 
     if (backBtn && neighbourhoodCode) {
-        backBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 }
 

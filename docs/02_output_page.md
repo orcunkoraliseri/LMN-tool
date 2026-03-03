@@ -1,9 +1,9 @@
 # Output Page Documentation
 
 ## Overview
-The Output Page (`output.html`) displays filtered neighbourhood configurations based on parameters selected on the Welcome Page, presented in an interactive table format.
+The Output Page (`layer0_NUs_selection.html`) displays filtered neighbourhood configurations based on parameters selected on the Welcome Page, presented in an interactive table format.
 
-**File Path**: `/Interface/output.html`  
+**File Path**: `/Interface/layer0_NUs_selection.html`  
 **Related Files**: 
 - JavaScript: `js/app.js`
 - Data: `js/data.js`
@@ -151,7 +151,7 @@ row.addEventListener('click', () => {
 // Navigate using the selected code
 layer2Btn.addEventListener('click', () => {
   if (selectedCode) {
-    window.location.href = `energy-selection.html?neighbourhood=${encodeURIComponent(selectedCode)}`;
+    window.location.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(selectedCode)}`;
   }
 });
 ```

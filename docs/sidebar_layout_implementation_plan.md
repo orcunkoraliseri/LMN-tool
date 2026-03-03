@@ -5,10 +5,10 @@
 The current Interface app uses a linear multi-page navigation:
 
 ```
-index.html → output.html → energy-selection.html → output_energy.html → energy.html / pv.html → lpv.html → ev.html
+layer0_NUs_selection.html → layer0_NUs_selection.html → layer1_energy_selection.html → output_layer1_energy_breakdown.html → layer1_energy_breakdown.html / layer1_pv_breakdown.html → llayer1_pv_breakdown.html → ev.html
 ```
 
-The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.pdf) proposes a new layout starting from **page 3** (`energy-selection.html`) onward:
+The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.pdf) proposes a new layout starting from **page 3** (`layer1_energy_selection.html`) onward:
 
 ````carousel
 ![Page 3: Left sidebar with Layer 0 features + right area for Layer 1 selection](/Users/orcunkoraliseri/.gemini/antigravity/brain/20365bcb-3056-4dad-97ff-4010804dc0c0/pdf_page_3_final_1772547771759.png)
@@ -30,17 +30,17 @@ The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.p
 ## User Review Required
 
 > [!IMPORTANT]
-> **Pages 1 & 2 stay as-is** (`index.html`, `output.html`) — no changes per your instruction.
+> **Pages 1 & 2 stay as-is** (`layer0_NUs_selection.html`, `layer0_NUs_selection.html`) — no changes per your instruction.
 
 > [!IMPORTANT]
-> **`output_energy.html` will no longer be a standalone page.** Its content (the table row showing Energy + Energy Generation selections) will be absorbed into the sidebar on the visuals pages. The file itself can either be deleted or kept as a redirect. Please confirm your preference.
+> **`output_layer1_energy_breakdown.html` will no longer be a standalone page.** Its content (the table row showing Energy + Energy Generation selections) will be absorbed into the sidebar on the visuals pages. The file itself can either be deleted or kept as a redirect. Please confirm your preference.
 
 > [!WARNING]
-> **Navigation flow change:** Currently, clicking "Energy" on `output_energy.html` navigates to `energy.html`, and clicking "Energy Generation" navigates to `pv.html`. In the new layout, both visuals will appear on the **same page** (right side) when their sidebar items are clicked. This means `energy.html` and `pv.html` will each become self-contained pages with the sidebar — they will no longer be accessed from `output_energy.html`. Please confirm this interpretation matches your intent.
+> **Navigation flow change:** Currently, clicking "Energy" on `output_layer1_energy_breakdown.html` navigates to `layer1_energy_breakdown.html`, and clicking "Energy Generation" navigates to `layer1_pv_breakdown.html`. In the new layout, both visuals will appear on the **same page** (right side) when their sidebar items are clicked. This means `layer1_energy_breakdown.html` and `layer1_pv_breakdown.html` will each become self-contained pages with the sidebar — they will no longer be accessed from `output_layer1_energy_breakdown.html`. Please confirm this interpretation matches your intent.
 
 ## Proposed Layouts
 
-### Page 1 — `index.html` (no change)
+### Page 1 — `layer0_NUs_selection.html` (no change)
 ```
 ┌──────────────────────────────────────────────────┐
 │                    HEADER                        │
@@ -53,7 +53,7 @@ The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.p
 └──────────────────────────────────────────────────┘
 ```
 
-### Page 2 — `output.html` (no change)
+### Page 2 — `layer0_NUs_selection.html` (no change)
 ```
 ┌──────────────────────────────────────────────────┐
 │                    HEADER                        │
@@ -64,7 +64,7 @@ The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.p
 └──────────────────────────────────────────────────┘
 ```
 
-### Page 3 — `energy-selection.html` (selection mode)
+### Page 3 — `layer1_energy_selection.html` (selection mode)
 ```
 ┌──────────────────────────────────────────────────┐
 │                    HEADER                        │
@@ -79,7 +79,7 @@ The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.p
 └────────────┴─────────────────────────────────────┘
 ```
 
-### Page 3b — `energy-selection.html` (after submit / results mode)
+### Page 3b — `layer1_energy_selection.html` (after submit / results mode)
 ```
 ┌──────────────────────────────────────────────────┐
 │                    HEADER                        │
@@ -96,7 +96,7 @@ The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.p
 └────────────┴─────────────────────────────────────┘
 ```
 
-### Page 4a — `energy.html` (Energy visuals)
+### Page 4a — `layer1_energy_breakdown.html` (Energy visuals)
 ```
 ┌──────────────────────────────────────────────────┐
 │                    HEADER                        │
@@ -110,7 +110,7 @@ The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.p
 └────────────┴─────────────────────────────────────┘
 ```
 
-### Page 4b — `pv.html` (PV Generation visuals)
+### Page 4b — `layer1_pv_breakdown.html` (PV Generation visuals)
 ```
 ┌──────────────────────────────────────────────────┐
 │                    HEADER                        │
@@ -124,7 +124,7 @@ The [PDF mockup](file:///Users/orcunkoraliseri/Desktop/Interface/Mockup/layout.p
 └────────────┴───────────────┴────────────────────┘
 ```
 
-### Page 5 — `lpv.html` (LPV selection + visuals)
+### Page 5 — `llayer1_pv_breakdown.html` (LPV selection + visuals)
 ```
 ┌──────────────────────────────────────────────────┐
 │                    HEADER                        │
@@ -198,17 +198,17 @@ Add a new section for the sidebar layout system:
 
 ### Page-by-Page Changes
 
-#### [MODIFY] [energy-selection.html](file:///Users/orcunkoraliseri/Desktop/Interface/energy-selection.html)
+#### [MODIFY] [layer1_energy_selection.html](file:///Users/orcunkoraliseri/Desktop/Interface/layer1_energy_selection.html)
 
 **Corresponds to PDF Page 3** — Selection page with sidebar
 
 Current: Full-width energy/generation selection form
 New: Two-column layout
-- **Left sidebar:** "Selected Neighbourhood Features (Layer 0)" — shows concept, neighbourhood, properties, buildings from `output.html` data
+- **Left sidebar:** "Selected Neighbourhood Features (Layer 0)" — shows concept, neighbourhood, properties, buildings from `layer0_NUs_selection.html` data
 - **Right content:** Current energy + generation selection cards (unchanged)
-- **Post-submit behavior change**: Instead of navigating to `output_energy.html`, the page transitions to a "results view" where:
+- **Post-submit behavior change**: Instead of navigating to `output_layer1_energy_breakdown.html`, the page transitions to a "results view" where:
   - The sidebar updates to show Layer 0 features + Layer 1 additions (Energy, Energy Generation)
-  - The right panel shows clickable cards that load `energy.html` or `pv.html` content inline
+  - The right panel shows clickable cards that load `layer1_energy_breakdown.html` or `layer1_pv_breakdown.html` content inline
 
 HTML changes:
 - Wrap `<main>` content in `.sidebar-layout` div
@@ -218,7 +218,7 @@ HTML changes:
 #### [MODIFY] [energy-selection.js](file:///Users/orcunkoraliseri/Desktop/Interface/js/energy-selection.js)
 
 - Import/use `buildSidebar()` in `initEnergySelectionPage()`
-- Modify `setupSubmitButton()`: instead of navigating to `output_energy.html`, switch the page to "results mode":
+- Modify `setupSubmitButton()`: instead of navigating to `output_layer1_energy_breakdown.html`, switch the page to "results mode":
   - Update sidebar to show new additions
   - Replace the selection cards with two clickable cards: "Energy" and "Energy Generation"
   - Clicking "Energy" loads the treemap visualization (from `energy.js`) in the right panel
@@ -226,7 +226,7 @@ HTML changes:
 
 ---
 
-#### [MODIFY] [energy.html](file:///Users/orcunkoraliseri/Desktop/Interface/energy.html)
+#### [MODIFY] [layer1_energy_breakdown.html](file:///Users/orcunkoraliseri/Desktop/Interface/layer1_energy_breakdown.html)
 
 **Corresponds to PDF Page 4** — Visuals page with split sidebar
 
@@ -234,9 +234,9 @@ Current: Full-width treemap with nav buttons
 New: Two-column layout
 - **Left sidebar:** Layer 0 features (purple) + Layer 1 additions: Energy (pink, with active highlight)
 - **Right content:** Treemap visualization + legend (from current page, unchanged)
-- Navigation button updated: "Next" goes to `pv.html` (or stays in the same page context)
+- Navigation button updated: "Next" goes to `layer1_pv_breakdown.html` (or stays in the same page context)
 
-#### [MODIFY] [pv.html](file:///Users/orcunkoraliseri/Desktop/Interface/pv.html)
+#### [MODIFY] [layer1_pv_breakdown.html](file:///Users/orcunkoraliseri/Desktop/Interface/layer1_pv_breakdown.html)
 
 Current: Full-width PV profile with left/right column layout
 New: Three-column effect — sidebar + existing two-column PV layout
@@ -244,7 +244,7 @@ New: Three-column effect — sidebar + existing two-column PV layout
 - **Right content:** Current PV inputs/KPIs + charts layout (unchanged)
 - The header energy indicators (Energy Status + PV Scale) move into the right content area
 
-#### [MODIFY] [lpv.html](file:///Users/orcunkoraliseri/Desktop/Interface/lpv.html)
+#### [MODIFY] [llayer1_pv_breakdown.html](file:///Users/orcunkoraliseri/Desktop/Interface/llayer1_pv_breakdown.html)
 
 **Corresponds to PDF Page 5/6** — For Layer 2
 
@@ -302,22 +302,22 @@ New: Two-column layout
 
 Each page will be opened in-browser and visually verified:
 
-1. **`index.html`** → confirm no changes, still works as before
-2. **`output.html`** → confirm no changes, neighbourhood data is now persisted to `sessionStorage`
-3. **`energy-selection.html`** → verify:
+1. **`layer0_NUs_selection.html`** → confirm no changes, still works as before
+2. **`layer0_NUs_selection.html`** → confirm no changes, neighbourhood data is now persisted to `sessionStorage`
+3. **`layer1_energy_selection.html`** → verify:
    - Left sidebar appears with Layer 0 neighbourhood features
    - Right side shows energy/generation selection cards
    - After clicking "View Energy Performance", sidebar updates with new additions
    - Clicking "Energy" in sidebar loads treemap on right
    - Clicking "Energy Generation" loads PV profile on right
-4. **`energy.html`** → verify sidebar shows Layer 0 + Energy highlighted
-5. **`pv.html`** → verify sidebar shows Layer 0 + Energy Generation highlighted
-6. **`lpv.html`** → verify sidebar shows cumulative Layer 0 + Layer 1
+4. **`layer1_energy_breakdown.html`** → verify sidebar shows Layer 0 + Energy highlighted
+5. **`layer1_pv_breakdown.html`** → verify sidebar shows Layer 0 + Energy Generation highlighted
+6. **`llayer1_pv_breakdown.html`** → verify sidebar shows cumulative Layer 0 + Layer 1
 7. **`ev.html`** → verify sidebar shows cumulative + Layer 2 additions
 
 ### Manual Verification
 
-- Navigate through the complete flow: `index.html` → `output.html` → `energy-selection.html` → energy/pv views → `lpv.html` → `ev.html`
+- Navigate through the complete flow: `layer0_NUs_selection.html` → `layer0_NUs_selection.html` → `layer1_energy_selection.html` → energy/pv views → `llayer1_pv_breakdown.html` → `ev.html`
 - Verify all `sessionStorage` data persists correctly between pages
 - Verify back navigation works and preserves selections
 - Test with different neighbourhood selections to ensure dynamic data renders correctly

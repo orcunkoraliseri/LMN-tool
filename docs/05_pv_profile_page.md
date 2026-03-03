@@ -1,9 +1,9 @@
 # PV Generation Profile Page Documentation
 
 ## Overview
-The PV Generation Profile Page (`pv.html`) provides detailed analysis and visualization of solar photovoltaic generation for the selected neighbourhood, including input parameters, KPIs, and visualizations.
+The PV Generation Profile Page (`layer1_pv_breakdown.html`) provides detailed analysis and visualization of solar photovoltaic generation for the selected neighbourhood, including input parameters, KPIs, and visualizations.
 
-**File Path**: `/Interface/pv.html`  
+**File Path**: `/Interface/layer1_pv_breakdown.html`  
 **Related Files**: 
 - JavaScript: `js/pv.js`, `js/data.js`
 - Styles: `css/styles.css`

@@ -42,9 +42,9 @@ Interactive visualization of energy demand breakdown:
 
 ```
 Interface/
-├── index.html           - Welcome page (parameter selection)
-├── output.html          - Output page (results table)
-├── energy.html          - Energy treemap visualization
+├── layer0_NUs_selection.html           - Welcome page (parameter selection)
+├── layer0_NUs_selection.html          - Output page (results table)
+├── layer1_energy_breakdown.html          - Energy treemap visualization
 ├── css/styles.css       - Shared styles
 ├── js/
 │   ├── data.js          - Neighbourhood & energy data
@@ -62,7 +62,7 @@ Interface/
 ## Getting Started
 
 1. Clone the repository
-2. Open `index.html` in a web browser
+2. Open `layer0_NUs_selection.html` in a web browser
 3. Select parameters and view matching neighbourhoods
 4. Click on EUI values to explore energy breakdown
 

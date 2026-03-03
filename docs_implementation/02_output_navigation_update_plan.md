@@ -1,7 +1,7 @@
 # Output Page Navigation Update Implementation Plan
 
 ## Goal Description
-Update the `output.html` page to replace the direct click-to-navigate behavior with a selection-based flow. Add a "Layer 2: Energy" button to the top-right, similar to the "Layer 2: PV generation" button in other pages, which will handle the navigation to `energy-selection.html` for the selected neighbourhood.
+Update the `layer0_NUs_selection.html` page to replace the direct click-to-navigate behavior with a selection-based flow. Add a "Layer 2: Energy" button to the top-right, similar to the "Layer 2: PV generation" button in other pages, which will handle the navigation to `layer1_energy_selection.html` for the selected neighbourhood.
 
 ## Proposed Changes
 
@@ -10,7 +10,7 @@ Update the `output.html` page to replace the direct click-to-navigate behavior w
 - Update "User Interaction Flow" to describe the new row selection and "Layer 2: Energy" button navigation.
 
 ### Interface
-#### [MODIFY] [output.html](file:///Users/orcunkoraliseri/Desktop/Interface/output.html)
+#### [MODIFY] [layer0_NUs_selection.html](file:///Users/orcunkoraliseri/Desktop/Interface/layer0_NUs_selection.html)
 - Wrap the existing "Back to Parameters" button in a `<div class="nav-buttons">`.
 - Add a new "Layer 2: Energy" button with class `next-button` inside the `nav-buttons` container.
 - Set the new button to `disabled` by default.
@@ -26,12 +26,12 @@ Update the `output.html` page to replace the direct click-to-navigate behavior w
         - Highlight the clicked row (add `.selected` class, remove from others).
         - Update `selectedNeighbourhoodCode`.
         - Enable the "Layer 2: Energy" button.
-- Add an event listener to the new "Layer 2: Energy" button to navigate to `energy-selection.html?neighbourhood=...` using the selected code.
+- Add an event listener to the new "Layer 2: Energy" button to navigate to `layer1_energy_selection.html?neighbourhood=...` using the selected code.
 
 ## Verification Plan
 
 ### Manual Verification
-1.  **Open Output Page**: Navigate to `output.html`.
+1.  **Open Output Page**: Navigate to `layer0_NUs_selection.html`.
 2.  **Visual Check**:
     - Verify "Layer 2: Energy" button appears in the top-right.
     - Verify it is initially disabled (opacity/cursor).
@@ -41,5 +41,5 @@ Update the `output.html` page to replace the direct click-to-navigate behavior w
     - Verify the "Layer 2: Energy" button becomes enabled.
     - Click another row to verify selection moves.
     - Click the "Layer 2: Energy" button.
-    - Verify it navigates to `energy-selection.html` with the correct `neighbourhood` URL parameter.
+    - Verify it navigates to `layer1_energy_selection.html` with the correct `neighbourhood` URL parameter.
     - Click the image in the neighbourhood cell to ensure it *does not* navigate immediately (or does it select? It should just select).

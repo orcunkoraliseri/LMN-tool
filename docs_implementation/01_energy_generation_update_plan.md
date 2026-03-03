@@ -1,7 +1,7 @@
 # Update Energy Generation Parameters Implementation Plan
 
 ## Goal Description
-Update the "Energy generation" parameters on the `energy-selection.html` page to include new elements (PV, PV-T, STC, Biomass) organized into a specific 4-row layout.
+Update the "Energy generation" parameters on the `layer1_energy_selection.html` page to include new elements (PV, PV-T, STC, Biomass) organized into a specific 4-row layout.
 
 ## Proposed Changes
 
@@ -11,7 +11,7 @@ Update the "Energy generation" parameters on the `energy-selection.html` page to
 - Update image references.
 
 ### Interface
-#### [MODIFY] [energy-selection.html](file:///Users/orcunkoraliseri/Desktop/Interface/energy-selection.html)
+#### [MODIFY] [layer1_energy_selection.html](file:///Users/orcunkoraliseri/Desktop/Interface/layer1_energy_selection.html)
 - Replace the existing "Energy Generation" card container.
 - Implement a 4-row structure:
     - **Row 1**: PV on roof, PV on facade
@@ -28,7 +28,7 @@ Update the "Energy generation" parameters on the `energy-selection.html` page to
 ## Verification Plan
 
 ### Manual Verification
-1.  **Open the Page**: Open `energy-selection.html` in the browser.
+1.  **Open the Page**: Open `layer1_energy_selection.html` in the browser.
 2.  **Visual Check**:
     - Verify that "Energy Generation" section now has 4 distinct rows.
     - **Row 1**: Check for "PV on Roof" and "PV on Facade" images.

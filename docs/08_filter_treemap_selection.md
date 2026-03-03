@@ -4,7 +4,7 @@ This feature allows for dynamic filtering of the energy breakdown treemap based 
 
 ## Logic Overview
 
-When navigating from the Energy Selection page, the selected consumption types are stored in `sessionStorage`. The Treemap page (`energy.html`) reads these selections and filters the data categories accordingly.
+When navigating from the Energy Selection page, the selected consumption types are stored in `sessionStorage`. The Treemap page (`layer1_energy_breakdown.html`) reads these selections and filters the data categories accordingly.
 
 ### Filtering Rules
 
