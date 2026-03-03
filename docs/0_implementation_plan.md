@@ -39,8 +39,8 @@ A multi-layered web-based interface for designing and analyzing positive-energy 
 │   ├── Images_Neighbourhoods/      # 3D neighbourhood layouts
 │   ├── Images_Buildings/           # Building type icons (19 icons)
 │   ├── Images_EnergyStatus/        # Energy status indicators (Positive, Neutral, Negative)
-│   ├── Images_Layer2_EnergyConsumption/  # Thermal Load and Electric icons
-│   ├── Images_Layer2_EnergyGeneration/   # Solar, Wind, Geothermal icons
+│   ├── Images_Layer1_EnergyConsumption/  # Thermal Load and Electric icons
+│   ├── Images_Layer1_EnergyGeneration/   # Solar, Wind, Geothermal icons
 │   ├── Images_PVProfile/           # Solar irradiation and generation charts
 │   ├── Images_LPVProfile/          # LPV heatmaps and cross-sections
 │   └── Images_EVProfile/           # EV impact and charging state charts

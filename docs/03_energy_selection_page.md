@@ -27,7 +27,7 @@ Allow users to select specific energy and generation parameters for detailed ana
 #### 1. Energy Parameters
 - **Options**: Thermal Load, Electric (2 options)
 - **Selection Type**: Toggle (can select one or both)
-- **Images**: `/Content/Images_Layer2_EnergyConsumption/`
+- **Images**: `/Content/Images_Layer1_EnergyConsumption/`
   - `Thermal.png`
   - `Electric.png`
 - **Purpose**: Select types of energy to analyze
@@ -39,7 +39,7 @@ Allow users to select specific energy and generation parameters for detailed ana
 - **Row 3**: STC on roof, STC on facade (2 columns)
 - **Row 4**: Biomass, Wind, Geothermal (3 columns)
 - **Selection Type**: Toggle (can select multiple)
-- **Images**: `/Content/Images_Layer2_EnergyGeneration/`
+- **Images**: `/Content/Images_Layer1_EnergyGeneration/`
   - `PV on roof.png`
   - `PV on facade.png`
   - `PV-T on roof.png`
@@ -172,7 +172,7 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
 
 ### Data Source
 - **Neighbourhood Context**: From `sessionStorage` (set on Output Page)
-- **Parameter Images**: `/Content/Images_Layer2_EnergyConsumption/` and `/Content/Images_Layer2_EnergyGeneration/`
+- **Parameter Images**: `/Content/Images_Layer1_EnergyConsumption/` and `/Content/Images_Layer1_EnergyGeneration/`
 - **Energy Data**: `js/data.js`
 
 ### State Management
@@ -191,11 +191,11 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
   <div class="parameter-label">Energy</div>
   <div class="consumption-cards">
     <button class="consumption-card" data-category="consumption" data-value="thermal">
-      <img src="Content/Images_Layer2_EnergyConsumption/Thermal.png" alt="Thermal Load">
+      <img src="Content/Images_Layer1_EnergyConsumption/Thermal.png" alt="Thermal Load">
       <span>Thermal Load</span>
     </button>
     <button class="consumption-card" data-category="consumption" data-value="electric">
-      <img src="Content/Images_Layer2_EnergyConsumption/Electric.png" alt="Electric">
+      <img src="Content/Images_Layer1_EnergyConsumption/Electric.png" alt="Electric">
       <span>Electric</span>
     </button>
   </div>
@@ -208,15 +208,15 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
   <div class="parameter-label">Energy Generation</div>
   <div class="generation-cards">
     <button class="generation-card" data-category="generation" data-value="solar">
-      <img src="Content/Images_Layer2_EnergyGeneration/Solar.png" alt="Solar">
+      <img src="Content/Images_Layer1_EnergyGeneration/Solar.png" alt="Solar">
       <span>Solar</span>
     </button>
     <button class="generation-card" data-category="generation" data-value="wind">
-      <img src="Content/Images_Layer2_EnergyGeneration/Wind.png" alt="Wind">
+      <img src="Content/Images_Layer1_EnergyGeneration/Wind.png" alt="Wind">
       <span>Wind</span>
     </button>
     <button class="generation-card" data-category="generation" data-value="geothermal">
-      <img src="Content/Images_Layer2_EnergyGeneration/Geothermal.png" alt="Geothermal">
+      <img src="Content/Images_Layer1_EnergyGeneration/Geothermal.png" alt="Geothermal">
       <span>Geothermal</span>
     </button>
   </div>

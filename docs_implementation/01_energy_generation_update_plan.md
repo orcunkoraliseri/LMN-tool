@@ -18,7 +18,7 @@ Update the "Energy generation" parameters on the `layer1_energy_selection.html` 
     - **Row 2**: PV-T on roof, PV-T on facade
     - **Row 3**: STC on roof, STC on facade
     - **Row 4**: Biomass, Wind, Geothermal
-- Update image paths to point to `Content/Images_Layer2_EnergyGeneration/...`.
+- Update image paths to point to `Content/Images_Layer1_EnergyGeneration/...`.
 - Add specific `data-value` attributes for the new types (e.g., `pv_roof`, `pv_facade`).
 
 #### [MODIFY] [css/styles.css](file:///Users/orcunkoraliseri/Desktop/Interface/css/styles.css)

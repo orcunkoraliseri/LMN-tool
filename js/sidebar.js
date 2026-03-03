@@ -190,7 +190,7 @@ function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode
 
             html += `
                 <div class="sidebar-item ${clickableClass} ${activeClass}" ${dataset}>
-                    <img src="Content/Images_Layer2_EnergyConsumption/${displayVal}.png" alt="${displayVal}" onerror="this.style.display='none'">
+                    <img src="Content/Images_Layer1_EnergyConsumption/${displayVal}.png" alt="${displayVal}" onerror="this.style.display='none'">
                     <span>${displayVal}</span>
                 </div>
             `;
@@ -222,7 +222,7 @@ function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode
 
             html += `
                 <div class="sidebar-item ${clickableClass} ${activeClass}" ${dataset}>
-                    <img src="Content/Images_Layer2_EnergyGeneration/${label}.png" alt="${label}" onerror="this.style.display='none'">
+                    <img src="Content/Images_Layer1_EnergyGeneration/${label}.png" alt="${label}" onerror="this.style.display='none'">
                     <span>${label}</span>
                 </div>
             `;

@@ -112,7 +112,7 @@ function renderOutputEnergyTable() {
         // Capitalize first letter for display
         const displayVal = val.charAt(0).toUpperCase() + val.slice(1);
         item.innerHTML = `
-            <img src="Content/Images_Layer2_EnergyConsumption/${displayVal}.png" alt="${displayVal}" onerror="this.style.display='none'">
+            <img src="Content/Images_Layer1_EnergyConsumption/${displayVal}.png" alt="${displayVal}" onerror="this.style.display='none'">
             <span>${displayVal}</span>
         `;
         consumptionWrapper.appendChild(item);
@@ -151,7 +151,7 @@ function renderOutputEnergyTable() {
         // The image name might need exact match with the file name
         const imgName = label;
         item.innerHTML = `
-            <img src="Content/Images_Layer2_EnergyGeneration/${imgName}.png" alt="${label}" onerror="this.style.display='none'">
+            <img src="Content/Images_Layer1_EnergyGeneration/${imgName}.png" alt="${label}" onerror="this.style.display='none'">
             <span>${label}</span>
         `;
         generationWrapper.appendChild(item);
