@@ -12,7 +12,7 @@ The Energy Breakdown Page (`energy.html`) provides an interactive treemap visual
 ---
 
 ## Purpose
-Visualize energy consumption breakdown using an interactive treemap, allowing users to understand the distribution of energy demand across different categories.
+Visualize energy breakdown using an interactive treemap, allowing users to understand the distribution of energy demand across different categories.
 
 ---
 
@@ -30,13 +30,14 @@ Visualize energy consumption breakdown using an interactive treemap, allowing us
 ### Treemap Visualization
 - **Layout**: Rectangle-based treemap
 - **Category Count**: 13 energy categories
-- **Sizing**: Proportional to energy consumption
+- **Sizing**: Proportional to energy intensity (kWh/m²·yr)
+- **Dynamic Filtering**: Treemap content filters based on Layer 2 "Energy" selections (Thermal Load vs. Electric).
 - **Color Coding**: Each category has distinct color
 - **Interactive**: Hover effects show detailed information
 
 #### Energy Categories
-1. Heating
-2. Cooling
+1. Heating (Thermal Load)
+2. Cooling (Thermal Load)
 3. Interior Lighting
 4. Exterior Lighting
 5. Interior Equipment
@@ -111,8 +112,8 @@ Visualize energy consumption breakdown using an interactive treemap, allowing us
 
 2. **Explore Breakdown**
    - User views treemap visualization
-   - Identifies largest energy consumers
-   - Reads legend for detailed values
+    - Identifies largest energy consumers (recalculated based on current filter)
+    - Reads legend for detailed values
 
 3. **Interactive Exploration**
    - Hover over rectangles for tooltips
@@ -291,15 +292,15 @@ const categoryColors = {
 ## Energy Status Indicators
 
 ### Indicator Types
-- **Positive**: Energy surplus (generation > consumption)
+- **Positive**: Energy surplus (generation > load)
   - Icon: `/Content/Images_EnergyStatus/Positive.png`
   - Color: Green
   
-- **Neutral**: Balanced energy (generation ≈ consumption)
+- **Neutral**: Balanced energy (generation ≈ load)
   - Icon: `/Content/Images_EnergyStatus/Neutral.png`
   - Color: Yellow
   
-- **Negative**: Energy deficit (generation < consumption)
+- **Negative**: Energy deficit (generation < load)
   - Icon: `/Content/Images_EnergyStatus/Negative.png`
   - Color: Red
 
@@ -322,9 +323,9 @@ const energyData = {
   eui: 120.5, // kWh/m²·year
   energyStatus: "Positive",
   breakdown: [
-    { category: "Heating", value: 48.2 },
-    { category: "Cooling", value: 30.1 },
-    { category: "Interior Lighting", value: 12.0 },
+    { name: "Heating", value: 48.2 },
+    { name: "Cooling", value: 30.1 },
+    { name: "Interior Lighting", value: 12.0 },
     // ... more categories
   ]
 };
@@ -350,7 +351,7 @@ const energyData = {
 ---
 
 ## Future Enhancements
-- Interactive filtering by category
+- Dynamic cross-filtering between Layer 2 options and Treemap (Implemented)
 - Drill-down to sub-categories
 - Time-based energy breakdown (monthly/seasonal)
 - Comparison with benchmark neighbourhoods

@@ -263,8 +263,37 @@ function renderTreemap(neighbourhoodCode) {
         nextStepBtn.href = `ev.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=consumption`;
     }
 
+    // Read consumption selections from sessionStorage
+    const selections = JSON.parse(
+        sessionStorage.getItem('energySelections') || '{"consumption":[]}'
+    );
+    const consumption = selections.consumption || [];
+
+    // Define thermal categories
+    const THERMAL_CATEGORIES = ["Heating", "Cooling"];
+
+    // Filter breakdown based on selection
+    let filteredBreakdown = energyData.breakdown;
+    if (consumption.length === 1 && consumption.includes("thermal")) {
+        // Thermal load only: show Heating and Cooling
+        filteredBreakdown = energyData.breakdown.filter(
+            item => THERMAL_CATEGORIES.includes(item.name)
+        );
+    } else if (consumption.length === 1 && consumption.includes("electric")) {
+        // Electric only: show everything except Heating and Cooling
+        filteredBreakdown = energyData.breakdown.filter(
+            item => !THERMAL_CATEGORIES.includes(item.name)
+        );
+    }
+    // If both selected or none selected → show all (no filter)
+
+    // Recalculate total from filtered data
+    const filteredTotal = filteredBreakdown.reduce(
+        (sum, item) => sum + item.value, 0
+    );
+
     // Calculate percentages and filter zero values
-    const breakdown = calculatePercentages(energyData.breakdown, energyData.total);
+    const breakdown = calculatePercentages(filteredBreakdown, filteredTotal);
 
     // Get container dimensions
     const containerWidth = container.clientWidth || 1000;

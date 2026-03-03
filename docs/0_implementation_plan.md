@@ -39,7 +39,7 @@ A multi-layered web-based interface for designing and analyzing positive-energy 
 │   ├── Images_Neighbourhoods/      # 3D neighbourhood layouts
 │   ├── Images_Buildings/           # Building type icons (19 icons)
 │   ├── Images_EnergyStatus/        # Energy status indicators (Positive, Neutral, Negative)
-│   ├── Images_Layer2_EnergyConsumption/  # Thermal and Electric icons
+│   ├── Images_Layer2_EnergyConsumption/  # Thermal Load and Electric icons
 │   ├── Images_Layer2_EnergyGeneration/   # Solar, Wind, Geothermal icons
 │   ├── Images_PVProfile/           # Solar irradiation and generation charts
 │   ├── Images_LPVProfile/          # LPV heatmaps and cross-sections
@@ -108,7 +108,7 @@ Displays filtered neighbourhood configurations in a 4-column table showing conce
 ### 3. Energy Selection Page (`energy-selection.html`)
 **Layer 2: Energy Design Interface**
 
-Intermediate selection page for choosing energy analysis parameters. Features two groups: Energy Consumption (Thermal, Electric) and Energy Generation (Solar, Wind, Geothermal). Selections stored in sessionStorage before proceeding to the detailed Energy Breakdown visualization.
+Intermediate selection page for choosing energy analysis parameters. Features two groups: Energy (Thermal Load, Electric) and Energy Generation (Solar, Wind, Geothermal). Selections stored in sessionStorage before proceeding to the detailed Energy Breakdown visualization.
 
 📄 **[View Detailed Documentation](03_energy_selection_page.md)**
 
@@ -117,7 +117,7 @@ Intermediate selection page for choosing energy analysis parameters. Features tw
 ### 4. Energy Breakdown Page (`energy.html`)
 **Layer 2: Energy Performance**
 
-Interactive treemap visualization displaying 13 energy categories (Heating, Cooling, Lighting, Equipment, etc.) sized proportionally to consumption. Includes Energy Status indicators (Positive/Neutral/Negative) and EUI scale. Features dynamic legend with values and percentages for each category.
+Interactive treemap visualization displaying energy categories (Heating, Cooling, Lighting, Equipment, etc.) sized proportionally to demand. Includes Energy Status indicators (Positive/Neutral/Negative) and EUI scale. Features dynamic filtering based on selection.
 
 📄 **[View Detailed Documentation](04_energy_breakdown_page.md)**
 
@@ -219,8 +219,8 @@ Electric vehicle integration analysis featuring three parameter groups: EV Usage
 - Clickable rows for detailed analysis
 
 ### Layer 2: Energy Design
-- Energy parameter selection (Consumption + Generation)
-- Interactive treemap for energy breakdown (13 categories)
+- Energy parameter selection (Thermal Load + Electric vs. Generation)
+- Interactive treemap for energy breakdown (dynamic filtering)
 - Energy Status and EUI scale indicators
 
 ### Layer 2: Solar Energy Profiles
@@ -254,11 +254,11 @@ The Neighbourhood Design Interface is a sophisticated, multi-layered web applica
 
 1. **Parametric Design** (Layer 0): Intuitive parameter selection
 2. **Configuration Browsing** (Layer 1): Neighbourhood exploration
-3. **Energy Analysis** (Layer 2): Detailed energy consumption and generation analysis
+3. **Energy Analysis** (Layer 2): Detailed energy and generation analysis
 4. **System Integration** (Layers 2-3): PV, LPV, and EV profile analysis
 
 The interface employs a progressive disclosure approach, revealing increasing levels of detail as users navigate through the layers, making complex energy system analysis accessible and visually engaging.
-
+- **[08_filter_treemap_selection.md](08_filter_treemap_selection.md)** - Dynamic treemap filtering logic
 ---
 
 ## Documentation Index

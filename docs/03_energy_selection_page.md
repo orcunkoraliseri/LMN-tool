@@ -11,7 +11,7 @@ The Energy Selection Page (`energy-selection.html`) serves as an intermediate se
 ---
 
 ## Purpose
-Allow users to select specific energy consumption and generation parameters for detailed analysis before viewing the comprehensive energy breakdown.
+Allow users to select specific energy and generation parameters for detailed analysis before viewing the comprehensive energy breakdown.
 
 ---
 
@@ -20,17 +20,17 @@ Allow users to select specific energy consumption and generation parameters for 
 ### Header Section
 - **Title**: "Layer 2: Energy Design Interface"
 - **Dynamic Neighbourhood Display**: Shows selected neighbourhood code
-- **Description**: "Select energy consumption and generation parameters for your analysis"
+- **Description**: "Select energy and generation parameters for your analysis"
 
 ### Two Parameter Groups
 
-#### 1. Energy Consumption Parameters
-- **Options**: Thermal, Electric (2 options)
+#### 1. Energy Parameters
+- **Options**: Thermal Load, Electric (2 options)
 - **Selection Type**: Toggle (can select one or both)
 - **Images**: `/Content/Images_Layer2_EnergyConsumption/`
   - `Thermal.png`
   - `Electric.png`
-- **Purpose**: Select types of energy consumption to analyze
+- **Purpose**: Select types of energy to analyze
 
 #### 2. Energy Generation Parameters
 - **Layout**: 4-row structure
@@ -69,9 +69,9 @@ Allow users to select specific energy consumption and generation parameters for 
 +------------------------------------------+
 |  [← Back to Layer 1]                     |
 |                                          |
-|    Energy Consumption                    |
+|    Energy                                |
 |    +------------------+------------------+
-|    |    [Thermal]     |    [Electric]    |
+|    |  [Thermal Load]  |    [Electric]    |
 |    |     [Image]      |     [Image]      |
 |    +------------------+------------------+
 |                                          |
@@ -109,7 +109,7 @@ Allow users to select specific energy consumption and generation parameters for 
    - No parameters selected by default
 
 2. **Parameter Selection**
-   - User clicks on energy consumption cards (Thermal/Electric)
+   - User clicks on energy cards (Thermal Load/Electric)
    - User clicks on energy generation cards (Solar/Wind/Geothermal)
    - Visual feedback on selection
    - Multiple selections allowed
@@ -139,7 +139,7 @@ document.getElementById('neighbourhood-title').textContent =
 
 #### Selection Handling
 ```javascript
-// Toggle selection for consumption cards
+// Toggle selection for energy cards
 document.querySelectorAll('.consumption-card').forEach(card => {
   card.addEventListener('click', () => {
     card.classList.toggle('selected');
@@ -188,11 +188,11 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
 ### Energy Consumption Section
 ```html
 <div class="parameter-group">
-  <div class="parameter-label">Energy Consumption</div>
+  <div class="parameter-label">Energy</div>
   <div class="consumption-cards">
     <button class="consumption-card" data-category="consumption" data-value="thermal">
-      <img src="Content/Images_Layer2_EnergyConsumption/Thermal.png" alt="Thermal">
-      <span>Thermal</span>
+      <img src="Content/Images_Layer2_EnergyConsumption/Thermal.png" alt="Thermal Load">
+      <span>Thermal Load</span>
     </button>
     <button class="consumption-card" data-category="consumption" data-value="electric">
       <img src="Content/Images_Layer2_EnergyConsumption/Electric.png" alt="Electric">
@@ -237,8 +237,8 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
 
 ## Image Assets
 
-### Energy Consumption Images
-- **Thermal.png**: Heating/cooling energy visualization
+### Energy Images
+- **Thermal.png**: Heating/cooling energy visualization ("Thermal Load")
 - **Electric.png**: Electrical energy visualization
 - **Format**: PNG
 - **Style**: Consistent with interface design
@@ -255,7 +255,7 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
 ## CSS Styling
 
 ### Key Classes
-- `.consumption-card`: Energy consumption parameter cards
+- `.consumption-card`: Energy parameter cards
 - `.generation-card`: Energy generation parameter cards
 - `.consumption-cards`, `.generation-cards`: Card containers
 - `.selected`: Selected state styling
@@ -291,7 +291,7 @@ document.getElementById('view-energy-btn').addEventListener('click', () => {
 ### Data Validation
 ```javascript
 function validateSelections() {
-  const hasConsumption = document.querySelectorAll('.consumption-card.selected').length > 0;
+  const hasEnergy = document.querySelectorAll('.consumption-card.selected').length > 0;
   const hasGeneration = document.querySelectorAll('.generation-card.selected').length > 0;
   
   return hasConsumption || hasGeneration;
