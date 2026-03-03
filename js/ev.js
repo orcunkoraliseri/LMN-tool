@@ -62,7 +62,7 @@ function initEVPage() {
 
         // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `layer0_NUs_selection.html`; // Or wherever it makes sense to go back to start
+            nextStepBtn.href = `layer0_output.html`; // Or wherever it makes sense to go back to start
         }
     } else {
         titleElement.textContent = 'EV Profile';

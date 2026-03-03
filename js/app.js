@@ -282,7 +282,7 @@ function checkAllFiltersSelected() {
 }
 
 /**
- * Set up submit button to show results inline
+ * Set up submit button to navigate to output page
  */
 function setupSubmitButton() {
     const submitBtn = document.getElementById('view-results-btn');
@@ -292,16 +292,8 @@ function setupSubmitButton() {
             // Store filters in sessionStorage
             sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
 
-            // Show results on the same page
-            const resultsSection = document.getElementById('results-section');
-            if (resultsSection) {
-                resultsSection.style.display = 'block';
-                renderOutputTable(activeFilters);
-                setupLayer2Button();
-
-                // Scroll to results
-                resultsSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            // Navigate to output page
+            window.location.href = 'layer0_output.html';
         });
     }
 }
@@ -568,19 +560,10 @@ function createResultRow(concept, neighbourhood) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    // Welcome Page (now Layer 0 selection + results)
+    // Check which page we're on
     if (document.querySelector('.usage-cards')) {
         initWelcomePage();
-
-        // If results table structure exists, check for existing session data
-        if (document.getElementById('results-body')) {
-            const filtersJson = sessionStorage.getItem('activeFilters');
-            if (filtersJson) {
-                const resultsSection = document.getElementById('results-section');
-                if (resultsSection) resultsSection.style.display = 'block';
-                renderOutputTable(JSON.parse(filtersJson));
-                setupLayer2Button();
-            }
-        }
+    } else if (document.getElementById('results-body')) {
+        initOutputPage();
     }
 });

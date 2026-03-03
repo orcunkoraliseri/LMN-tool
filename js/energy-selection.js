@@ -144,7 +144,7 @@ function initEnergySelectionPage() {
 
         // Update back button to maintain context (go back to selection page)
         if (backBtn) {
-            backBtn.href = 'layer0_NUs_selection.html';
+            backBtn.href = 'layer0_output.html';
         }
 
         // Build the initial sidebar in selection mode
