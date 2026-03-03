@@ -513,16 +513,32 @@ function createResultRow(concept, neighbourhood) {
         }
     });
 
-    // Properties cell - use neighbourhood's own properties
+    // Properties cell - display the user's selected parameters visually
     const propertiesCell = document.createElement('td');
+
+    // Helper function to capitalize layout values
+    const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
     propertiesCell.innerHTML = `
-    <div class="properties-cell">
-      <p><strong>Context:</strong> ${neighbourhood.context}</p>
-      <p><strong>Usage:</strong> ${neighbourhood.usage}</p>
-      <p><strong>Layout:</strong> ${neighbourhood.layout}</p>
-      <p><strong>Density:</strong> ${neighbourhood.density}</p>
-    </div>
-  `;
+      <div class="properties-cell" style="display: flex; gap: var(--spacing-sm); justify-content: center; align-items: center; flex-wrap: wrap;">
+        <div class="property-icon" style="text-align: center; font-size: 0.8rem; display: flex; flex-direction: column; align-items: center;">
+          <img src="Content/Images_Usage_Parameters/${neighbourhood.usage}.png" alt="${neighbourhood.usage}" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 4px;" onerror="this.style.display='none'">
+          <span>${neighbourhood.usage}</span>
+        </div>
+        <div class="property-icon" style="text-align: center; font-size: 0.8rem; display: flex; flex-direction: column; align-items: center;">
+          <img src="Content/Images_Context_Parameters/${neighbourhood.context}.png" alt="${neighbourhood.context}" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 4px;" onerror="this.style.display='none'">
+          <span>${neighbourhood.context}</span>
+        </div>
+        <div class="property-icon" style="text-align: center; font-size: 0.8rem; display: flex; flex-direction: column; align-items: center;">
+          <img src="Content/Images_Layout_Parameters/${capitalize(neighbourhood.layout)}.png" alt="${neighbourhood.layout}" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 4px;" onerror="this.style.display='none'">
+          <span>${neighbourhood.layout}</span>
+        </div>
+        <div class="property-icon" style="text-align: center; font-size: 0.8rem; display: flex; flex-direction: column; align-items: center;">
+          <img src="Content/Images_Density_Parameters/${neighbourhood.density}.png" alt="${neighbourhood.density}" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 4px;" onerror="this.style.display='none'">
+          <span>${neighbourhood.density}</span>
+        </div>
+      </div>
+    `;
 
     // Buildings cell
     const buildingsCell = document.createElement('td');

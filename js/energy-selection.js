@@ -92,41 +92,12 @@ function setupSubmitButton() {
             sessionStorage.setItem('energySelections', JSON.stringify(energySelections));
 
             if (neighbourhoodCode) {
-                // Transition to results mode instead of navigating
-                enterResultsMode(neighbourhoodCode);
+                // Navigate to the output energy results page
+                window.location.href = `layer1_output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             } else {
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
             }
         });
-    }
-}
-
-/**
- * Transition the page from selection mode to visuals/results mode
- */
-function enterResultsMode(neighbourhoodCode) {
-    if (titleElement) {
-        titleElement.textContent = `Layer 1: Energy Selection Results for ${neighbourhoodCode}`;
-    }
-
-    // 2. Hide the selection form
-    const selectionForm = document.getElementById('selection-form');
-    if (selectionForm) {
-        selectionForm.style.display = 'none';
-    }
-
-    // 3. Rebuild sidebar in 'visuals' mode to show the new additions block
-    buildSidebar('layer1_selection', 'visuals');
-
-    // 4. Show a placeholder or instructions to click the sidebar to reveal visuals
-    const visualContent = document.getElementById('visual-content');
-    if (visualContent) {
-        visualContent.innerHTML = `
-            <div class="no-results" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                <h2>Selections Confirmed</h2>
-                <p>Click on <strong>Energy</strong> or <strong>Energy Generation</strong> items in the left sidebar to view their detailed profiles.</p>
-            </div>
-        `;
     }
 }
 

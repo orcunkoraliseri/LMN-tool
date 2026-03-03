@@ -134,7 +134,7 @@ function buildSidebar(currentLayer, mode) {
     // -------------------------------------------------------------
 
     if (mode === 'visuals') {
-        if (currentLayer === 'energy' || currentLayer === 'pv' || currentLayer === 'energy-selection') {
+        if (currentLayer === 'energy' || currentLayer === 'pv' || currentLayer === 'layer1_selection' || currentLayer === 'layer1_output_energy' || currentLayer === 'energy-selection') {
             html += `
                 <div class="sidebar-section sidebar-section--pink">
                     <h2 class="sidebar-title">Layer 1</h2>
