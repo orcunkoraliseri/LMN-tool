@@ -274,10 +274,9 @@ function updateAvailableOptions() {
  * Check if ALL filters are selected (to enable submit)
  */
 function checkAllFiltersSelected() {
-    const isComplete = Object.values(activeFilters).every(val => val !== null);
     const submitBtn = document.getElementById('view-results-btn');
     if (submitBtn) {
-        submitBtn.disabled = !isComplete;
+        submitBtn.disabled = false;
     }
 }
 

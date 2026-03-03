@@ -4,36 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EV Profile visualization for neighbourhood configurations.">
-    <title>EV Profile | Neighbourhood Design Interface</title>
+    <meta name="description" content="EV Breakdown for neighbourhood configurations.">
+    <title>EV Breakdown | Neighbourhood Design Interface</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <h1 id="neighbourhood-title">Layer 3: EV Profile</h1>
+        <h1 id="neighbourhood-title">Layer 2: EV Breakdown</h1>
+        <p>Explore the EV overview for the selected neighbourhood.</p>
     </header>
 
     <!-- Main Content -->
     <main class="container">
         <!-- Navigation Buttons -->
         <div class="nav-buttons">
-            <a id="back-step-btn" href="llayer1_pv_breakdown.html" class="back-button">
+            <a id="back-step-btn" href="layer2_output_mobility.html" class="back-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                Back to Land-PV Generation
-            </a>
-            <a id="next-step-btn" href="layer0_output.html" class="next-button">
-                Back to Layer 1: Selection
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
+                Back to Output
             </a>
         </div>
 
@@ -41,103 +34,31 @@
             <aside id="sidebar" class="sidebar"></aside>
 
             <div id="visual-content" class="main-content">
-                <!-- EV Profile Content -->
-                <div class="ev-profile-layout">
-                    <!-- Left Column: Inputs and KPIs -->
-                    <div class="ev-left-column">
-                        <!-- Inputs Section -->
-                        <div class="ev-section">
-
-                            <!-- EV Usage Ratio -->
-                            <div class="ev-parameter-group">
-                                <h3 class="ev-parameter-label">EV Usage Ratio</h3>
-                                <div class="ev-parameter-buttons">
-                                    <button class="ev-toggle-btn active" data-category="usage-ratio"
-                                        data-value="0">0%</button>
-                                    <button class="ev-toggle-btn" data-category="usage-ratio"
-                                        data-value="50">50%</button>
-                                    <button class="ev-toggle-btn" data-category="usage-ratio"
-                                        data-value="100">100%</button>
-                                </div>
-                            </div>
-
-                            <!-- Charger Type -->
-                            <div class="ev-parameter-group">
-                                <h3 class="ev-parameter-label">Charger Type</h3>
-                                <div class="ev-parameter-buttons">
-                                    <button class="ev-toggle-btn active" data-category="charger-type"
-                                        data-value="slow">slow</button>
-                                    <button class="ev-toggle-btn" data-category="charger-type"
-                                        data-value="standard">standard</button>
-                                    <button class="ev-toggle-btn" data-category="charger-type" data-value="dc-fast">DC
-                                        Fast</button>
-                                </div>
-                            </div>
-
-                            <!-- Charging Scenario -->
-                            <div class="ev-parameter-group">
-                                <h3 class="ev-parameter-label">Charging Scenario</h3>
-                                <div class="ev-parameter-buttons">
-                                    <button class="ev-toggle-btn active" data-category="charging-scenario"
-                                        data-value="slow">slow</button>
-                                    <button class="ev-toggle-btn" data-category="charging-scenario"
-                                        data-value="standard">standard</button>
-                                    <button class="ev-toggle-btn" data-category="charging-scenario"
-                                        data-value="dc-fast">DC
-                                        Fast</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- KPIs Section -->
-                        <div class="ev-section">
-
-                            <!-- Added Peak Load -->
-                            <div class="ev-kpi-item">
-                                <h3 class="ev-kpi-label">Added Peak Load</h3>
-                                <div class="ev-kpi-value">+kW</div>
-                            </div>
-
-                            <!-- PV to EV Conversion Rate -->
-                            <div class="ev-kpi-item">
-                                <h3 class="ev-kpi-label">PV to EV Conversion Rate</h3>
-                                <div class="ev-kpi-value">%</div>
-                            </div>
-
-                            <!-- Total Demand -->
-                            <div class="ev-kpi-item">
-                                <h3 class="ev-kpi-label">Total Demand</h3>
-                                <div class="ev-kpi-value">MWh/year</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Visualization -->
-                    <div class="ev-right-column">
-                        <div class="ev-section">
-
-                            <!-- EV Impact Line Plot -->
-                            <div class="ev-chart-container">
-                                <img src="Content/Images_EVProfile/EV_impact_LinePlot.png"
-                                    alt="Impact on Peak: EV Charging Scenarios" class="ev-chart-image">
-                            </div>
-
-                            <!-- State of Charging Bar Chart -->
-                            <div class="ev-chart-container">
-                                <img src="Content/Images_EVProfile/StateOfCharging_BarChart.png" alt="State of Charging"
-                                    class="ev-chart-image">
-                            </div>
-                        </div>
-                    </div>
+                <div style="padding: 2rem; text-align: center;">
+                    <h3 style="margin-bottom: 2rem; color: #333; font-weight: 500;">EV Breakdown Content</h3>
+                    <img src="Mockup/L3.png" alt="EV Breakdown Mockup"
+                        style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                 </div>
             </div>
-    </main>
+        </div>
     </main>
 
     <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/sidebar.js"></script>
-    <script src="js/ev.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const neighbourhoodCode = params.get('neighbourhood');
+            if (neighbourhoodCode) {
+                document.getElementById('neighbourhood-title').textContent = `Layer 2: EV Breakdown for ${neighbourhoodCode}`;
+                document.getElementById('back-step-btn').href = `layer2_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                if (typeof buildSidebar === 'function') {
+                    buildSidebar('layer2_output', 'visuals');
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

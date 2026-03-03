@@ -107,7 +107,7 @@ function initPVPage() {
 
     if (neighbourhoodCode) {
         // Update title
-        titleElement.textContent = `Layer 2: PV Generation of ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 1: PV Generation of ${neighbourhoodCode}`;
 
         // Build sidebar
         if (typeof buildSidebar === 'function') {
@@ -121,7 +121,7 @@ function initPVPage() {
 
         // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `llayer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            nextStepBtn.href = `layer1_lpv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
     } else {
         titleElement.textContent = 'PV Generation Profile';

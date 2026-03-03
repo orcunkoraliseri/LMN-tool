@@ -17,6 +17,8 @@ function buildSidebar(currentLayer, mode) {
     const energySelections = JSON.parse(sessionStorage.getItem('energySelections') || '{"consumption":[], "generation":[]}');
     const lpvSelections = JSON.parse(sessionStorage.getItem('lpvSelections') || '{}');
     const evSelections = JSON.parse(sessionStorage.getItem('evSelections') || '{}');
+    const mobilitySelections = JSON.parse(sessionStorage.getItem('mobilitySelections') || '{"transportation":[], "mobility":[]}');
+    const greenSelections = JSON.parse(sessionStorage.getItem('greenSelections') || '{"infrastructure":[], "urban_agriculture":[], "energy_integrated":[]}');
 
     // Retrieve basic neighbourhood info
     const params = new URLSearchParams(window.location.search);
@@ -52,7 +54,7 @@ function buildSidebar(currentLayer, mode) {
 
     // Determine the title of the top boundary based on layer visibility
     let topBoundaryTitle = 'Layer 0';
-    if (currentLayer === 'lpv' || currentLayer === 'ev') {
+    if (currentLayer === 'lpv' || currentLayer === 'ev' || currentLayer.startsWith('layer2') || currentLayer.startsWith('layer3')) {
         topBoundaryTitle = 'Layer 0 + Layer 1';
     }
 
@@ -122,7 +124,7 @@ function buildSidebar(currentLayer, mode) {
     `;
 
     // --- LAYER 1 CUMULATIVE DATA (Only show here if we are on Layer 2 pages) ---
-    if ((currentLayer === 'lpv' || currentLayer === 'ev') && mode === 'selection') {
+    if ((currentLayer === 'lpv' || currentLayer === 'ev' || currentLayer.startsWith('layer2') || currentLayer.startsWith('layer3')) && mode === 'selection') {
         html += generateLayer1Block(energySelections, false, currentLayer, neighbourhood.code);
     }
 
@@ -134,7 +136,7 @@ function buildSidebar(currentLayer, mode) {
     // -------------------------------------------------------------
 
     if (mode === 'visuals') {
-        if (currentLayer === 'energy' || currentLayer === 'pv' || currentLayer === 'layer1_selection' || currentLayer === 'layer1_output_energy' || currentLayer === 'energy-selection') {
+        if (currentLayer === 'energy' || currentLayer === 'pv' || currentLayer === 'layer1_selection' || currentLayer === 'layer1_output_energy' || currentLayer === 'energy-selection' || currentLayer.startsWith('layer2') || currentLayer.startsWith('layer3')) {
             html += `
                 <div class="sidebar-section sidebar-section--pink">
                     <h2 class="sidebar-title">Layer 1</h2>
@@ -142,11 +144,21 @@ function buildSidebar(currentLayer, mode) {
                 </div>
             `;
         }
-        else if (currentLayer === 'ev') {
+
+        if (currentLayer.startsWith('layer2_output') || currentLayer.startsWith('layer3')) {
             html += `
                 <div class="sidebar-section sidebar-section--pink">
                     <h2 class="sidebar-title">Layer 2</h2>
-                    ${generateLayer2Block(lpvSelections, evSelections, true, currentLayer, neighbourhood.code)}
+                    ${generateLayer2Block(mobilitySelections, true, currentLayer, neighbourhood.code)}
+                </div>
+            `;
+        }
+
+        if (currentLayer.startsWith('layer3_output')) {
+            html += `
+                <div class="sidebar-section sidebar-section--pink">
+                    <h2 class="sidebar-title">Layer 3</h2>
+                    ${generateLayer3Block(greenSelections, true, currentLayer, neighbourhood.code)}
                 </div>
             `;
         }
@@ -224,24 +236,126 @@ function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode
 }
 
 /**
- * Helper to generate Layer 2 (EV + LPV) HTML blocks
+ * Helper to generate Layer 2 Mobility blocks
  */
-function generateLayer2Block(lpvSelections, evSelections, isClickable, currentLayer, nuCode) {
+function generateLayer2Block(mobilitySelections, isClickable, currentLayer, nuCode) {
     let html = ``;
 
-    // Similar to above, but for Layer 2 properties.
-    // For now, we mainly just note that they are added, as the mockup 
-    // focuses visual selections.
-    html += `
-        <div class="sidebar-block">
-            <h3 class="sidebar-subtitle">Mobility & Land-PV</h3>
-            <div class="sidebar-items-grid">
-                <div class="sidebar-item sidebar-item--active">
-                    <span>EV Profile Applied</span>
+    // --- Transportation ---
+    html += `<div class="sidebar-block">
+                <h3 class="sidebar-subtitle">Transportation</h3>
+                <div class="sidebar-items-grid">`;
+
+    const transportLabels = {
+        'ev': 'EV', 'ev_public_transport': 'EV Public Transport',
+        'ev_charging_stations': 'EV Charging Stations', 'v2g_stations': 'V2G Stations'
+    };
+
+    if (mobilitySelections.transportation && mobilitySelections.transportation.length > 0) {
+        mobilitySelections.transportation.forEach(val => {
+            const label = transportLabels[val] || val;
+            const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
+            const dataset = isClickable ? `data-target="layer2_ev_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+
+            html += `
+                <div class="sidebar-item ${clickableClass}" ${dataset}>
+                    <img src="Content/Images_Layer2_Transportation/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <span>${label}</span>
                 </div>
-            </div>
-        </div>
-    `;
+            `;
+        });
+    } else {
+        html += `<span>None selected</span>`;
+    }
+    html += `</div></div>`;
+
+    // --- Mobility ---
+    html += `<div class="sidebar-block">
+                <h3 class="sidebar-subtitle">Mobility</h3>
+                <div class="sidebar-items-grid">`;
+
+    const mobilityLabels = {
+        'bicycle_infrastructure': 'Bicycle Infrastructure',
+        'pedestrian_oriented_design': 'Pedestrian-oriented design'
+    };
+
+    if (mobilitySelections.mobility && mobilitySelections.mobility.length > 0) {
+        mobilitySelections.mobility.forEach(val => {
+            const label = mobilityLabels[val] || val;
+            html += `
+                <div class="sidebar-item">
+                    <img src="Content/Images_Layer2_Mobility/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <span>${label}</span>
+                </div>
+            `;
+        });
+    } else {
+        html += `<span>None selected</span>`;
+    }
+    html += `</div></div>`;
+
+    return html;
+}
+
+/**
+ * Helper to generate Layer 3 Green blocks
+ */
+function generateLayer3Block(greenSelections, isClickable, currentLayer, nuCode) {
+    let html = ``;
+
+    // --- Infrastructure ---
+    html += `<div class="sidebar-block">
+                <h3 class="sidebar-subtitle">Infrastructure</h3>
+                <div class="sidebar-items-grid">`;
+    const infraLabels = { 'green_roofs': 'Green Roofs', 'vertical_greening_systems': 'Vertical Greening Systems', 'linear_greenery': 'Linear Greenery', 'green_spaces': 'Green Spaces' };
+    if (greenSelections.infrastructure && greenSelections.infrastructure.length > 0) {
+        greenSelections.infrastructure.forEach(val => {
+            const label = infraLabels[val] || val;
+            html += `
+                <div class="sidebar-item">
+                    <img src="Content/Images_Layer3_Infrastructure/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <span>${label}</span>
+                </div>
+            `;
+        });
+    } else { html += `<span>None selected</span>`; }
+    html += `</div></div>`;
+
+    // --- Urban Agriculture ---
+    html += `<div class="sidebar-block">
+                <h3 class="sidebar-subtitle">Urban Agriculture</h3>
+                <div class="sidebar-items-grid">`;
+    const agLabels = { 'roof_gardens': 'Roof Gardens', 'food_gardens': 'Food Gardens' };
+    if (greenSelections.urban_agriculture && greenSelections.urban_agriculture.length > 0) {
+        greenSelections.urban_agriculture.forEach(val => {
+            const label = agLabels[val] || val;
+            html += `
+                <div class="sidebar-item">
+                    <img src="Content/Images_Layer3_UrbanAgriculture/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <span>${label}</span>
+                </div>
+            `;
+        });
+    } else { html += `<span>None selected</span>`; }
+    html += `</div></div>`;
+
+    // --- Energy-Integrated GI ---
+    html += `<div class="sidebar-block">
+                <h3 class="sidebar-subtitle">Energy-Integrated GI</h3>
+                <div class="sidebar-items-grid">`;
+    const integratedLabels = { 'pv_green_roofs': 'PV-Green Roofs Integrated Modules', 'pv_vgs': 'PV-VGS Integrated Modules' };
+    if (greenSelections.energy_integrated && greenSelections.energy_integrated.length > 0) {
+        greenSelections.energy_integrated.forEach(val => {
+            const label = integratedLabels[val] || val;
+            html += `
+                <div class="sidebar-item">
+                    <img src="Content/Images_Layer3_EnergyIntegrated/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <span>${label}</span>
+                </div>
+            `;
+        });
+    } else { html += `<span>None selected</span>`; }
+    html += `</div></div>`;
 
     return html;
 }

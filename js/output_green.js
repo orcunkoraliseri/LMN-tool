@@ -1,0 +1,49 @@
+/**
+ * Output Green Page
+ * Displays the selected neighbourhood along with green infrastructure parameters in the sidebar
+ */
+
+function getNeighbourhoodFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('neighbourhood');
+}
+
+/**
+ * Render the output table (Intentionally removed as layout updated to not use the table here)
+ */
+function renderOutputGreenTable() {
+    // Left blank intentionally, handled through sidebar layout update.
+}
+
+/**
+ * Setup navigation buttons
+ */
+function setupNavigation() {
+    const backBtn = document.getElementById('back-btn');
+    const neighbourhoodCode = getNeighbourhoodFromURL();
+
+    if (backBtn && neighbourhoodCode) {
+        backBtn.href = `layer3_green_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+    }
+}
+
+/**
+ * Initialize page
+ */
+function initOutputGreenPage() {
+    const neighbourhoodCode = getNeighbourhoodFromURL();
+    const titleElement = document.getElementById('neighbourhood-title');
+
+    if (neighbourhoodCode) {
+        titleElement.textContent = `Layer 3: Green Selection Results for ${neighbourhoodCode}`;
+
+        if (typeof buildSidebar === 'function') {
+            buildSidebar('layer3_output', 'visuals');
+        }
+    }
+
+    renderOutputGreenTable();
+    setupNavigation();
+}
+
+document.addEventListener('DOMContentLoaded', initOutputGreenPage);

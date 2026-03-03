@@ -83,11 +83,6 @@ function setupSubmitButton() {
         submitBtn.addEventListener('click', () => {
             const neighbourhoodCode = getNeighbourhoodFromURL();
 
-            if (!energySelections.consumption.length && !energySelections.generation.length) {
-                alert('Please select at least one energy or generation parameter.');
-                return;
-            }
-
             // Store selections in sessionStorage (for future use)
             sessionStorage.setItem('energySelections', JSON.stringify(energySelections));
 

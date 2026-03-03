@@ -179,10 +179,17 @@ function renderOutputEnergyTable() {
  */
 function setupNavigation() {
     const backBtn = document.getElementById('back-btn');
+    const proceedBtn = document.getElementById('proceed-mobility-btn');
     const neighbourhoodCode = getNeighbourhoodFromURL();
 
     if (backBtn && neighbourhoodCode) {
         backBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+    }
+
+    if (proceedBtn && neighbourhoodCode) {
+        proceedBtn.addEventListener('click', () => {
+            window.location.href = `layer2_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        });
     }
 }
 
