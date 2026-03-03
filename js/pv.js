@@ -109,9 +109,14 @@ function initPVPage() {
         // Update title
         titleElement.textContent = `Layer 2: PV Generation of ${neighbourhoodCode}`;
 
-        // Set back button href to energy page with neighbourhood param
+        // Build sidebar
+        if (typeof buildSidebar === 'function') {
+            buildSidebar('pv', 'visuals');
+        }
+
+        // Set back button href to energy-selection page
         if (backStepBtn) {
-            backStepBtn.href = `output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         // Set next step button href

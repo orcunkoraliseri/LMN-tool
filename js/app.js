@@ -488,6 +488,10 @@ function createResultRow(concept, neighbourhood) {
         row.classList.add('selected');
         selectedNeighbourhoodCode = neighbourhood.code;
 
+        // Save full object to session storage for the new sidebar component
+        sessionStorage.setItem('selectedNeighbourhood', JSON.stringify(neighbourhood));
+        sessionStorage.setItem('selectedConcept', JSON.stringify(concept));
+
         // Enable next button
         const nextBtn = document.getElementById('layer2-energy-btn');
         if (nextBtn) {

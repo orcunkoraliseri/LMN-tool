@@ -28,8 +28,12 @@
             Back to Layer 1
         </a>
 
-        <!-- Parameters Section -->
-        <section class="parameters-section">
+        <div class="sidebar-layout">
+            <aside id="sidebar" class="sidebar"></aside>
+
+            <div id="visual-content" class="main-content">
+                <!-- Parameters Section -->
+                <section class="parameters-section" id="selection-form">
 
             <!-- ENERGY -->
             <div class="parameter-group">
@@ -104,13 +108,14 @@
             <!-- Submit Button -->
             <div class="submit-section">
                 <button id="view-energy-btn" class="submit-btn">View Energy Performance</button>
-            </div>
-
-        </section>
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- Scripts -->
     <script src="js/data.js"></script>
+    <script src="js/sidebar.js"></script>
     <script src="js/energy-selection.js"></script>
 </body>
 

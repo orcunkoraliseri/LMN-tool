@@ -254,7 +254,7 @@ function renderTreemap(neighbourhoodCode) {
     // Set back step button href to energy selection page
     const backStepBtn = document.getElementById('back-step-btn');
     if (backStepBtn) {
-        backStepBtn.href = `output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backStepBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 
     // Set next step button href
@@ -371,13 +371,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const neighbourhoodCode = getNeighbourhoodFromURL();
 
     if (neighbourhoodCode) {
+        // Build the sidebar in visuals mode
+        if (typeof buildSidebar === 'function') {
+            buildSidebar('energy', 'visuals');
+        }
+
         renderTreemap(neighbourhoodCode);
 
+        // Update nav buttons
+        const backBtn = document.getElementById('back-step-btn');
+        const nextBtn = document.getElementById('next-step-btn');
+
+        if (backBtn) backBtn.href = `energy-selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        // Assume next page from Energy should be PV Generation or LPV (since we consolidated output_energy)
+        if (nextBtn) nextBtn.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+
         // Re-render on window resize
-        let resizeTimeout;
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
                 renderTreemap(neighbourhoodCode);
             }, 100);
         });

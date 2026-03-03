@@ -133,6 +133,11 @@ function initLPVPage() {
         // Update title
         titleElement.textContent = `Layer 2: Land-PV Generation of ${neighbourhoodCode}`;
 
+        // Build sidebar
+        if (typeof buildSidebar === 'function') {
+            buildSidebar('lpv', 'selection');
+        }
+
         // Set back button href to PV page with neighbourhood param
         if (backStepBtn) {
             backStepBtn.href = `pv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;

@@ -50,30 +50,19 @@ function initEVPage() {
         // Update title
         titleElement.textContent = `Layer 3: Mobility of ${neighbourhoodCode}`;
 
-        // Set back button href based on 'from' parameter or default to LPV
-        if (backStepBtn) {
-            const params = new URLSearchParams(window.location.search);
-            const from = params.get('from');
-
-            if (from === 'consumption') {
-                backStepBtn.href = `energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
-                backStepBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                    Back to Energy Analysis
-                `;
-            } else {
-                // Default to generation/lpv
-                backStepBtn.href = `lpv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
-                backStepBtn.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                    Back to Land-PV Generation
-                `;
-            }
+        // Build sidebar
+        if (typeof buildSidebar === 'function') {
+            buildSidebar('ev', 'selection');
         }
 
-        // Set next step button href (now "Back to Layer 2: Energy Output")
+        // Set back button href based on 'from' parameter or default to LPV
+        if (backStepBtn) {
+            backStepBtn.href = `lpv.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        }
+
+        // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            nextStepBtn.href = `output.html`; // Or wherever it makes sense to go back to start
         }
     } else {
         titleElement.textContent = 'EV Profile';

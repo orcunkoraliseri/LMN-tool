@@ -83,17 +83,52 @@ function setupSubmitButton() {
         submitBtn.addEventListener('click', () => {
             const neighbourhoodCode = getNeighbourhoodFromURL();
 
+            if (!energySelections.consumption.length && !energySelections.generation.length) {
+                alert('Please select at least one energy or generation parameter.');
+                return;
+            }
+
             // Store selections in sessionStorage (for future use)
             sessionStorage.setItem('energySelections', JSON.stringify(energySelections));
 
-            // Navigate to output energy page with neighbourhood parameter
             if (neighbourhoodCode) {
-                window.location.href = `output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                // Transition to results mode instead of navigating
+                enterResultsMode(neighbourhoodCode);
             } else {
-                // Fallback - try to get from sessionStorage or go to output
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
             }
         });
+    }
+}
+
+/**
+ * Transition the page from selection mode to visuals/results mode
+ */
+function enterResultsMode(neighbourhoodCode) {
+    // 1. Update the title
+    const titleElement = document.getElementById('neighbourhood-title');
+    if (titleElement) {
+        titleElement.textContent = `Layer 2: Energy Selection Results for ${neighbourhoodCode}`;
+    }
+
+    // 2. Hide the selection form
+    const selectionForm = document.getElementById('selection-form');
+    if (selectionForm) {
+        selectionForm.style.display = 'none';
+    }
+
+    // 3. Rebuild sidebar in 'visuals' mode to show the new additions block
+    buildSidebar('energy-selection', 'visuals');
+
+    // 4. Show a placeholder or instructions to click the sidebar to reveal visuals
+    const visualContent = document.getElementById('visual-content');
+    if (visualContent) {
+        visualContent.innerHTML = `
+            <div class="no-results" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                <h2>Selections Confirmed</h2>
+                <p>Click on <strong>Energy</strong> or <strong>Energy Generation</strong> items in the left sidebar to view their detailed profiles.</p>
+            </div>
+        `;
     }
 }
 
@@ -113,6 +148,9 @@ function initEnergySelectionPage() {
         if (backBtn) {
             backBtn.href = 'output.html';
         }
+
+        // Build the initial sidebar in selection mode
+        buildSidebar('energy-selection', 'selection');
     }
 
     // Setup interactive elements

@@ -24,16 +24,16 @@
     <main class="container">
         <!-- Navigation Buttons -->
         <div class="nav-buttons">
-            <a id="back-step-btn" href="output_energy.html" class="back-button">
+            <a id="back-step-btn" href="energy-selection.html" class="back-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                Back to Energy Output
+                Back to Energy Selection
             </a>
             <a id="next-step-btn" href="lpv.html" class="next-button">
-                Layer 2: Land-PV generation
+                Layer 3: Land-PV generation
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -42,77 +42,84 @@
             </a>
         </div>
 
-        <!-- PV Profile Content -->
-        <div class="pv-profile-layout">
-            <!-- Left Column: Inputs and KPIs -->
-            <div class="pv-left-column">
-                <!-- Inputs Section -->
-                <div class="pv-section pv-inputs-section">
+        <div class="sidebar-layout">
+            <aside id="sidebar" class="sidebar"></aside>
 
-                    <!-- PV Surface -->
-                    <div class="pv-input-bar">
-                        <span class="pv-input-label">PV Surface:</span>
-                        <span class="pv-input-value">Roof + Facade</span>
+            <div id="visual-content" class="main-content">
+                <!-- PV Profile Content -->
+                <div class="pv-profile-layout">
+                    <!-- Left Column: Inputs and KPIs -->
+                    <div class="pv-left-column">
+                        <!-- Inputs Section -->
+                        <div class="pv-section pv-inputs-section">
+
+                            <!-- PV Surface -->
+                            <div class="pv-input-bar">
+                                <span class="pv-input-label">PV Surface:</span>
+                                <span class="pv-input-value">Roof + Facade</span>
+                            </div>
+
+                            <!-- PV Efficiency -->
+                            <div class="pv-input-bar">
+                                <span class="pv-input-label">PV Efficiency:</span>
+                                <span class="pv-input-value">18.65%</span>
+                            </div>
+
+                            <!-- Tilt Angle -->
+                            <div class="pv-input-bar">
+                                <span class="pv-input-label">Tilt Angle:</span>
+                                <span class="pv-input-value">45 degree</span>
+                            </div>
+
+                            <!-- Ground Coverage Ratio -->
+                            <div class="pv-input-bar">
+                                <span class="pv-input-label">Ground Coverage Ratio:</span>
+                                <span class="pv-input-value">60%</span>
+                            </div>
+                        </div>
+
+                        <!-- KPIs Section -->
+                        <div class="pv-section pv-kpis-section">
+
+                            <!-- Annual Generation -->
+                            <div class="pv-kpi-item">
+                                <h3 class="pv-kpi-label">Annual Generation</h3>
+                                <div class="pv-kpi-value">MWh/year</div>
+                            </div>
+
+                            <!-- Ratio of Performance -->
+                            <div class="pv-kpi-item">
+                                <h3 class="pv-kpi-label">Ratio of Performance (RoP)</h3>
+                                <div class="pv-kpi-value">18.65%</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- PV Efficiency -->
-                    <div class="pv-input-bar">
-                        <span class="pv-input-label">PV Efficiency:</span>
-                        <span class="pv-input-value">18.65%</span>
-                    </div>
+                    <!-- Right Column: Visualization -->
+                    <div class="pv-right-column">
+                        <div class="pv-section">
 
-                    <!-- Tilt Angle -->
-                    <div class="pv-input-bar">
-                        <span class="pv-input-label">Tilt Angle:</span>
-                        <span class="pv-input-value">45 degree</span>
-                    </div>
+                            <!-- Solar Irradiation 3D Model -->
+                            <div class="pv-chart-container">
+                                <img src="Content/Images_PVProfile/Solar Irradiation.png"
+                                    alt="Solar Irradiation 3D Model" class="pv-chart-image">
+                            </div>
 
-                    <!-- Ground Coverage Ratio -->
-                    <div class="pv-input-bar">
-                        <span class="pv-input-label">Ground Coverage Ratio:</span>
-                        <span class="pv-input-value">60%</span>
-                    </div>
-                </div>
-
-                <!-- KPIs Section -->
-                <div class="pv-section pv-kpis-section">
-
-                    <!-- Annual Generation -->
-                    <div class="pv-kpi-item">
-                        <h3 class="pv-kpi-label">Annual Generation</h3>
-                        <div class="pv-kpi-value">MWh/year</div>
-                    </div>
-
-                    <!-- Ratio of Performance -->
-                    <div class="pv-kpi-item">
-                        <h3 class="pv-kpi-label">Ratio of Performance (RoP)</h3>
-                        <div class="pv-kpi-value">18.65%</div>
+                            <!-- Monthly Solar Generation Chart -->
+                            <div class="pv-chart-container">
+                                <img src="Content/Images_PVProfile/Monthly Solar Generation.png"
+                                    alt="Monthly Profile of Solar Generation" class="pv-chart-image">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Right Column: Visualization -->
-            <div class="pv-right-column">
-                <div class="pv-section">
-
-                    <!-- Solar Irradiation 3D Model -->
-                    <div class="pv-chart-container">
-                        <img src="Content/Images_PVProfile/Solar Irradiation.png" alt="Solar Irradiation 3D Model"
-                            class="pv-chart-image">
-                    </div>
-
-                    <!-- Monthly Solar Generation Chart -->
-                    <div class="pv-chart-container">
-                        <img src="Content/Images_PVProfile/Monthly Solar Generation.png"
-                            alt="Monthly Profile of Solar Generation" class="pv-chart-image">
-                    </div>
-                </div>
-            </div>
-        </div>
+    </main>
     </main>
 
     <!-- Scripts -->
     <script src="js/data.js"></script>
+    <script src="js/sidebar.js"></script>
     <script src="js/pv.js"></script>
 </body>
 

@@ -1,15 +1,8 @@
 End-Use (kWh/m²-yr),RC1,RC2,RC3,RC4,RC5
-Total,60.96,63.389,52.257,64.988,66.522
-Heating,13.36,16.542,8.516,17.216,18.56
-Cooling,5.88,5.164,5.957,3.157,3.344
-Interior Lighting,2.82,2.819,2.819,6.224,6.224
-Electric Equipment,16.53,16.529,16.529,16.451,16.451
-Exterior Lighting,1.88,1.878,0,1.374,0
-equipment (gas),,0,0,0,0
-Elevators,,0,0,0,1.374
-Water Systems,12.81,12.81,12.81,15.294,15.294
-Fans,7.691,7.647,5.626,5.271,5.274
-VAV Fans,0,0,0,0,0
-pump (electic),0,0,0,0,0
-Heat Rejection,0,0,0,0,0
-Fcu Fans,0,0,0,0,0
+Total,90.05,92.53,81.06,87.04,89.53
+Heating,42.27,45.92,35.11,27.09,28.69
+Cooling,9.63,8.51,7.83,11.34,12.98
+Interior Lighting,2.82,2.82,2.82,6.02,6.02
+Electric Equipment,16.53,16.53,16.53,16.45,16.45
+Elevators,-,-,-,3.00,3.00
+Water Systems,18.75,18.75,18.75,22.39,22.39
