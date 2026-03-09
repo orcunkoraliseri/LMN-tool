@@ -395,6 +395,16 @@ const BUILDING_IMAGES = {
   "Warehouse": "Content/Images_Buildings/Warehouse.png"
 };
 
+// PV parameters per neighbourhood
+const PV_GENERATION_DATA = {
+  "RC1": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.38, rop: 1.56 },
+  "RC2": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.22, rop: 1.54 },
+  "RC3": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.22, rop: 1.72 },
+  "RC4": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.61 },
+  "RC5": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.61 },
+  "RC6": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.67, rop: 0.45 }
+};
+
 // Energy category colors
 const ENERGY_COLORS = {
   "Heating": "#ef4444",

@@ -145,7 +145,7 @@ function initLPVPage() {
 
         // Set next step button href to EV/Mobility page
         if (nextStepBtn) {
-            nextStepBtn.href = `layer2_ev_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=generation`;
+            nextStepBtn.href = `layer2_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
     } else {
         titleElement.textContent = 'LPV Profile';

@@ -89,6 +89,52 @@ function renderEnergyStatus(neighbourhoodCode) {
 }
 
 /**
+ * Update PV profile images for specific neighbourhoods
+ * @param {string} neighbourhoodCode - The neighbourhood code
+ */
+function updatePVImages(neighbourhoodCode) {
+    const irradiationImg = document.getElementById('solar-irradiation-img');
+    const generationImg = document.getElementById('monthly-generation-img');
+
+    if (!irradiationImg || !generationImg) return;
+
+    if (neighbourhoodCode === 'RC1') {
+        irradiationImg.src = 'Content/Images_PVProfile/RC1_IncidentRadiation_Roof.png';
+        generationImg.src = 'Content/Images_PVProfile/RC1_DirectSunHours_Roof.png';
+    } else {
+        // Fallback to default mock-up images
+        irradiationImg.src = 'Content/Images_PVProfile/Solar Irradiation.png';
+        generationImg.src = 'Content/Images_PVProfile/Monthly Solar Generation.png';
+    }
+}
+
+/**
+ * Update PV parameter values dynamically
+ * @param {string} neighbourhoodCode - The neighbourhood code
+ */
+function updatePVParameters(neighbourhoodCode) {
+    if (!PV_GENERATION_DATA || !PV_GENERATION_DATA[neighbourhoodCode]) return;
+
+    const data = PV_GENERATION_DATA[neighbourhoodCode];
+
+    const elements = {
+        '#pv-surface-val': data.surface,
+        '#pv-efficiency-val': data.efficiency,
+        '#pv-mounting-val': data.mounting,
+        '#pv-gcr-val': data.gcr ? (parseFloat(data.gcr) * 100).toFixed(0) + '%' : '',
+        '#pv-generation-val': data.generation,
+        '#pv-rop-val': data.rop
+    };
+
+    for (const [selector, value] of Object.entries(elements)) {
+        const el = document.querySelector(selector);
+        if (el && value !== undefined) {
+            el.textContent = value;
+        }
+    }
+}
+
+/**
  * Initialize the PV page
  */
 function initPVPage() {
@@ -100,9 +146,11 @@ function initPVPage() {
     // Render scale with random value (0-100 range as proxy)
     renderPVScale(70.5);
 
-    // Render Energy Status icon
+    // Render Energy Status icon and PV Images
     if (neighbourhoodCode) {
         renderEnergyStatus(neighbourhoodCode);
+        updatePVImages(neighbourhoodCode);
+        updatePVParameters(neighbourhoodCode);
     }
 
     if (neighbourhoodCode) {

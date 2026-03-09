@@ -1,8 +1,8 @@
-End-Use (kWh/m²-yr),RC1,RC2,RC3,RC4,RC5
-Total,90.05,92.53,81.06,87.04,89.53
-Heating,42.27,45.92,35.11,27.09,28.69
-Cooling,9.63,8.51,7.83,11.34,12.98
-Interior Lighting,2.82,2.82,2.82,6.02,6.02
-Electric Equipment,16.53,16.53,16.53,16.45,16.45
-Elevators,-,-,-,3.00,3.00
-Water Systems,18.75,18.75,18.75,22.39,22.39
+End-Use (kWh/m²-yr),RC1,RC2,RC3,RC4,RC5,RC6
+Total,58.6,59.4,52.9,78.6,78.6,87.34
+Heating,18.6,19.7,13.1,17.1,17.6,24.10
+Cooling,5.4,5.0,5.1,3.1,3.3,7.68
+Interior Lighting,0.8,0.8,0.8,4.4,4.4,1.97
+Electric Equipment,33.4,33.4,33.4,34.4,34.4,34.47
+Elevators,0.0,0.0,0.0,3.0,3.0,2.91
+Water Systems,0.5,0.5,0.5,15.9,15.9,16.21
