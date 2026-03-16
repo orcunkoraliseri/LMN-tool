@@ -20,7 +20,7 @@
     <main class="container">
         <!-- Navigation Buttons -->
         <div class="nav-buttons">
-            <a id="back-step-btn" href="layer3_output_mobility.html" class="back-button">
+            <a id="back-step-btn" href="layer3_ev_v2g_mobility_output.html" class="back-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -43,21 +43,9 @@
         </div>
     </main>
 
-    <!-- Scripts -->
-    <script src="js/data.js"></script>
-    <script src="js/sidebar.js"></script>
+    <!-- Redirect to the new EV & V2G breakdown page, preserving query string -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const neighbourhoodCode = params.get('neighbourhood');
-            if (neighbourhoodCode) {
-                document.getElementById('neighbourhood-title').textContent = `Layer 3: EV Breakdown for ${neighbourhoodCode}`;
-                document.getElementById('back-step-btn').href = `layer3_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
-                if (typeof buildSidebar === 'function') {
-                    buildSidebar('layer3_output', 'visuals');
-                }
-            }
-        });
+        window.location.replace('layer3_ev_v2g_mobility_output.html' + window.location.search);
     </script>
 </body>
 

@@ -1601,7 +1601,197 @@ const ENERGY_STATUS_IMAGES = {
   "Negative": "Content/Images_EnergyStatus/Negative.png"
 };
 
+// EV & V2G data per neighbourhood, derived from Templates/NUS_EV.csv
+const EV_V2G_DATA = {
+  "RC1": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 24,
+      totalFloorArea: 5280,
+      totalEvEnergyDemand: 600,
+      storageLoss: 30,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 630,
+      netEnergyBalance_kWh_m2: 0.12,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 24,
+      totalFloorArea: 5280,
+      totalEvEnergyDemand: 600,
+      storageLoss: 30,
+      v2gPowerAvailable: 180,
+      netEnergyBalance_kWh: 450,
+      netEnergyBalance_kWh_m2: 0.09,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC2": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 48,
+      totalFloorArea: 10560,
+      totalEvEnergyDemand: 1200,
+      storageLoss: 60,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 1260,
+      netEnergyBalance_kWh_m2: 0.12,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 48,
+      totalFloorArea: 10560,
+      totalEvEnergyDemand: 1200,
+      storageLoss: 60,
+      v2gPowerAvailable: 360,
+      netEnergyBalance_kWh: 900,
+      netEnergyBalance_kWh_m2: 0.09,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC3": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 56,
+      totalFloorArea: 10080,
+      totalEvEnergyDemand: 1400,
+      storageLoss: 70,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 1470,
+      netEnergyBalance_kWh_m2: 0.15,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 56,
+      totalFloorArea: 10080,
+      totalEvEnergyDemand: 1400,
+      storageLoss: 70,
+      v2gPowerAvailable: 420,
+      netEnergyBalance_kWh: 1050,
+      netEnergyBalance_kWh_m2: 0.10,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC4": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 256,
+      totalFloorArea: 25080,
+      totalEvEnergyDemand: 6720,
+      storageLoss: 320,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 7040,
+      netEnergyBalance_kWh_m2: 0.28,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 256,
+      totalFloorArea: 25080,
+      totalEvEnergyDemand: 6720,
+      storageLoss: 320,
+      v2gPowerAvailable: 1920,
+      netEnergyBalance_kWh: 5120,
+      netEnergyBalance_kWh_m2: 0.20,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC5": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 384,
+      totalFloorArea: 37620,
+      totalEvEnergyDemand: 10080,
+      storageLoss: 480,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 10560,
+      netEnergyBalance_kWh_m2: 0.28,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 384,
+      totalFloorArea: 37620,
+      totalEvEnergyDemand: 10080,
+      storageLoss: 480,
+      v2gPowerAvailable: 2880,
+      netEnergyBalance_kWh: 7680,
+      netEnergyBalance_kWh_m2: 0.20,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC6": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 640,
+      totalFloorArea: 94050,
+      totalEvEnergyDemand: 16800,
+      storageLoss: 800,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 17600,
+      netEnergyBalance_kWh_m2: 0.19,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 640,
+      totalFloorArea: 94050,
+      totalEvEnergyDemand: 16800,
+      storageLoss: 800,
+      v2gPowerAvailable: 4800,
+      netEnergyBalance_kWh: 12800,
+      netEnergyBalance_kWh_m2: 0.14,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  }
+};
+
 // Export for use in app.js
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA, ENERGY_STATUS_IMAGES };
+  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA, ENERGY_STATUS_IMAGES, EV_V2G_DATA };
 }

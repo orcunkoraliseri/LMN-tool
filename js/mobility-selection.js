@@ -57,6 +57,7 @@ function setupCards() {
 
 /**
  * Setup submit button to navigate to output mobility page.
+ * If EV is selected, navigate directly to the EV & V2G breakdown page.
  */
 function setupSubmitButton() {
     const submitBtn = document.getElementById('view-mobility-btn');
@@ -65,11 +66,12 @@ function setupSubmitButton() {
         submitBtn.addEventListener('click', () => {
             const neighbourhoodCode = getNeighbourhoodFromURL();
 
-            // Store selections in sessionStorage (for future use)
+            // Store selections in sessionStorage
             sessionStorage.setItem('mobilitySelections', JSON.stringify(mobilitySelections));
 
             if (neighbourhoodCode) {
-                window.location.href = `layer3_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                const evSelected = mobilitySelections.transportation.includes('ev');
+                window.location.href = `layer3_ev_v2g_mobility_output.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             } else {
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
             }

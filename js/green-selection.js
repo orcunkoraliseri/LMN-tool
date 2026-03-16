@@ -75,7 +75,7 @@ function initGreenSelectionPage() {
         titleElement.textContent = `Layer 4: Green Selection for ${neighbourhoodCode}`;
 
         if (backBtn) {
-            backBtn.href = `layer3_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backBtn.href = `layer3_ev_v2g_mobility_output.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         buildSidebar('layer4_selection', 'selection');

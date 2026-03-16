@@ -1787,6 +1787,161 @@ h3 {
 }
 
 /* ========================================
+   EV & V2G Visual Header
+   ======================================== */
+
+.ev-visual-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.ev-header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ev-header-card-img {
+  width: 140px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.ev-header-card--ev .ev-header-card-img {
+  object-fit: contain;
+}
+
+.ev-header-card--neighbourhood .ev-header-card-img {
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ev-header-card-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ========================================
+   EV & V2G Breakdown Table
+   ======================================== */
+
+
+#ev-v2g-table.ev-v2g-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.ev-v2g-table thead th {
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+
+.ev-v2g-table thead th .th-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin-top: 0.2rem;
+}
+
+.ev-v2g-table tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background var(--transition-fast);
+}
+
+.ev-v2g-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.ev-v2g-table tbody tr:hover {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.ev-v2g-table tbody td {
+  padding: 0.85rem 1.25rem;
+  vertical-align: middle;
+}
+
+.ev-v2g-table .metric-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.ev-v2g-table .metric-value {
+  display: inline;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.ev-v2g-table .metric-unit {
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.energy-status-label {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.ev-status-cell {
+  vertical-align: middle;
+}
+
+.ev-status-cell-content {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.ev-status-table-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.ev-status-table-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+/* ========================================
    Responsive Design
    ======================================== */
 

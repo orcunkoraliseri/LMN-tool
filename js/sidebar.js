@@ -290,7 +290,7 @@ function generateLayer2Block(mobilitySelections, isClickable, currentLayer, nuCo
         mobilitySelections.transportation.forEach(val => {
             const label = transportLabels[val] || val;
             const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
-            const dataset = isClickable ? `data-target="layer3_ev_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+            const dataset = isClickable ? `data-target="layer3_ev_v2g_mobility_output.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
 
             html += `
                 <div class="sidebar-item ${clickableClass}" ${dataset}>
