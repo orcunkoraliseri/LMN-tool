@@ -55,7 +55,7 @@ function setupSubmitButton() {
             sessionStorage.setItem('greenSelections', JSON.stringify(greenSelections));
 
             if (neighbourhoodCode) {
-                window.location.href = `layer3_output_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                window.location.href = `layer4_output_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             } else {
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
             }
@@ -72,13 +72,13 @@ function initGreenSelectionPage() {
     const backBtn = document.getElementById('back-btn');
 
     if (neighbourhoodCode) {
-        titleElement.textContent = `Layer 3: Green Selection for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 4: Green Selection for ${neighbourhoodCode}`;
 
         if (backBtn) {
-            backBtn.href = `layer2_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backBtn.href = `layer3_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
-        buildSidebar('layer3_selection', 'selection');
+        buildSidebar('layer4_selection', 'selection');
     }
 
     setupCards();

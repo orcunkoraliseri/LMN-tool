@@ -292,7 +292,7 @@ function setupSubmitButton() {
             sessionStorage.setItem('activeFilters', JSON.stringify(activeFilters));
 
             // Navigate to output page
-            window.location.href = 'layer0_output.html';
+            window.location.href = 'layer1_output.html';
         });
     }
 }
@@ -305,7 +305,7 @@ function initOutputPage() {
 
     if (!filtersJson) {
         // No filters selected, redirect to welcome page
-        window.location.href = 'layer0_NUs_selection.html';
+        window.location.href = 'layer1_NUs_selection.html';
         return;
     }
 
@@ -322,7 +322,7 @@ function setupLayer2Button() {
     if (layer2Btn) {
         layer2Btn.addEventListener('click', () => {
             if (selectedNeighbourhoodCode) {
-                window.location.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(selectedNeighbourhoodCode)}`;
+                window.location.href = `layer2_energy_selection.html?neighbourhood=${encodeURIComponent(selectedNeighbourhoodCode)}`;
             }
         });
     }

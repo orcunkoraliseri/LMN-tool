@@ -25,17 +25,17 @@ function setupNavigation() {
     const neighbourhoodCode = getNeighbourhoodFromURL();
 
     if (backBtn && neighbourhoodCode) {
-        backBtn.href = `layer2_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backBtn.href = `layer3_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 
     if (proceedBtn && neighbourhoodCode) {
         proceedBtn.addEventListener('click', () => {
-            window.location.href = `layer3_green_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            window.location.href = `layer4_green_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         });
     }
 
     if (proceedNavBtn && neighbourhoodCode) {
-        proceedNavBtn.href = `layer3_green_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        proceedNavBtn.href = `layer4_green_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 }
 
@@ -47,10 +47,10 @@ function initOutputMobilityPage() {
     const titleElement = document.getElementById('neighbourhood-title');
 
     if (neighbourhoodCode) {
-        titleElement.textContent = `Layer 2: Mobility Selection Results for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 3: Mobility Selection Results for ${neighbourhoodCode}`;
 
         if (typeof buildSidebar === 'function') {
-            buildSidebar('layer2_output', 'visuals');
+            buildSidebar('layer3_output', 'visuals');
         }
     }
 

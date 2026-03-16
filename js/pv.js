@@ -155,7 +155,7 @@ function initPVPage() {
 
     if (neighbourhoodCode) {
         // Update title
-        titleElement.textContent = `Layer 1: PV Generation of ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 2: PV Generation of ${neighbourhoodCode}`;
 
         // Build sidebar
         if (typeof buildSidebar === 'function') {
@@ -164,12 +164,12 @@ function initPVPage() {
 
         // Set back button href to energy-selection page
         if (backStepBtn) {
-            backStepBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `layer2_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `layer1_lpv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            nextStepBtn.href = `layer3_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
     } else {
         titleElement.textContent = 'PV Generation Profile';

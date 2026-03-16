@@ -233,17 +233,39 @@ function renderTreemap(neighbourhoodCode) {
     const titleElement = document.getElementById('neighbourhood-title');
     const legendContainer = document.getElementById('legend');
 
-    // Get energy data
-    const energyData = ENERGY_DATA[neighbourhoodCode];
+    // Read load and demand selections from sessionStorage
+    const selections = JSON.parse(
+        sessionStorage.getItem('energySelections') || '{"load":[], "demand":[]}'
+    );
+    const loadSelections = selections.load || [];
+    const demandSelections = selections.demand || [];
 
-    if (!energyData) {
-        container.innerHTML = '<p class="error-message">Energy data not found for this neighbourhood.</p>';
+    // Determine selected COP based on user choices. Defaults to COP 3.
+    let selectedCOP = "3";
+    if (loadSelections.includes('thermal_load')) {
+        selectedCOP = "1";
+    } else if (demandSelections.includes('cop4')) {
+        selectedCOP = "4";
+    } else if (demandSelections.includes('cop3.5')) {
+        selectedCOP = "3.5";
+    } else if (demandSelections.includes('cop3')) {
+        selectedCOP = "3";
+    }
+
+    // Get energy data for neighbourhood
+    const neighborhoodData = ENERGY_DATA[neighbourhoodCode];
+
+    if (!neighborhoodData || !neighborhoodData[selectedCOP]) {
+        container.innerHTML = '<p class="error-message">Energy data not found for this neighbourhood and COP configuration.</p>';
         titleElement.textContent = 'Energy Breakdown';
         return;
     }
 
+    const energyData = neighborhoodData[selectedCOP];
+
     // Update header with new title format
-    titleElement.textContent = `Layer 2: Energy Breakdown of ${neighbourhoodCode}`;
+    const copDisplay = selectedCOP === "1" ? "Thermal Load (COP 1)" : `COP ${selectedCOP}`;
+    titleElement.textContent = `Layer 2: Space Conditioning (${copDisplay}) Breakdown of ${neighbourhoodCode}`;
 
     // Render EUI Scale
     renderEUIScale(energyData.total);
@@ -254,38 +276,37 @@ function renderTreemap(neighbourhoodCode) {
     // Set back step button href to energy selection page
     const backStepBtn = document.getElementById('back-step-btn');
     if (backStepBtn) {
-        backStepBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backStepBtn.href = `layer2_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 
     // Set next step button href
     const nextStepBtn = document.getElementById('next-step-btn');
     if (nextStepBtn) {
-        nextStepBtn.href = `layer2_ev_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=consumption`;
+        nextStepBtn.href = `layer2_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=consumption`;
     }
-
-    // Read consumption selections from sessionStorage
-    const selections = JSON.parse(
-        sessionStorage.getItem('energySelections') || '{"consumption":[]}'
-    );
-    const consumption = selections.consumption || [];
 
     // Define thermal categories
     const THERMAL_CATEGORIES = ["Heating", "Cooling"];
 
     // Filter breakdown based on selection
     let filteredBreakdown = energyData.breakdown;
-    if (consumption.length === 1 && consumption.includes("thermal")) {
-        // Thermal load only: show Heating and Cooling
+    
+    // If only load selected -> show thermal
+    // If only demand selected (and specifically appliances only) -> show electric/equipment
+    // If both appliances and a space cooling/heating option is selected -> show all
+    const hasSpaceConditioning = loadSelections.includes('thermal_load') || demandSelections.some(v => ['cop4', 'cop3.5', 'cop3'].includes(v));
+    const hasAppliances = demandSelections.includes('appliances');
+
+    if (hasSpaceConditioning && !hasAppliances) {
         filteredBreakdown = energyData.breakdown.filter(
             item => THERMAL_CATEGORIES.includes(item.name)
         );
-    } else if (consumption.length === 1 && consumption.includes("electric")) {
-        // Electric only: show everything except Heating and Cooling
+    } else if (hasAppliances && !hasSpaceConditioning) {
         filteredBreakdown = energyData.breakdown.filter(
             item => !THERMAL_CATEGORIES.includes(item.name)
         );
     }
-    // If both selected or none selected → show all (no filter)
+    // If both are selected, we show the full breakdown (Heating, Cooling, Electric, etc.)
 
     // Recalculate total from filtered data
     const filteredTotal = filteredBreakdown.reduce(
@@ -329,11 +350,11 @@ function renderTreemap(neighbourhoodCode) {
             `;
         } else if (showMedium) {
             div.innerHTML = `
-                <span class="treemap-name" style="font-size: 0.7rem">${item.name}</span>
-                <span class="treemap-percent" style="font-size: 0.85rem">${item.percentage}%</span>
+                <span class="treemap-value" style="font-size: 0.9rem">${item.value.toFixed(1)}</span>
+                <span class="treemap-percent" style="font-size: 0.7rem">${item.percentage}%</span>
             `;
         } else if (minDimension > 30) {
-            div.innerHTML = `<span class="treemap-percent" style="font-size: 0.75rem">${item.percentage}%</span>`;
+            div.innerHTML = `<span class="treemap-value" style="font-size: 0.8rem">${item.value.toFixed(1)}</span>`;
         }
 
         // Tooltip on hover
@@ -382,9 +403,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const backBtn = document.getElementById('back-step-btn');
         const nextBtn = document.getElementById('next-step-btn');
 
-        if (backBtn) backBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
-        // Assume next page from Energy should be PV Generation or LPV (since we consolidated output_energy)
-        if (nextBtn) nextBtn.href = `layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        if (backBtn) backBtn.href = `layer2_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        // Assume next page from Energy should be PV Generation
+        if (nextBtn) nextBtn.href = `layer2_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
 
         // Re-render on window resize
         let resizeTimer;

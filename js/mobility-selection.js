@@ -69,7 +69,7 @@ function setupSubmitButton() {
             sessionStorage.setItem('mobilitySelections', JSON.stringify(mobilitySelections));
 
             if (neighbourhoodCode) {
-                window.location.href = `layer2_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                window.location.href = `layer3_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             } else {
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
             }
@@ -86,13 +86,13 @@ function initMobilitySelectionPage() {
     const backBtn = document.getElementById('back-btn');
 
     if (neighbourhoodCode) {
-        titleElement.textContent = `Layer 2: Mobility Selection for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 3: Mobility Selection for ${neighbourhoodCode}`;
 
         if (backBtn) {
-            backBtn.href = `layer1_output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backBtn.href = `layer2_output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
-        buildSidebar('layer2_selection', 'selection');
+        buildSidebar('layer3_selection', 'selection');
     }
 
     setupCards();

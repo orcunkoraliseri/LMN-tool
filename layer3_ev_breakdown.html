@@ -12,7 +12,7 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <h1 id="neighbourhood-title">Layer 2: EV Breakdown</h1>
+        <h1 id="neighbourhood-title">Layer 3: EV Breakdown</h1>
         <p>Explore the EV overview for the selected neighbourhood.</p>
     </header>
 
@@ -20,7 +20,7 @@
     <main class="container">
         <!-- Navigation Buttons -->
         <div class="nav-buttons">
-            <a id="back-step-btn" href="layer2_output_mobility.html" class="back-button">
+            <a id="back-step-btn" href="layer3_output_mobility.html" class="back-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -51,10 +51,10 @@
             const params = new URLSearchParams(window.location.search);
             const neighbourhoodCode = params.get('neighbourhood');
             if (neighbourhoodCode) {
-                document.getElementById('neighbourhood-title').textContent = `Layer 2: EV Breakdown for ${neighbourhoodCode}`;
-                document.getElementById('back-step-btn').href = `layer2_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                document.getElementById('neighbourhood-title').textContent = `Layer 3: EV Breakdown for ${neighbourhoodCode}`;
+                document.getElementById('back-step-btn').href = `layer3_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
                 if (typeof buildSidebar === 'function') {
-                    buildSidebar('layer2_output', 'visuals');
+                    buildSidebar('layer3_output', 'visuals');
                 }
             }
         });

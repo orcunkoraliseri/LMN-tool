@@ -131,21 +131,21 @@ function initLPVPage() {
 
     if (neighbourhoodCode) {
         // Update title
-        titleElement.textContent = `Layer 2: Land-PV Generation of ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 4: Land-PV Generation of ${neighbourhoodCode}`;
 
         // Build sidebar
         if (typeof buildSidebar === 'function') {
             buildSidebar('lpv', 'selection');
         }
 
-        // Set back button href to PV page with neighbourhood param
+        // Set back button href to Green Selection Results page with neighbourhood param
         if (backStepBtn) {
-            backStepBtn.href = `layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `layer4_output_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
-        // Set next step button href to EV/Mobility page
+        // Set next step button href to main menu
         if (nextStepBtn) {
-            nextStepBtn.href = `layer2_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            nextStepBtn.href = `layer1_NUs_selection.html`;
         }
     } else {
         titleElement.textContent = 'LPV Profile';

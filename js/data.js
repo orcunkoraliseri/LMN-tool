@@ -425,95 +425,811 @@ const ENERGY_COLORS = {
 // Energy data per neighbourhood (kWh/m²-yr)
 const ENERGY_DATA = {
   "RC1": {
-    total: 65.098,
-    breakdown: [
-      { name: "Heating", value: 14.653 },
-      { name: "Cooling", value: 3.293 },
-      { name: "Interior Lighting", value: 5.752 },
-      { name: "Electric Equipment", value: 16.529 },
-      { name: "Exterior Lighting", value: 1.878 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 19.215 },
-      { name: "Fans", value: 3.777 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 93.55,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 32.1
+        },
+        {
+          "name": "Cooling",
+          "value": 16.25
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "4": {
+      "total": 57.29,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 8.02
+        },
+        {
+          "name": "Cooling",
+          "value": 4.06
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3.5": {
+      "total": 59.02,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 9.17
+        },
+        {
+          "name": "Cooling",
+          "value": 4.64
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3": {
+      "total": 61.32,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 10.7
+        },
+        {
+          "name": "Cooling",
+          "value": 5.42
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    }
   },
   "RC2": {
-    total: 65.098,
-    breakdown: [
-      { name: "Heating", value: 14.653 },
-      { name: "Cooling", value: 3.293 },
-      { name: "Interior Lighting", value: 5.752 },
-      { name: "Electric Equipment", value: 16.529 },
-      { name: "Exterior Lighting", value: 1.878 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 19.215 },
-      { name: "Fans", value: 3.777 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 95.7,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 35.5
+        },
+        {
+          "name": "Cooling",
+          "value": 15.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "4": {
+      "total": 57.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 8.9
+        },
+        {
+          "name": "Cooling",
+          "value": 3.7
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3.5": {
+      "total": 59.6,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 10.1
+        },
+        {
+          "name": "Cooling",
+          "value": 4.3
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3": {
+      "total": 62.0,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 11.8
+        },
+        {
+          "name": "Cooling",
+          "value": 5.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    }
   },
   "RC3": {
-    total: 60.802,
-    breakdown: [
-      { name: "Heating", value: 18.163 },
-      { name: "Cooling", value: 1.652 },
-      { name: "Interior Lighting", value: 4.314 },
-      { name: "Electric Equipment", value: 21.34 },
-      { name: "Exterior Lighting", value: 0 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 10.253 },
-      { name: "Fans", value: 5.08 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 84.6,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 23.6
+        },
+        {
+          "name": "Cooling",
+          "value": 16.1
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "4": {
+      "total": 54.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 5.9
+        },
+        {
+          "name": "Cooling",
+          "value": 4.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3.5": {
+      "total": 56.2,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 6.8
+        },
+        {
+          "name": "Cooling",
+          "value": 4.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3": {
+      "total": 58.1,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 7.9
+        },
+        {
+          "name": "Cooling",
+          "value": 5.4
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    }
   },
   "RC4": {
-    total: 68.829,
-    breakdown: [
-      { name: "Heating", value: 23.503 },
-      { name: "Cooling", value: 0.486 },
-      { name: "Interior Lighting", value: 6.41 },
-      { name: "Electric Equipment", value: 15.497 },
-      { name: "Exterior Lighting", value: 1.374 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 8.739 },
-      { name: "Fans", value: 12.82 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 120.1,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 51.2
+        },
+        {
+          "name": "Cooling",
+          "value": 9.3
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "4": {
+      "total": 77.0,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 14.6
+        },
+        {
+          "name": "Cooling",
+          "value": 2.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3.5": {
+      "total": 77.0,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 14.6
+        },
+        {
+          "name": "Cooling",
+          "value": 2.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3": {
+      "total": 79.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 17.1
+        },
+        {
+          "name": "Cooling",
+          "value": 3.1
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    }
   },
   "RC5": {
-    total: 69.837,
-    breakdown: [
-      { name: "Heating", value: 24.476 },
-      { name: "Cooling", value: 0.508 },
-      { name: "Interior Lighting", value: 6.41 },
-      { name: "Electric Equipment", value: 15.497 },
-      { name: "Exterior Lighting", value: 0 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 1.374 },
-      { name: "Water Systems", value: 8.739 },
-      { name: "Fans", value: 12.833 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 122.5,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 52.8
+        },
+        {
+          "name": "Cooling",
+          "value": 10.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "4": {
+      "total": 75.4,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 13.2
+        },
+        {
+          "name": "Cooling",
+          "value": 2.5
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3.5": {
+      "total": 77.7,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 15.1
+        },
+        {
+          "name": "Cooling",
+          "value": 2.9
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3": {
+      "total": 80.6,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 17.6
+        },
+        {
+          "name": "Cooling",
+          "value": 3.3
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    }
   },
+  "RC6": {
+    "1": {
+      "total": 154.3,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 72.3
+        },
+        {
+          "name": "Cooling",
+          "value": 23.1
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    },
+    "4": {
+      "total": 82.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 18.1
+        },
+        {
+          "name": "Cooling",
+          "value": 5.8
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    },
+    "3.5": {
+      "total": 86.2,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 20.7
+        },
+        {
+          "name": "Cooling",
+          "value": 6.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    },
+    "3": {
+      "total": 90.7,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 24.1
+        },
+        {
+          "name": "Cooling",
+          "value": 7.7
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    }
+  }
+};
+
   /*
   "RC6": {
     total: 65.885,
@@ -878,7 +1594,6 @@ const ENERGY_DATA = {
     ]
   }
     */
-};
 
 const ENERGY_STATUS_IMAGES = {
   "Positive": "Content/Images_EnergyStatus/Positive.png",

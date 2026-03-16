@@ -23,7 +23,14 @@ function setupNavigation() {
     const neighbourhoodCode = getNeighbourhoodFromURL();
 
     if (backBtn && neighbourhoodCode) {
-        backBtn.href = `layer3_green_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backBtn.href = `layer4_green_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+    }
+
+    const lpvBtn = document.getElementById('proceed-lpv-btn');
+    if (lpvBtn && neighbourhoodCode) {
+        lpvBtn.addEventListener('click', () => {
+            window.location.href = `layer4_lpv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        });
     }
 }
 
@@ -35,10 +42,10 @@ function initOutputGreenPage() {
     const titleElement = document.getElementById('neighbourhood-title');
 
     if (neighbourhoodCode) {
-        titleElement.textContent = `Layer 3: Green Selection Results for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 4: Green Selection Results for ${neighbourhoodCode}`;
 
         if (typeof buildSidebar === 'function') {
-            buildSidebar('layer3_output', 'visuals');
+            buildSidebar('layer4_output', 'visuals');
         }
     }
 

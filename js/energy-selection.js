@@ -15,32 +15,80 @@ function getNeighbourhoodFromURL() {
 
 // Current selection state (arrays for multi-select)
 const energySelections = {
-    consumption: [],
+    load: [],
+    demand: [],
     generation: []
 };
 
 /**
- * Setup consumption card event listeners (multi-selection).
+ * Setup load card event listeners (multi-selection with mutual exclusion for space heating).
  */
-function setupConsumptionCards() {
-    const cards = document.querySelectorAll('.consumption-card');
+function setupLoadCards() {
+    const cards = document.querySelectorAll('.load-card');
 
     cards.forEach(card => {
         card.addEventListener('click', () => {
             const value = card.dataset.value;
 
-            // Toggle this card (multi-select)
+            // Toggle this card
             card.classList.toggle('active');
 
             // Update selection state
             if (card.classList.contains('active')) {
-                // Add to selections if not already present
-                if (!energySelections.consumption.includes(value)) {
-                    energySelections.consumption.push(value);
+                if (!energySelections.load.includes(value)) {
+                    energySelections.load.push(value);
+                }
+
+                if (value === 'thermal_load') {
+                    // Deselect COP options in demand
+                    energySelections.demand = energySelections.demand.filter(v => !['cop4', 'cop3.5', 'cop3'].includes(v));
+                    document.querySelectorAll('.demand-card').forEach(dCard => {
+                        if (['cop4', 'cop3.5', 'cop3'].includes(dCard.dataset.value)) {
+                            dCard.classList.remove('active');
+                        }
+                    });
                 }
             } else {
-                // Remove from selections
-                energySelections.consumption = energySelections.consumption.filter(v => v !== value);
+                energySelections.load = energySelections.load.filter(v => v !== value);
+            }
+        });
+    });
+}
+
+/**
+ * Setup demand card event listeners (multi-selection with mutual exclusion for space heating).
+ */
+function setupDemandCards() {
+    const cards = document.querySelectorAll('.demand-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const value = card.dataset.value;
+
+            // Toggle this card
+            card.classList.toggle('active');
+
+            // Update selection state
+            if (card.classList.contains('active')) {
+                // If this is a COP value, we enforce mutual exclusivity against thermal_load and other COPs
+                if (['cop4', 'cop3.5', 'cop3'].includes(value)) {
+                    energySelections.load = energySelections.load.filter(v => v !== 'thermal_load');
+                    energySelections.demand = energySelections.demand.filter(v => !['cop4', 'cop3.5', 'cop3'].includes(v) || v === value);
+                    
+                    // Visually deselect others
+                    document.querySelectorAll('.load-card[data-value="thermal_load"]').forEach(c => c.classList.remove('active'));
+                    document.querySelectorAll('.demand-card').forEach(dCard => {
+                        if (['cop4', 'cop3.5', 'cop3'].includes(dCard.dataset.value) && dCard.dataset.value !== value) {
+                            dCard.classList.remove('active');
+                        }
+                    });
+                }
+
+                if (!energySelections.demand.includes(value)) {
+                    energySelections.demand.push(value);
+                }
+            } else {
+                energySelections.demand = energySelections.demand.filter(v => v !== value);
             }
         });
     });
@@ -88,7 +136,7 @@ function setupSubmitButton() {
 
             if (neighbourhoodCode) {
                 // Navigate to the output energy results page
-                window.location.href = `layer1_output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                window.location.href = `layer2_energy_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             } else {
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
             }
@@ -106,19 +154,20 @@ function initEnergySelectionPage() {
 
     if (neighbourhoodCode) {
         // Update title with neighbourhood code
-        titleElement.textContent = `Layer 1: Energy Design Interface for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 2: Energy Design Interface for ${neighbourhoodCode}`;
 
         // Update back button to maintain context (go back to selection page)
         if (backBtn) {
-            backBtn.href = 'layer0_output.html';
+            backBtn.href = 'layer1_output.html';
         }
 
         // Build the initial sidebar in selection mode
-        buildSidebar('layer1_selection', 'selection');
+        buildSidebar('layer2_selection', 'selection');
     }
 
     // Setup interactive elements
-    setupConsumptionCards();
+    setupLoadCards();
+    setupDemandCards();
     setupGenerationCards();
     setupSubmitButton();
 }
