@@ -69,6 +69,10 @@ Interface/
 │   ├── energy.js                        - Treemap rendering logic
 │   ├── pv.js                            - PV logic
 │   └── lpv.js                           - Land-PV logic
+├── Templates/
+│   ├── Content_Layer3_Transportation/   - EV calculation reference scripts
+│   ├── NUS_EV.csv                       - EV scenario data
+│   └── (Other CSV parameter templates)
 ├── Content/
 │   ├── Images_Concept/                  - Concept visuals
 │   ├── Images_Neighbourhoods/           - 3D neighbourhood graphics

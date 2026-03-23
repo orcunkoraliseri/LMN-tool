@@ -46,92 +46,55 @@
             <aside id="sidebar" class="sidebar"></aside>
 
             <div id="visual-content" class="main-content">
-                <!-- LPV Profile Content -->
-                <div class="lpv-profile-layout">
-                    <!-- Left Column: Inputs and KPIs -->
-                    <div class="lpv-left-column">
-                        <!-- Inputs Section -->
-                        <div class="lpv-section">
 
-                            <!-- Application Location -->
-                            <div class="lpv-parameter-group">
-                                <h3 class="lpv-parameter-label">Application Location</h3>
-                                <div class="lpv-parameter-buttons">
-                                    <button class="lpv-toggle-btn active" data-category="application-location"
-                                        data-value="parking">Parking</button>
-                                    <button class="lpv-toggle-btn" data-category="application-location"
-                                        data-value="walking-lanes">Walking Lanes</button>
-                                    <button class="lpv-toggle-btn" data-category="application-location"
-                                        data-value="bus-stops">Bus Stops</button>
-                                </div>
-                            </div>
+                <!-- Visual header: GI selection image | neighbourhood image | LPV.png -->
+                <div id="lpv-visual-header" class="lpv-visual-header-row"></div>
 
-                            <!-- Height of Structure -->
-                            <div class="lpv-parameter-group">
-                                <h3 class="lpv-parameter-label">Height of Structure</h3>
-                                <div class="lpv-parameter-buttons">
-                                    <button class="lpv-toggle-btn active" data-category="height-structure"
-                                        data-value="pedestrian">Pedestrian (2.5m)</button>
-                                    <button class="lpv-toggle-btn" data-category="height-structure"
-                                        data-value="vehicle">Vehicle
-                                        (3.0m)</button>
-                                    <button class="lpv-toggle-btn" data-category="height-structure"
-                                        data-value="service">Service
-                                        (4.5m+)</button>
-                                </div>
-                            </div>
+                <div class="lpv-content-layout">
 
-                            <!-- Transparency -->
-                            <div class="lpv-parameter-group">
-                                <h3 class="lpv-parameter-label">Transparency</h3>
-                                <div class="lpv-parameter-buttons">
-                                    <button class="lpv-toggle-btn active" data-category="transparency"
-                                        data-value="25">25%</button>
-                                    <button class="lpv-toggle-btn" data-category="transparency"
-                                        data-value="50">50%</button>
-                                    <button class="lpv-toggle-btn" data-category="transparency"
-                                        data-value="75">75%</button>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- LPV Results Table (left, takes remaining width) -->
+                    <table id="lpv-table" class="lpv-table">
+                        <thead>
+                            <tr>
+                                <th>Configurations</th>
+                                <th>Parameters</th>
+                                <th>Results</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row 1: Land Allocation | Module Capacity | Energy Generation -->
+                            <tr>
+                                <td>
+                                    <span class="metric-label">Land Allocation</span>
+                                    <span id="cfg-land-allocation" class="metric-value">—</span>
+                                </td>
+                                <td>
+                                    <span class="metric-label">Module Capacity</span>
+                                    <span id="cfg-module-capacity" class="metric-value">—</span>
+                                </td>
+                                <td>
+                                    <span class="metric-label">Energy Generation</span>
+                                    <span id="res-energy-generation" class="metric-value">—</span>
+                                </td>
+                            </tr>
+                            <!-- Row 2: Usable Area | Installed Capacity | (empty) -->
+                            <tr>
+                                <td>
+                                    <span class="metric-label">Usable Area</span>
+                                    <span id="cfg-usable-area" class="metric-value">—</span>
+                                </td>
+                                <td>
+                                    <span class="metric-label">Installed Capacity</span>
+                                    <span id="cfg-installed-capacity" class="metric-value">—</span>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                        <!-- KPIs Section -->
-                        <div class="lpv-section">
-
-                            <!-- Land Use Efficiency -->
-                            <div class="lpv-kpi-item">
-                                <h3 class="lpv-kpi-label">Land Use Efficiency</h3>
-                                <div class="lpv-kpi-value">185 kWh/m²/year</div>
-                            </div>
-
-                            <!-- UHI: Surface Temperature -->
-                            <div class="lpv-kpi-item">
-                                <h3 class="lpv-kpi-label">UHI: Surface Temperature</h3>
-                                <div class="lpv-kpi-value">-14°C (25°F)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Visualization -->
-                    <div class="lpv-right-column">
-                        <div class="lpv-section">
-
-                            <!-- Heatmap Overlay -->
-                            <div class="lpv-chart-container">
-                                <img src="Content/Images_LPVProfile/Heatmap Overlay Pedestrian Comfort.png"
-                                    alt="Heatmap Overlay Pedestrian Comfort" class="lpv-chart-image">
-                            </div>
-
-                            <!-- Cross-Section Diagram -->
-                            <div class="lpv-chart-container">
-                                <img src="Content/Images_LPVProfile/Cross-Section Diagram.png"
-                                    alt="Cross-Section Diagram" class="lpv-chart-image">
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
             </div>
-    </main>
     </main>
 
     <!-- Scripts -->

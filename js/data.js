@@ -1791,7 +1791,39 @@ const EV_V2G_DATA = {
   }
 };
 
+// LPV (Land-PV) data derived from Templates/NUs_LPV.csv
+const LPV_DATA = {
+  columns: ["RC1", "RC2", "RC3", "RC4", "RC5", "RC6"],
+  rows: [
+    {
+      category: "Config.",
+      label: "Land Allocation",
+      values: { RC1: "20%", RC2: "20%", RC3: "20%", RC4: "20%", RC5: "20%", RC6: "20%" }
+    },
+    {
+      category: "Config.",
+      label: "Usable Area",
+      values: { RC1: "10%", RC2: "10%", RC3: "10%", RC4: "10%", RC5: "10%", RC6: "10%" }
+    },
+    {
+      category: "Config.",
+      label: "Module Capacity",
+      values: { RC1: "400W", RC2: "400W", RC3: "400W", RC4: "400W", RC5: "400W", RC6: "400W" }
+    },
+    {
+      category: "Config.",
+      label: "Installed Capacity (kWp)",
+      values: { RC1: "475 kWp", RC2: "475 kWp", RC3: "475 kWp", RC4: "475 kWp", RC5: "475 kWp", RC6: "475 kWp" }
+    },
+    {
+      category: "Results",
+      label: "Energy Generation",
+      values: { RC1: "608 MWh/year", RC2: "608 MWh/year", RC3: "608 MWh/year", RC4: "608 MWh/year", RC5: "608 MWh/year", RC6: "608 MWh/year" }
+    }
+  ]
+};
+
 // Export for use in app.js
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA, ENERGY_STATUS_IMAGES, EV_V2G_DATA };
+  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA, ENERGY_STATUS_IMAGES, EV_V2G_DATA, LPV_DATA };
 }

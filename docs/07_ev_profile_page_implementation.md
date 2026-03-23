@@ -8,7 +8,7 @@ Create a new layer 3 EV and V2G energy breakdown page (or modify the existing `l
 The UI template will feature a 3-column table:
 1. **Configurations**: Global values applicable to all neighbourhoods (e.g., EV Penetration Rate, Charging Efficiency).
 2. **Parameters**: Specific to each neighbourhood (e.g., Number of Households, Total floor area).
-3. **Results**: EV performance results calculated using the formulas from `calculate_ev_scenarios.py` or extracted directly from `Templates/NUS_EV.csv`.
+3. **Results**: EV performance results calculated using the formulas from `Templates/Content_Layer3_Transportation/calculate_ev_scenarios.py` or extracted directly from `Templates/NUS_EV.csv`.
 
 Additionally, the page will present the System Status Indicators using images from `Content/Images_Layer3_Transportation` (Energy Positive, Load Balanced, Grid Stressed).
 
