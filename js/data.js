@@ -6,7 +6,7 @@
 // Concept definitions (for Concept column display)
 const CONCEPTS = [
   { id: 1, name: "Financial Dist", image: "Content/Images_Concept/1-Financial_District.png" },
-  { id: 2, name: "Dense Residential", image: "Content/Images_Concept/2-Dense_Residential.png" },
+  { id: 2, name: "Downtown Residential", image: "Content/Images_Concept/2-Dense_Residential.png" },
   { id: 3, name: "Urban Transition-Zone", image: "Content/Images_Concept/3-Urban-Transit-Zone.png" },
   { id: 4, name: "Suburban Transit-Zone", image: "Content/Images_Concept/4-Suburban-Transit-Zone.png" },
   { id: 5, name: "Streetcar Suburb", image: "Content/Images_Concept/5-Streetcar_Suburb.png" },
@@ -87,20 +87,20 @@ const NEIGHBOURHOODS = [
     image: "Content/Images_Neighbourhoods/NUS_RC5.png",
     buildings: ["midrise apartment"]
   },
-  /*
   {
     code: "RC6",
-    conceptId: 6,
+    conceptId: 2,
     usage: "residential",
-    context: "suburban",
-    density: "medium",
+    context: "urban",
+    density: "high",
     layout: "grid",
-    eui: 65.885,
+    eui: 154.3,
     energyStatus: "Negative",
-    content: "4 Mid-Rise + 14 Attached",
+    content: "4 Highrise (10-St)",
     image: "Content/Images_Neighbourhoods/NUs_RC6.png",
-    buildings: ["midrise apartment", "Attached House"]
+    buildings: ["Highrise Apartment"]
   },
+  /*
   {
     code: "RC7",
     conceptId: 4,
@@ -402,7 +402,7 @@ const PV_GENERATION_DATA = {
   "RC3": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.22, rop: 1.72 },
   "RC4": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.61 },
   "RC5": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.61 },
-  "RC6": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.67, rop: 0.45 }
+  "RC6": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.7, rop: 0.44 }
 };
 
 // Energy category colors

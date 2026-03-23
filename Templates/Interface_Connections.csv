@@ -4,3 +4,4 @@ Concept,Neighbourhood,Function,Context,Density,Layout,Energy Status,Buildings
 7. Peripheral Community,RC3,Residential,Suburban,Low,Curvilinear,Positive,56 attached units
 6. Midrise Suburb,RC4,Residential,Suburban,Medium,Grid,Negative,8 Midrise
 3. Urban Transition-Zone,RC5,Residential,Urban,High,Grid,Negative,12 Midrise
+2.Downtown Residential,RC6,Residential,Urban,High,Grid,Negative,4 Highrise (10-St)
