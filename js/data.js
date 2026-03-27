@@ -397,12 +397,12 @@ const BUILDING_IMAGES = {
 
 // PV parameters per neighbourhood
 const PV_GENERATION_DATA = {
-  "RC1": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.38, rop: 1.56 },
-  "RC2": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.22, rop: 1.54 },
-  "RC3": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.22, rop: 1.72 },
-  "RC4": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.61 },
-  "RC5": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.61 },
-  "RC6": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.7, rop: 0.44 }
+  "RC1": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.38, rop: 1.490 },
+  "RC2": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.20, rop: 1.47 },
+  "RC3": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.30, rop: 1.57 },
+  "RC4": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
+  "RC5": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
+  "RC6": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.70, rop: 0.44 }
 };
 
 // Energy category colors
@@ -1798,12 +1798,12 @@ const LPV_DATA = {
     {
       category: "Config.",
       label: "Land Allocation",
-      values: { RC1: "20%", RC2: "20%", RC3: "20%", RC4: "20%", RC5: "20%", RC6: "20%" }
+      values: { RC1: "20% (4046 m²)", RC2: "20% (4046 m²)", RC3: "20% (4046 m²)", RC4: "20% (4046 m²)", RC5: "20% (4046 m²)", RC6: "20% (4046 m²)" }
     },
     {
       category: "Config.",
       label: "Usable Area",
-      values: { RC1: "10%", RC2: "10%", RC3: "10%", RC4: "10%", RC5: "10%", RC6: "10%" }
+      values: { RC1: "10% (2023 m²)", RC2: "10% (2023 m²)", RC3: "10% (2023 m²)", RC4: "10% (2023 m²)", RC5: "10% (2023 m²)", RC6: "10% (2023 m²)" }
     },
     {
       category: "Config.",
