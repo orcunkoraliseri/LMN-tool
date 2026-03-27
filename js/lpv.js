@@ -1,11 +1,11 @@
 /**
  * LPV Profile Page
- * Handles the LPV profile visualization and toggle button interactions
+ * Reads LPV_DATA for the selected neighbourhood and populates the results table.
  */
 
 /**
- * Get neighbourhood code from URL parameter
- * @returns {string|null} The neighbourhood code or null
+ * Get neighbourhood code from URL parameter.
+ * @returns {string|null}
  */
 function getNeighbourhoodFromURL() {
     const params = new URLSearchParams(window.location.search);
@@ -13,31 +13,25 @@ function getNeighbourhoodFromURL() {
 }
 
 /**
- * Render the LPV scale bar (same as PV scale - random value 0-100)
- * @param {number} value - The LPV generation value
+ * Render the LPV scale bar in the header.
+ * @param {number} value - Scale value (0–100)
  */
 function renderLPVScale(value) {
     const container = document.getElementById('lpv-scale-container');
     if (!container) return;
 
-    // Scale range 0-100
     const MIN = 0;
     const MAX = 100;
-
-    // Calculate position on scale (0-100%)
     const position = Math.min(100, Math.max(0, ((value - MIN) / (MAX - MIN)) * 100));
 
-    // Calculate color based on position (Green -> Yellow -> Red)
     let color;
     if (position <= 50) {
-        // Green to Yellow
         const ratio = position / 50;
         const r = Math.round(34 + (234 - 34) * ratio);
         const g = Math.round(197 + (234 - 197) * ratio);
         const b = Math.round(94 + (8 - 94) * ratio);
         color = `rgb(${r}, ${g}, ${b})`;
     } else {
-        // Yellow to Red
         const ratio = (position - 50) / 50;
         const r = Math.round(234 + (239 - 234) * ratio);
         const g = Math.round(179 + (68 - 179) * ratio);
@@ -61,14 +55,13 @@ function renderLPVScale(value) {
 }
 
 /**
- * Render the Energy Status icon
- * @param {string} neighbourhoodCode - The neighbourhood code
+ * Render the Energy Status icon in the header.
+ * @param {string} neighbourhoodCode
  */
 function renderEnergyStatus(neighbourhoodCode) {
     const container = document.getElementById('energy-status-container');
     if (!container) return;
 
-    // Find the neighbourhood to get its energy status
     const neighbourhood = NEIGHBOURHOODS.find(n => n.code === neighbourhoodCode);
     if (!neighbourhood || !neighbourhood.energyStatus) {
         container.innerHTML = '';
@@ -88,72 +81,166 @@ function renderEnergyStatus(neighbourhoodCode) {
 }
 
 /**
- * Setup toggle button interactions for LPV parameters
+ * Split LPV_DATA rows by category for the given neighbourhood code.
+ * @param {string} code - e.g. "RC1"
+ * @returns {{ configs: Array<{label:string, value:string}>, results: Array<{label:string, value:string}> }}
  */
-function setupLPVToggleButtons() {
-    const buttons = document.querySelectorAll('.lpv-toggle-btn');
+function getLPVDataForNeighbourhood(code) {
+    const configs = LPV_DATA.rows
+        .filter(r => r.category === 'Config.')
+        .map(r => ({ label: r.label, value: r.values[code] || '—' }));
 
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const category = button.dataset.category;
+    const results = LPV_DATA.rows
+        .filter(r => r.category === 'Results')
+        .map(r => ({ label: r.label, value: r.values[code] || '—' }));
 
-            // Deselect all other buttons in this category
-            buttons.forEach(btn => {
-                if (btn.dataset.category === category && btn !== button) {
-                    btn.classList.remove('active');
-                }
-            });
-
-            // Toggle this button (or ensure it stays active for single selection)
-            if (!button.classList.contains('active')) {
-                button.classList.add('active');
-            }
-        });
-    });
+    return { configs, results };
 }
 
 /**
- * Initialize the LPV page
+ * Set the text content of an element by id.
+ * @param {string} id
+ * @param {string} value
  */
-function initLPVPage() {
-    const neighbourhoodCode = getNeighbourhoodFromURL();
-    const titleElement = document.getElementById('neighbourhood-title');
-    const backStepBtn = document.getElementById('back-step-btn');
-    const nextStepBtn = document.getElementById('next-step-btn');
-
-    // Render scale with random value (0-100 range as proxy, same as PV)
-    renderLPVScale(65.2);
-
-    // Render Energy Status icon
-    if (neighbourhoodCode) {
-        renderEnergyStatus(neighbourhoodCode);
-    }
-
-    if (neighbourhoodCode) {
-        // Update title
-        titleElement.textContent = `Layer 2: Land-PV Generation of ${neighbourhoodCode}`;
-
-        // Build sidebar
-        if (typeof buildSidebar === 'function') {
-            buildSidebar('lpv', 'selection');
-        }
-
-        // Set back button href to PV page with neighbourhood param
-        if (backStepBtn) {
-            backStepBtn.href = `layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
-        }
-
-        // Set next step button href to EV/Mobility page
-        if (nextStepBtn) {
-            nextStepBtn.href = `layer2_ev_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}&from=generation`;
-        }
-    } else {
-        titleElement.textContent = 'LPV Profile';
-    }
-
-    // Setup toggle buttons
-    setupLPVToggleButtons();
+function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
 }
 
-// Initialize on page load
+/**
+ * Populate all LPV table cells for the given neighbourhood code.
+ * Element IDs must match those defined in layer4_lpv_breakdown.html.
+ * @param {string} code
+ */
+function populateLPVTable(code) {
+    const { configs, results } = getLPVDataForNeighbourhood(code);
+
+    // Config rows (order matches LPV_DATA: Land Allocation, Usable Area, Module Capacity, Installed Capacity)
+    setText('cfg-land-allocation',    configs[0] ? configs[0].value : '—');
+    setText('cfg-usable-area',        configs[1] ? configs[1].value : '—');
+    setText('cfg-module-capacity',    configs[2] ? configs[2].value : '—');
+    setText('cfg-installed-capacity', configs[3] ? configs[3].value : '—');
+
+    // Results rows (order matches LPV_DATA: Energy Generation)
+    setText('res-energy-generation',  results[0] ? results[0].value : '—');
+}
+
+// Maps energy_integrated selection values to their image paths and display labels
+const GI_IMAGE_MAP = {
+    'pv_green_roofs': {
+        src:   'Content/Images_Layer4_EnergyIntegratedGI/PV-Green Roofs Integrated Modules.png',
+        label: 'PV-Green Roofs'
+    },
+    'pv_vgs': {
+        src:   'Content/Images_Layer4_EnergyIntegratedGI/PV-VGS Integrated Modules.png',
+        label: 'PV-VGS Modules'
+    }
+};
+
+/**
+ * Build a single LPV header card HTML string.
+ * @param {string} src
+ * @param {string} label
+ * @param {string} gridClass  — one of: lpv-card--gi, lpv-card--neighbourhood, lpv-card--lpv
+ * @returns {string}
+ */
+function makeLPVImageCard(src, label, gridClass) {
+    return `
+        <div class="lpv-header-card ${gridClass || ''}">
+            <img src="${src}" alt="${label}" class="lpv-header-card-img"
+                 onerror="this.parentElement.style.display='none'">
+            <span class="lpv-header-card-label">${label}</span>
+        </div>`;
+}
+
+/**
+ * Render the visual header grid above the LPV table.
+ * Grid layout (2 cols × 2 rows):
+ *   top-left    → selected GI option image
+ *   bottom-left → neighbourhood image
+ *   right col   → LPV.png (spans both rows)
+ * @param {string} code - neighbourhood code e.g. "RC1"
+ */
+function renderLPVVisualHeader(code) {
+    const container = document.getElementById('lpv-visual-header');
+    if (!container) return;
+
+    let cards = '';
+
+    // 1. Selected Energy-Integrated GI option(s) from sessionStorage — top-left
+    const stored = sessionStorage.getItem('greenSelections');
+    const greenSelections = stored ? JSON.parse(stored) : { energy_integrated: [] };
+    const energyIntegrated = greenSelections.energy_integrated || [];
+
+    // Only the first GI selection occupies the top-left cell; extras are ignored in this layout
+    const firstGI = energyIntegrated[0] ? GI_IMAGE_MAP[energyIntegrated[0]] : null;
+    if (firstGI) {
+        cards += makeLPVImageCard(firstGI.src, firstGI.label, 'lpv-card--gi');
+    } else {
+        // Placeholder cell so the grid rows stay balanced
+        cards += '<div class="lpv-header-card lpv-card--gi lpv-card--empty"></div>';
+    }
+
+    // 2. Neighbourhood image — bottom-left
+    const nuData = (typeof NEIGHBOURHOODS !== 'undefined')
+        ? NEIGHBOURHOODS.find(function(n) { return n.code === code; })
+        : null;
+    if (nuData && nuData.image) {
+        cards += makeLPVImageCard(nuData.image, code, 'lpv-card--neighbourhood');
+    } else {
+        cards += '<div class="lpv-header-card lpv-card--neighbourhood lpv-card--empty"></div>';
+    }
+
+    // 3. LPV.png — right column, spans both rows
+    cards += makeLPVImageCard(
+        'Content/Images_LPVProfile/LPV.png',
+        'LPV Profile',
+        'lpv-card--lpv'
+    );
+
+    container.innerHTML = cards;
+}
+
+/**
+ * Initialize the LPV breakdown page.
+ */
+function initLPVPage() {
+    const code = getNeighbourhoodFromURL();
+
+    // Header title
+    const titleElement = document.getElementById('neighbourhood-title');
+    if (titleElement) {
+        titleElement.textContent = code
+            ? `Layer 4: Land-PV Generation of ${code}`
+            : 'Layer 4: Land-PV Profile';
+    }
+
+    // Nav buttons
+    const backStepBtn = document.getElementById('back-step-btn');
+    const nextStepBtn = document.getElementById('next-step-btn');
+    if (code) {
+        if (backStepBtn) {
+            backStepBtn.href = `layer4_output_selection.html?neighbourhood=${encodeURIComponent(code)}`;
+        }
+        if (nextStepBtn) {
+            nextStepBtn.href = `layer1_NUs_selection.html`;
+        }
+    }
+
+    // Header indicators
+    renderLPVScale(65.2);
+    if (code) renderEnergyStatus(code);
+
+    // Data table
+    if (code) populateLPVTable(code);
+
+    // Visual header row
+    if (code) renderLPVVisualHeader(code);
+
+    // Sidebar
+    if (typeof buildSidebar === 'function' && code) {
+        buildSidebar('lpv', 'selection');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', initLPVPage);

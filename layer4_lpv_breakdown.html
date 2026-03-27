@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LPV Profile visualization for neighbourhood configurations.">
+    <title>LPV Profile | Neighbourhood Design Interface</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1 id="neighbourhood-title">Layer 4: Land-PV Profile</h1>
+        <!-- Energy indicators row: Energy Status + PV Scale -->
+        <div class="energy-indicators-row">
+            <div id="energy-status-container" class="energy-status-header"></div>
+            <div id="lpv-scale-container" class="eui-scale-container"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a id="back-step-btn" href="layer4_output_selection.html" class="back-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back to Green Results
+            </a>
+            <a id="next-step-btn" href="layer1_NUs_selection.html" class="next-button">
+                Finish Design
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+
+        <div class="sidebar-layout">
+            <aside id="sidebar" class="sidebar"></aside>
+
+            <div id="visual-content" class="main-content">
+
+                <!-- Visual header: GI selection image | neighbourhood image | LPV.png -->
+                <div id="lpv-visual-header" class="lpv-visual-header-row"></div>
+
+                <div class="lpv-content-layout">
+
+                    <!-- LPV Results Table (left, takes remaining width) -->
+                    <table id="lpv-table" class="lpv-table">
+                        <thead>
+                            <tr>
+                                <th>Configurations</th>
+                                <th>Parameters</th>
+                                <th>Results</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row 1: Land Allocation | Module Capacity | Energy Generation -->
+                            <tr>
+                                <td>
+                                    <span class="metric-label">Land Allocation</span>
+                                    <span id="cfg-land-allocation" class="metric-value">—</span>
+                                </td>
+                                <td>
+                                    <span class="metric-label">Module Capacity</span>
+                                    <span id="cfg-module-capacity" class="metric-value">—</span>
+                                </td>
+                                <td>
+                                    <span class="metric-label">Energy Generation</span>
+                                    <span id="res-energy-generation" class="metric-value">—</span>
+                                </td>
+                            </tr>
+                            <!-- Row 2: Usable Area | Installed Capacity | (empty) -->
+                            <tr>
+                                <td>
+                                    <span class="metric-label">Usable Area</span>
+                                    <span id="cfg-usable-area" class="metric-value">—</span>
+                                </td>
+                                <td>
+                                    <span class="metric-label">Installed Capacity</span>
+                                    <span id="cfg-installed-capacity" class="metric-value">—</span>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/lpv.js"></script>
+</body>
+
+</html>

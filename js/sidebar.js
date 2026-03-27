@@ -53,9 +53,9 @@ function buildSidebar(currentLayer, mode) {
     }
 
     // Determine the title of the top boundary based on layer visibility
-    let topBoundaryTitle = 'Layer 0';
-    if (currentLayer === 'lpv' || currentLayer === 'ev' || currentLayer.startsWith('layer2') || currentLayer.startsWith('layer3')) {
-        topBoundaryTitle = 'Layer 0 + Layer 1';
+    let topBoundaryTitle = 'Layer 1';
+    if (currentLayer === 'lpv' || currentLayer === 'ev' || currentLayer.startsWith('layer3') || currentLayer.startsWith('layer4')) {
+        topBoundaryTitle = 'Layer 1 + Layer 2';
     }
 
     // Sidebar HTML assembly
@@ -67,10 +67,9 @@ function buildSidebar(currentLayer, mode) {
     // -------------------------------------------------------------
     html += `
         <div class="sidebar-section sidebar-section--purple">
-            <h2 class="sidebar-title">${topBoundaryTitle}</h2>
     `;
 
-    // --- LAYER 0 DATA ---
+    // --- LAYER 1 DATA ---
 
     const nuImage = neighbourhood.image || 'https://via.placeholder.com/200x150?text=' + encodeURIComponent(neighbourhood.code);
     const conceptImage = concept ? concept.image : '';
@@ -123,8 +122,8 @@ function buildSidebar(currentLayer, mode) {
         </div>
     `;
 
-    // --- LAYER 1 CUMULATIVE DATA (Only show here if we are on Layer 2 pages) ---
-    if ((currentLayer === 'lpv' || currentLayer === 'ev' || currentLayer.startsWith('layer2') || currentLayer.startsWith('layer3')) && mode === 'selection') {
+    // --- LAYER 2 CUMULATIVE DATA (Only show here if we are on Layer 3 pages) ---
+    if ((currentLayer === 'lpv' || currentLayer === 'ev' || currentLayer.startsWith('layer3') || currentLayer.startsWith('layer4')) && mode === 'selection') {
         html += generateLayer1Block(energySelections, false, currentLayer, neighbourhood.code);
     }
 
@@ -136,28 +135,25 @@ function buildSidebar(currentLayer, mode) {
     // -------------------------------------------------------------
 
     if (mode === 'visuals') {
-        if (currentLayer === 'energy' || currentLayer === 'pv' || currentLayer === 'layer1_selection' || currentLayer === 'layer1_output_energy' || currentLayer === 'energy-selection' || currentLayer.startsWith('layer2') || currentLayer.startsWith('layer3')) {
+        if (currentLayer === 'energy' || currentLayer === 'pv' || currentLayer === 'layer2_selection' || currentLayer === 'layer2_output_energy' || currentLayer === 'energy-selection' || currentLayer.startsWith('layer3') || currentLayer.startsWith('layer4')) {
             html += `
                 <div class="sidebar-section sidebar-section--pink">
-                    <h2 class="sidebar-title">Layer 1</h2>
                     ${generateLayer1Block(energySelections, true, currentLayer, neighbourhood.code)}
                 </div>
             `;
         }
 
-        if (currentLayer.startsWith('layer2_output') || currentLayer.startsWith('layer3')) {
+        if (currentLayer.startsWith('layer3_output') || currentLayer.startsWith('layer4')) {
             html += `
                 <div class="sidebar-section sidebar-section--pink">
-                    <h2 class="sidebar-title">Layer 2</h2>
                     ${generateLayer2Block(mobilitySelections, true, currentLayer, neighbourhood.code)}
                 </div>
             `;
         }
 
-        if (currentLayer.startsWith('layer3_output')) {
+        if (currentLayer.startsWith('layer4_output')) {
             html += `
                 <div class="sidebar-section sidebar-section--pink">
-                    <h2 class="sidebar-title">Layer 3</h2>
                     ${generateLayer3Block(greenSelections, true, currentLayer, neighbourhood.code)}
                 </div>
             `;
@@ -171,27 +167,66 @@ function buildSidebar(currentLayer, mode) {
 }
 
 /**
- * Helper to generate Layer 1 (Energy + Generation) HTML blocks
+ * Helper to generate Layer 2 (Energy + Generation) HTML blocks
  */
 function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode) {
     let html = ``;
 
-    // --- Energy Consumption ---
+    // --- Load ---
     html += `<div class="sidebar-block">
-                <h3 class="sidebar-subtitle">Energy</h3>
+                <h3 class="sidebar-subtitle">Load</h3>
                 <div class="sidebar-items-grid">`;
 
-    if (energySelections.consumption && energySelections.consumption.length > 0) {
-        energySelections.consumption.forEach(val => {
-            const displayVal = val.charAt(0).toUpperCase() + val.slice(1);
+    if (energySelections.load && energySelections.load.length > 0) {
+        energySelections.load.forEach(val => {
+            const displayVal = "ThermalLoad"; // Fixed label for thermal load image
+            const label = "Thermal Load";
             const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
             const activeClass = (isClickable && currentLayer === 'energy') ? 'sidebar-item--active' : '';
-            const dataset = isClickable ? `data-target="layer1_energy_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+            const dataset = isClickable ? `data-target="layer2_energy_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
 
             html += `
                 <div class="sidebar-item ${clickableClass} ${activeClass}" ${dataset}>
-                    <img src="Content/Images_Layer1_EnergyConsumption/${displayVal}.png" alt="${displayVal}" onerror="this.style.display='none'">
-                    <span>${displayVal}</span>
+                    <img src="Content/Images_Layer2_ThermalLoad/${displayVal}.png" alt="${label}" onerror="this.style.display='none'">
+                    <span>${label}</span>
+                </div>
+            `;
+        });
+    } else {
+        html += `<span>None selected</span>`;
+    }
+    html += `</div></div>`;
+
+    // --- Energy Demand ---
+    html += `<div class="sidebar-block">
+                <h3 class="sidebar-subtitle">Energy Demand</h3>
+                <div class="sidebar-items-grid">`;
+
+    const demandLabels = {
+        'cop4': 'Heat Pump COP 4',
+        'cop3.5': 'HVAC COP 3.5',
+        'cop3': 'HVAC COP 3',
+        'appliances': 'Appliances and Equipment'
+    };
+    const demandImages = {
+        'cop4': 'HeatPump_COP4',
+        'cop3.5': 'HVAC_COP3.5',
+        'cop3': 'HVAC_COP3',
+        'appliances': 'AppliancesEquipment'
+    };
+
+    if (energySelections.demand && energySelections.demand.length > 0) {
+        energySelections.demand.forEach(val => {
+            const label = demandLabels[val] || val;
+            const imgName = demandImages[val] || val;
+            const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
+            const activeClass = (isClickable && currentLayer === 'energy') ? 'sidebar-item--active' : '';
+            const dataset = isClickable ? `data-target="layer2_energy_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+
+            html += `
+                <div class="sidebar-item ${clickableClass} ${activeClass}" ${dataset}>
+                    <img src="Content/Images_Layer2_EnergyDemand/${imgName}.png" alt="${label}" onerror="this.style.display='none'">
+                    <span>${label}</span>
                 </div>
             `;
         });
@@ -218,11 +253,11 @@ function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode
             const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
             // Make generation active if currentLayer is 'pv' AND it's a visualization mode
             const activeClass = (isClickable && currentLayer === 'pv') ? 'sidebar-item--active' : '';
-            const dataset = isClickable ? `data-target="layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+            const dataset = isClickable ? `data-target="layer2_pv_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
 
             html += `
                 <div class="sidebar-item ${clickableClass} ${activeClass}" ${dataset}>
-                    <img src="Content/Images_Layer1_EnergyGeneration/${label}.png" alt="${label}" onerror="this.style.display='none'">
+                    <img src="Content/Images_Layer2_EnergyGeneration/${label}.png" alt="${label}" onerror="this.style.display='none'">
                     <span>${label}</span>
                 </div>
             `;
@@ -236,7 +271,7 @@ function generateLayer1Block(energySelections, isClickable, currentLayer, nuCode
 }
 
 /**
- * Helper to generate Layer 2 Mobility blocks
+ * Helper to generate Layer 3 Mobility blocks
  */
 function generateLayer2Block(mobilitySelections, isClickable, currentLayer, nuCode) {
     let html = ``;
@@ -255,11 +290,11 @@ function generateLayer2Block(mobilitySelections, isClickable, currentLayer, nuCo
         mobilitySelections.transportation.forEach(val => {
             const label = transportLabels[val] || val;
             const clickableClass = isClickable ? 'sidebar-item--clickable' : '';
-            const dataset = isClickable ? `data-target="layer2_ev_breakdown.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
+            const dataset = isClickable ? `data-target="layer3_ev_v2g_mobility_output.html?neighbourhood=${encodeURIComponent(nuCode)}"` : '';
 
             html += `
                 <div class="sidebar-item ${clickableClass}" ${dataset}>
-                    <img src="Content/Images_Layer2_Transportation/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <img src="Content/Images_Layer3_Transportation/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
                     <span>${label}</span>
                 </div>
             `;
@@ -284,7 +319,7 @@ function generateLayer2Block(mobilitySelections, isClickable, currentLayer, nuCo
             const label = mobilityLabels[val] || val;
             html += `
                 <div class="sidebar-item">
-                    <img src="Content/Images_Layer2_Mobility/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <img src="Content/Images_Layer3_Mobility/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
                     <span>${label}</span>
                 </div>
             `;
@@ -298,7 +333,7 @@ function generateLayer2Block(mobilitySelections, isClickable, currentLayer, nuCo
 }
 
 /**
- * Helper to generate Layer 3 Green blocks
+ * Helper to generate Layer 4 Green blocks
  */
 function generateLayer3Block(greenSelections, isClickable, currentLayer, nuCode) {
     let html = ``;
@@ -313,7 +348,7 @@ function generateLayer3Block(greenSelections, isClickable, currentLayer, nuCode)
             const label = infraLabels[val] || val;
             html += `
                 <div class="sidebar-item">
-                    <img src="Content/Images_Layer3_Infrastructure/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <img src="Content/Images_Layer4_Infrastructure/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
                     <span>${label}</span>
                 </div>
             `;
@@ -331,7 +366,7 @@ function generateLayer3Block(greenSelections, isClickable, currentLayer, nuCode)
             const label = agLabels[val] || val;
             html += `
                 <div class="sidebar-item">
-                    <img src="Content/Images_Layer3_UrbanAgriculture/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <img src="Content/Images_Layer4_UrbanAgriculture/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
                     <span>${label}</span>
                 </div>
             `;
@@ -349,7 +384,7 @@ function generateLayer3Block(greenSelections, isClickable, currentLayer, nuCode)
             const label = integratedLabels[val] || val;
             html += `
                 <div class="sidebar-item">
-                    <img src="Content/Images_Layer3_EnergyIntegrated/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
+                    <img src="Content/Images_Layer4_EnergyIntegratedGI/${label}.png" alt="${label}" onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='40px'; this.style.minWidth='40px';">
                     <span>${label}</span>
                 </div>
             `;

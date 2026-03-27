@@ -6,7 +6,7 @@
 // Concept definitions (for Concept column display)
 const CONCEPTS = [
   { id: 1, name: "Financial Dist", image: "Content/Images_Concept/1-Financial_District.png" },
-  { id: 2, name: "Dense Residential", image: "Content/Images_Concept/2-Dense_Residential.png" },
+  { id: 2, name: "Downtown Residential", image: "Content/Images_Concept/2-Dense_Residential.png" },
   { id: 3, name: "Urban Transition-Zone", image: "Content/Images_Concept/3-Urban-Transit-Zone.png" },
   { id: 4, name: "Suburban Transit-Zone", image: "Content/Images_Concept/4-Suburban-Transit-Zone.png" },
   { id: 5, name: "Streetcar Suburb", image: "Content/Images_Concept/5-Streetcar_Suburb.png" },
@@ -87,20 +87,20 @@ const NEIGHBOURHOODS = [
     image: "Content/Images_Neighbourhoods/NUS_RC5.png",
     buildings: ["midrise apartment"]
   },
-  /*
   {
     code: "RC6",
-    conceptId: 6,
+    conceptId: 2,
     usage: "residential",
-    context: "suburban",
-    density: "medium",
+    context: "urban",
+    density: "high",
     layout: "grid",
-    eui: 65.885,
+    eui: 154.3,
     energyStatus: "Negative",
-    content: "4 Mid-Rise + 14 Attached",
+    content: "4 Highrise (10-St)",
     image: "Content/Images_Neighbourhoods/NUs_RC6.png",
-    buildings: ["midrise apartment", "Attached House"]
+    buildings: ["Highrise Apartment"]
   },
+  /*
   {
     code: "RC7",
     conceptId: 4,
@@ -395,6 +395,16 @@ const BUILDING_IMAGES = {
   "Warehouse": "Content/Images_Buildings/Warehouse.png"
 };
 
+// PV parameters per neighbourhood
+const PV_GENERATION_DATA = {
+  "RC1": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.38, rop: 1.490 },
+  "RC2": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.20, rop: 1.47 },
+  "RC3": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.30, rop: 1.57 },
+  "RC4": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
+  "RC5": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
+  "RC6": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.70, rop: 0.44 }
+};
+
 // Energy category colors
 const ENERGY_COLORS = {
   "Heating": "#ef4444",
@@ -415,95 +425,811 @@ const ENERGY_COLORS = {
 // Energy data per neighbourhood (kWh/m²-yr)
 const ENERGY_DATA = {
   "RC1": {
-    total: 65.098,
-    breakdown: [
-      { name: "Heating", value: 14.653 },
-      { name: "Cooling", value: 3.293 },
-      { name: "Interior Lighting", value: 5.752 },
-      { name: "Electric Equipment", value: 16.529 },
-      { name: "Exterior Lighting", value: 1.878 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 19.215 },
-      { name: "Fans", value: 3.777 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 93.55,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 32.1
+        },
+        {
+          "name": "Cooling",
+          "value": 16.25
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "4": {
+      "total": 57.29,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 8.02
+        },
+        {
+          "name": "Cooling",
+          "value": 4.06
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3.5": {
+      "total": 59.02,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 9.17
+        },
+        {
+          "name": "Cooling",
+          "value": 4.64
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3": {
+      "total": 61.32,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 10.7
+        },
+        {
+          "name": "Cooling",
+          "value": 5.42
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.81
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.93
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.77
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    }
   },
   "RC2": {
-    total: 65.098,
-    breakdown: [
-      { name: "Heating", value: 14.653 },
-      { name: "Cooling", value: 3.293 },
-      { name: "Interior Lighting", value: 5.752 },
-      { name: "Electric Equipment", value: 16.529 },
-      { name: "Exterior Lighting", value: 1.878 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 19.215 },
-      { name: "Fans", value: 3.777 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 95.7,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 35.5
+        },
+        {
+          "name": "Cooling",
+          "value": 15.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "4": {
+      "total": 57.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 8.9
+        },
+        {
+          "name": "Cooling",
+          "value": 3.7
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3.5": {
+      "total": 59.6,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 10.1
+        },
+        {
+          "name": "Cooling",
+          "value": 4.3
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3": {
+      "total": 62.0,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 11.8
+        },
+        {
+          "name": "Cooling",
+          "value": 5.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.9
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    }
   },
   "RC3": {
-    total: 60.802,
-    breakdown: [
-      { name: "Heating", value: 18.163 },
-      { name: "Cooling", value: 1.652 },
-      { name: "Interior Lighting", value: 4.314 },
-      { name: "Electric Equipment", value: 21.34 },
-      { name: "Exterior Lighting", value: 0 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 10.253 },
-      { name: "Fans", value: 5.08 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 84.6,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 23.6
+        },
+        {
+          "name": "Cooling",
+          "value": 16.1
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "4": {
+      "total": 54.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 5.9
+        },
+        {
+          "name": "Cooling",
+          "value": 4.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3.5": {
+      "total": 56.2,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 6.8
+        },
+        {
+          "name": "Cooling",
+          "value": 4.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    },
+    "3": {
+      "total": 58.1,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 7.9
+        },
+        {
+          "name": "Cooling",
+          "value": 5.4
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 0.8
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 0.6
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 31.8
+        },
+        {
+          "name": "Elevators",
+          "value": 0.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 11.7
+        }
+      ]
+    }
   },
   "RC4": {
-    total: 68.829,
-    breakdown: [
-      { name: "Heating", value: 23.503 },
-      { name: "Cooling", value: 0.486 },
-      { name: "Interior Lighting", value: 6.41 },
-      { name: "Electric Equipment", value: 15.497 },
-      { name: "Exterior Lighting", value: 1.374 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 0 },
-      { name: "Water Systems", value: 8.739 },
-      { name: "Fans", value: 12.82 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 120.1,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 51.2
+        },
+        {
+          "name": "Cooling",
+          "value": 9.3
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "4": {
+      "total": 77.0,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 14.6
+        },
+        {
+          "name": "Cooling",
+          "value": 2.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3.5": {
+      "total": 77.0,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 14.6
+        },
+        {
+          "name": "Cooling",
+          "value": 2.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3": {
+      "total": 79.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 17.1
+        },
+        {
+          "name": "Cooling",
+          "value": 3.1
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    }
   },
   "RC5": {
-    total: 69.837,
-    breakdown: [
-      { name: "Heating", value: 24.476 },
-      { name: "Cooling", value: 0.508 },
-      { name: "Interior Lighting", value: 6.41 },
-      { name: "Electric Equipment", value: 15.497 },
-      { name: "Exterior Lighting", value: 0 },
-      { name: "Equipment (Gas)", value: 0 },
-      { name: "Elevators", value: 1.374 },
-      { name: "Water Systems", value: 8.739 },
-      { name: "Fans", value: 12.833 },
-      { name: "VAV Fans", value: 0 },
-      { name: "Pump (Electric)", value: 0 },
-      { name: "Heat Rejection", value: 0 },
-      { name: "FCU Fans", value: 0 }
-    ]
+    "1": {
+      "total": 122.5,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 52.8
+        },
+        {
+          "name": "Cooling",
+          "value": 10.0
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "4": {
+      "total": 75.4,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 13.2
+        },
+        {
+          "name": "Cooling",
+          "value": 2.5
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3.5": {
+      "total": 77.7,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 15.1
+        },
+        {
+          "name": "Cooling",
+          "value": 2.9
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    },
+    "3": {
+      "total": 80.6,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 17.6
+        },
+        {
+          "name": "Cooling",
+          "value": 3.3
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 4.4
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.4
+        },
+        {
+          "name": "Elevators",
+          "value": 3.0
+        },
+        {
+          "name": "Water Systems",
+          "value": 15.9
+        }
+      ]
+    }
   },
+  "RC6": {
+    "1": {
+      "total": 154.3,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 72.3
+        },
+        {
+          "name": "Cooling",
+          "value": 23.1
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    },
+    "4": {
+      "total": 82.8,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 18.1
+        },
+        {
+          "name": "Cooling",
+          "value": 5.8
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    },
+    "3.5": {
+      "total": 86.2,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 20.7
+        },
+        {
+          "name": "Cooling",
+          "value": 6.6
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    },
+    "3": {
+      "total": 90.7,
+      "breakdown": [
+        {
+          "name": "Heating",
+          "value": 24.1
+        },
+        {
+          "name": "Cooling",
+          "value": 7.7
+        },
+        {
+          "name": "Interior Lighting",
+          "value": 2.0
+        },
+        {
+          "name": "Exterior Lighting",
+          "value": 3.4
+        },
+        {
+          "name": "Electric Equipment",
+          "value": 34.5
+        },
+        {
+          "name": "Elevators",
+          "value": 2.9
+        },
+        {
+          "name": "Water Systems",
+          "value": 16.2
+        }
+      ]
+    }
+  }
+};
+
   /*
   "RC6": {
     total: 65.885,
@@ -868,7 +1594,6 @@ const ENERGY_DATA = {
     ]
   }
     */
-};
 
 const ENERGY_STATUS_IMAGES = {
   "Positive": "Content/Images_EnergyStatus/Positive.png",
@@ -876,7 +1601,229 @@ const ENERGY_STATUS_IMAGES = {
   "Negative": "Content/Images_EnergyStatus/Negative.png"
 };
 
+// EV & V2G data per neighbourhood, derived from Templates/NUS_EV.csv
+const EV_V2G_DATA = {
+  "RC1": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 24,
+      totalFloorArea: 5280,
+      totalEvEnergyDemand: 600,
+      storageLoss: 30,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 630,
+      netEnergyBalance_kWh_m2: 0.12,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 24,
+      totalFloorArea: 5280,
+      totalEvEnergyDemand: 600,
+      storageLoss: 30,
+      v2gPowerAvailable: 180,
+      netEnergyBalance_kWh: 450,
+      netEnergyBalance_kWh_m2: 0.09,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC2": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 48,
+      totalFloorArea: 10560,
+      totalEvEnergyDemand: 1200,
+      storageLoss: 60,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 1260,
+      netEnergyBalance_kWh_m2: 0.12,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 48,
+      totalFloorArea: 10560,
+      totalEvEnergyDemand: 1200,
+      storageLoss: 60,
+      v2gPowerAvailable: 360,
+      netEnergyBalance_kWh: 900,
+      netEnergyBalance_kWh_m2: 0.09,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC3": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 56,
+      totalFloorArea: 10080,
+      totalEvEnergyDemand: 1400,
+      storageLoss: 70,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 1470,
+      netEnergyBalance_kWh_m2: 0.15,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 56,
+      totalFloorArea: 10080,
+      totalEvEnergyDemand: 1400,
+      storageLoss: 70,
+      v2gPowerAvailable: 420,
+      netEnergyBalance_kWh: 1050,
+      netEnergyBalance_kWh_m2: 0.10,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC4": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 256,
+      totalFloorArea: 25080,
+      totalEvEnergyDemand: 6720,
+      storageLoss: 320,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 7040,
+      netEnergyBalance_kWh_m2: 0.28,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 256,
+      totalFloorArea: 25080,
+      totalEvEnergyDemand: 6720,
+      storageLoss: 320,
+      v2gPowerAvailable: 1920,
+      netEnergyBalance_kWh: 5120,
+      netEnergyBalance_kWh_m2: 0.20,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC5": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 384,
+      totalFloorArea: 37620,
+      totalEvEnergyDemand: 10080,
+      storageLoss: 480,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 10560,
+      netEnergyBalance_kWh_m2: 0.28,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 384,
+      totalFloorArea: 37620,
+      totalEvEnergyDemand: 10080,
+      storageLoss: 480,
+      v2gPowerAvailable: 2880,
+      netEnergyBalance_kWh: 7680,
+      netEnergyBalance_kWh_m2: 0.20,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  },
+  "RC6": {
+    "EV1": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      numHouseholds: 640,
+      totalFloorArea: 94050,
+      totalEvEnergyDemand: 16800,
+      storageLoss: 800,
+      v2gPowerAvailable: null,
+      netEnergyBalance_kWh: 17600,
+      netEnergyBalance_kWh_m2: 0.19,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    },
+    "EV2": {
+      evPenetrationRate: "1.5 EVs / household",
+      dailyEnergyDemand: "15 kWh / EV",
+      chargingEfficiency: "90%",
+      v2gParticipationRate: "50%",
+      batteryEfficiency: "90%",
+      dischargeCapacity: "10 kW / day",
+      numHouseholds: 640,
+      totalFloorArea: 94050,
+      totalEvEnergyDemand: 16800,
+      storageLoss: 800,
+      v2gPowerAvailable: 4800,
+      netEnergyBalance_kWh: 12800,
+      netEnergyBalance_kWh_m2: 0.14,
+      systemStatusIndicator: "Grid Stressed - Deficit"
+    }
+  }
+};
+
+// LPV (Land-PV) data derived from Templates/NUs_LPV.csv
+const LPV_DATA = {
+  columns: ["RC1", "RC2", "RC3", "RC4", "RC5", "RC6"],
+  rows: [
+    {
+      category: "Config.",
+      label: "Land Allocation",
+      values: { RC1: "20% (4046 m²)", RC2: "20% (4046 m²)", RC3: "20% (4046 m²)", RC4: "20% (4046 m²)", RC5: "20% (4046 m²)", RC6: "20% (4046 m²)" }
+    },
+    {
+      category: "Config.",
+      label: "Usable Area",
+      values: { RC1: "10% (2023 m²)", RC2: "10% (2023 m²)", RC3: "10% (2023 m²)", RC4: "10% (2023 m²)", RC5: "10% (2023 m²)", RC6: "10% (2023 m²)" }
+    },
+    {
+      category: "Config.",
+      label: "Module Capacity",
+      values: { RC1: "400W", RC2: "400W", RC3: "400W", RC4: "400W", RC5: "400W", RC6: "400W" }
+    },
+    {
+      category: "Config.",
+      label: "Installed Capacity (kWp)",
+      values: { RC1: "475 kWp", RC2: "475 kWp", RC3: "475 kWp", RC4: "475 kWp", RC5: "475 kWp", RC6: "475 kWp" }
+    },
+    {
+      category: "Results",
+      label: "Energy Generation",
+      values: { RC1: "608 MWh/year", RC2: "608 MWh/year", RC3: "608 MWh/year", RC4: "608 MWh/year", RC5: "608 MWh/year", RC6: "608 MWh/year" }
+    }
+  ]
+};
+
 // Export for use in app.js
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA, ENERGY_STATUS_IMAGES };
+  module.exports = { CONCEPTS, NEIGHBOURHOODS, BUILDING_IMAGES, ENERGY_COLORS, ENERGY_DATA, ENERGY_STATUS_IMAGES, EV_V2G_DATA, LPV_DATA };
 }

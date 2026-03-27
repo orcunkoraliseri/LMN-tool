@@ -89,6 +89,71 @@ function renderEnergyStatus(neighbourhoodCode) {
 }
 
 /**
+ * Update PV profile images for specific neighbourhoods
+ * @param {string} neighbourhoodCode - The neighbourhood code
+ */
+function updatePVImages(neighbourhoodCode) {
+    const irradiationImg = document.getElementById('solar-irradiation-img');
+    const generationImg = document.getElementById('monthly-generation-img');
+
+    if (!irradiationImg || !generationImg) return;
+
+    if (neighbourhoodCode === 'RC1') {
+        irradiationImg.src = 'Content/Images_PVProfile/RC1_IncidentRadiation_Roof.png';
+        generationImg.src = 'Content/Images_PVProfile/RC1_DirectSunHours_Roof.png';
+    } else {
+        // Fallback to default mock-up images
+        irradiationImg.src = 'Content/Images_PVProfile/Solar Irradiation.png';
+        generationImg.src = 'Content/Images_PVProfile/Monthly Solar Generation.png';
+    }
+}
+
+/**
+ * Determine whether RoP should be shown based on the stored energy selection.
+ * RoP is only applicable when Heat Pump COP 4 is selected.
+ * @returns {boolean} True if cop4 demand is selected.
+ */
+function isCOP4Selected() {
+    try {
+        const raw = sessionStorage.getItem('energySelections');
+        if (!raw) return false;
+        const selections = JSON.parse(raw);
+        return Array.isArray(selections.demand) && selections.demand.includes('cop4');
+    } catch (e) {
+        return false;
+    }
+}
+
+/**
+ * Update PV parameter values dynamically.
+ * RoP is only displayed when Heat Pump COP 4 is the active demand selection;
+ * for all other selections (COP 3 or Thermal Load COP 1) it is shown as —.
+ * @param {string} neighbourhoodCode - The neighbourhood code
+ */
+function updatePVParameters(neighbourhoodCode) {
+    if (!PV_GENERATION_DATA || !PV_GENERATION_DATA[neighbourhoodCode]) return;
+
+    const data = PV_GENERATION_DATA[neighbourhoodCode];
+    const showRoP = isCOP4Selected();
+
+    const elements = {
+        '#pv-surface-val': data.surface,
+        '#pv-efficiency-val': data.efficiency,
+        '#pv-mounting-val': data.mounting,
+        '#pv-gcr-val': data.gcr ? (parseFloat(data.gcr) * 100).toFixed(0) + '%' : '',
+        '#pv-generation-val': data.generation,
+        '#pv-rop-val': showRoP ? data.rop : '—'
+    };
+
+    for (const [selector, value] of Object.entries(elements)) {
+        const el = document.querySelector(selector);
+        if (el && value !== undefined) {
+            el.textContent = value;
+        }
+    }
+}
+
+/**
  * Initialize the PV page
  */
 function initPVPage() {
@@ -100,14 +165,16 @@ function initPVPage() {
     // Render scale with random value (0-100 range as proxy)
     renderPVScale(70.5);
 
-    // Render Energy Status icon
+    // Render Energy Status icon and PV Images
     if (neighbourhoodCode) {
         renderEnergyStatus(neighbourhoodCode);
+        updatePVImages(neighbourhoodCode);
+        updatePVParameters(neighbourhoodCode);
     }
 
     if (neighbourhoodCode) {
         // Update title
-        titleElement.textContent = `Layer 1: PV Generation of ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 2: PV Generation of ${neighbourhoodCode}`;
 
         // Build sidebar
         if (typeof buildSidebar === 'function') {
@@ -116,12 +183,12 @@ function initPVPage() {
 
         // Set back button href to energy-selection page
         if (backStepBtn) {
-            backStepBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backStepBtn.href = `layer2_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
         // Set next step button href
         if (nextStepBtn) {
-            nextStepBtn.href = `layer1_lpv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            nextStepBtn.href = `layer3_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
     } else {
         titleElement.textContent = 'PV Generation Profile';

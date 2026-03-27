@@ -42,7 +42,9 @@ function setupCards() {
 }
 
 /**
- * Setup submit button to navigate to output green page.
+ * Setup submit button.
+ * If any Energy-Integrated GI option is selected, navigate directly to the LPV breakdown page.
+ * Otherwise navigate to the standard green output selection page.
  */
 function setupSubmitButton() {
     const submitBtn = document.getElementById('view-green-btn');
@@ -51,13 +53,19 @@ function setupSubmitButton() {
         submitBtn.addEventListener('click', () => {
             const neighbourhoodCode = getNeighbourhoodFromURL();
 
-            // Store selections in sessionStorage (for future use)
+            // Persist all selections so other pages can read them
             sessionStorage.setItem('greenSelections', JSON.stringify(greenSelections));
 
-            if (neighbourhoodCode) {
-                window.location.href = `layer3_output_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
-            } else {
+            if (!neighbourhoodCode) {
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
+                return;
+            }
+
+            // If any Energy-Integrated GI option is active, go directly to LPV breakdown
+            if (greenSelections.energy_integrated.length > 0) {
+                window.location.href = `layer4_lpv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            } else {
+                window.location.href = `layer4_output_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             }
         });
     }
@@ -72,13 +80,13 @@ function initGreenSelectionPage() {
     const backBtn = document.getElementById('back-btn');
 
     if (neighbourhoodCode) {
-        titleElement.textContent = `Layer 3: Green Selection for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 4: Green Selection for ${neighbourhoodCode}`;
 
         if (backBtn) {
-            backBtn.href = `layer2_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backBtn.href = `layer3_ev_v2g_mobility_output.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
-        buildSidebar('layer3_selection', 'selection');
+        buildSidebar('layer4_selection', 'selection');
     }
 
     setupCards();

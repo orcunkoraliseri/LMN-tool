@@ -1,6 +1,8 @@
-Concept,Neighbourhood,Energy Status,PV (Surface),PV (Efficiency),PV (Mounting),Buildings,"PV (Total Surface Area, m2)","PV (Generation, kWh/m2)",RoP (Ratio of Performance)
-8. Rural Cluster,RC1,Positive,Roof,18.68%,Fixed Roof Mounted,24 detached (two-storey house) homes,1383,91.38,1.648
-7. Peripheral Community,RC2,Positive,Roof,18.68%,Fixed Roof Mounted,48 detached (two-storey house) homes,2766,91.22,1.622
-7. Peripheral Community,RC3,Positive,Roof,18.68%,Fixed Roof Mounted,56 attached units,1613,91.22,1.622
-6. Midrise Suburb,RC4,Negative,Roof,18.68%,Fixed Open Rack,8 Midrise,6270,48.1,0.365
-3. Urban Transition-Zone,RC5,Negative,Roof,18.68%,Fixed Open Rack,12 Midrise,9403,48.1,0.363
+,,,,,,,,,COP 4,COP 3,COP 1
+Concept,Neighbourhood,Energy Status,PV Surface,PV Efficiency,Ground Coverage Ratio,PV Mounting,Buildings,"PV (Generation, kWh/m2)",RoP (Ratio of Performance),RoP (Ratio of Performance),RoP (Ratio of Performance)
+Rural Cluster,RC1,Positive,Roof,18.68%,0.4,Fixed Roof Mounted,24 detached (two-storey house) homes,91.38,1.490,-,-
+Peripheral Community,RC2,Positive,Roof,18.68%,0.4,Fixed Roof Mounted,48 detached (two-storey house) homes,91.2,1.47,-,-
+Peripheral Community,RC3,Positive,Roof,18.68%,0.4,Fixed Roof Mounted,56 attached units,91.3,1.57,-,-
+Midrise Suburb,RC4,Negative,Roof,18.68%,0.4,Fixed Open Rack,8 Midrise,48.1,0.60,-,-
+Urban Transition-Zone,RC5,Negative,Roof,18.68%,0.4,Fixed Open Rack,12 Midrise,48.1,0.60,-,-
+Downtown Residential,RC6,Negative,Roof + Facade,18.68%,0.4,Fixed Open Rack,4 Highrise,39.7,0.44,-,-

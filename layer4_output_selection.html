@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Green parameters results for neighbourhood analysis.">
+    <title>Green Results | Neighbourhood Design Interface</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1 id="neighbourhood-title">Layer 4: Green Selection Results</h1>
+        <p>Confirm your green infrastructure and urban agriculture parameters.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Navigation Back Button -->
+        <a id="back-btn" href="layer4_green_selection.html" class="back-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Layer 4 Selection
+        </a>
+
+        <div class="sidebar-layout">
+            <aside id="sidebar" class="sidebar"></aside>
+
+            <div id="visual-content" class="main-content">
+                <div class="output-placeholder"
+                    style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; text-align: center; height: 100%;">
+                    <h2 style="margin-bottom: 2rem; font-weight: 500; font-size: 1.5rem; color: #333;">Green selections
+                        applied successfully.</h2>
+                    <p style="margin-bottom: 3rem; color: #666; font-size: 1.1rem;">Click on the items in the left
+                        sidebar to view their detailed interactive breakdowns.</p>
+                    
+                    <!-- LPV Breakdown Button -->
+                    <div class="submit-section">
+                        <button id="proceed-lpv-btn" class="submit-btn" style="padding: 1rem 2rem;">Proceed to Layer 4: LPV Generation</button>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/output_green.js"></script>
+</body>
+
+</html>

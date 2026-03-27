@@ -112,7 +112,7 @@ function renderOutputEnergyTable() {
         // Capitalize first letter for display
         const displayVal = val.charAt(0).toUpperCase() + val.slice(1);
         item.innerHTML = `
-            <img src="Content/Images_Layer1_EnergyConsumption/${displayVal}.png" alt="${displayVal}" onerror="this.style.display='none'">
+            <img src="Content/Images_Layer2_EnergyConsumption/${displayVal}.png" alt="${displayVal}" onerror="this.style.display='none'">
             <span>${displayVal}</span>
         `;
         consumptionWrapper.appendChild(item);
@@ -121,7 +121,7 @@ function renderOutputEnergyTable() {
 
     // Navigation for consumption
     consumptionCell.addEventListener('click', () => {
-        window.location.href = `layer1_energy_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        window.location.href = `layer2_energy_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     });
 
     // Energy Generation cell
@@ -151,7 +151,7 @@ function renderOutputEnergyTable() {
         // The image name might need exact match with the file name
         const imgName = label;
         item.innerHTML = `
-            <img src="Content/Images_Layer1_EnergyGeneration/${imgName}.png" alt="${label}" onerror="this.style.display='none'">
+            <img src="Content/Images_Layer2_EnergyGeneration/${imgName}.png" alt="${label}" onerror="this.style.display='none'">
             <span>${label}</span>
         `;
         generationWrapper.appendChild(item);
@@ -160,7 +160,7 @@ function renderOutputEnergyTable() {
 
     // Navigation for generation
     generationCell.addEventListener('click', () => {
-        window.location.href = `layer1_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        window.location.href = `layer2_pv_breakdown.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     });
 
     // Append cells to row
@@ -183,12 +183,12 @@ function setupNavigation() {
     const neighbourhoodCode = getNeighbourhoodFromURL();
 
     if (backBtn && neighbourhoodCode) {
-        backBtn.href = `layer1_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+        backBtn.href = `layer2_energy_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
     }
 
     if (proceedBtn && neighbourhoodCode) {
         proceedBtn.addEventListener('click', () => {
-            window.location.href = `layer2_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            window.location.href = `layer3_mobility_selection.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         });
     }
 }
@@ -201,11 +201,11 @@ function initOutputEnergyPage() {
     const titleElement = document.getElementById('neighbourhood-title');
 
     if (neighbourhoodCode) {
-        titleElement.textContent = `Layer 1: Energy Selection Results for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 2: Energy Selection Results for ${neighbourhoodCode}`;
 
-        // Build sidebar in visuals mode to show layer 1
+        // Build sidebar in visuals mode to show layer 2
         if (typeof buildSidebar === 'function') {
-            buildSidebar('layer1_output_energy', 'visuals');
+            buildSidebar('layer2_output_energy', 'visuals');
         }
     }
 

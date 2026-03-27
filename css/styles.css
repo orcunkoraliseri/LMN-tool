@@ -414,29 +414,30 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: 0.35rem;
+  padding: 0.75rem;
   background: var(--bg-card);
   border: 2px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-normal);
-  width: 180px;
+  width: 135px;
 }
 
 .consumption-card img {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   transition: transform var(--transition-normal);
 }
 
 .consumption-card span {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-primary);
   text-transform: capitalize;
+  text-align: center;
 }
 
 .consumption-card:hover {
@@ -456,18 +457,18 @@ h3 {
 }
 
 /* Generation Cards Container */
+/* Generation, Load, and Demand Containers */
 .generation-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  align-items: center;
+  width: 100%;
+  margin-bottom: var(--spacing-md);
 }
 
 .generation-row {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-md);
   justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .generation-cards {
@@ -477,49 +478,61 @@ h3 {
   justify-content: center;
 }
 
-/* Generation Card - Green/Energy theme */
-.generation-card {
+/* Generation, Load, and Demand Card - Green/Energy theme */
+.generation-card,
+.load-card,
+.demand-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: 0.35rem;
+  padding: 0.75rem;
   background: var(--bg-card);
   border: 2px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-normal);
-  width: 180px;
+  width: 135px;
 }
 
-.generation-card img {
-  width: 150px;
-  height: 100px;
+.generation-card img,
+.load-card img,
+.demand-card img {
+  width: 105px;
+  height: 68px;
   object-fit: contain;
   background-color: #fff;
   border-radius: var(--radius-sm);
   transition: transform var(--transition-normal);
 }
 
-.generation-card span {
+.generation-card span,
+.load-card span,
+.demand-card span {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-primary);
-  text-transform: capitalize;
+  text-align: center;
 }
 
-.generation-card:hover {
+.generation-card:hover,
+.load-card:hover,
+.demand-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
   border-color: rgba(34, 197, 94, 0.5);
 }
 
-.generation-card:hover img {
+.generation-card:hover img,
+.load-card:hover img,
+.demand-card:hover img {
   transform: scale(1.02);
 }
 
-.generation-card.active {
+.generation-card.active,
+.load-card.active,
+.demand-card.active {
   border-color: #22c55e;
   background: rgba(34, 197, 94, 0.1);
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
@@ -1609,6 +1622,7 @@ h3 {
 }
 
 .treemap-name {
+  width: 100%;
   font-size: 0.85rem;
   font-weight: 600;
   color: #fff;
@@ -1617,16 +1631,21 @@ h3 {
 }
 
 .treemap-value {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.treemap-percent {
+  width: 100%;
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.treemap-percent {
+  width: 100%;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 /* Legend */
@@ -1768,6 +1787,161 @@ h3 {
 }
 
 /* ========================================
+   EV & V2G Visual Header
+   ======================================== */
+
+.ev-visual-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.ev-header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ev-header-card-img {
+  width: 140px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.ev-header-card--ev .ev-header-card-img {
+  object-fit: contain;
+}
+
+.ev-header-card--neighbourhood .ev-header-card-img {
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ev-header-card-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ========================================
+   EV & V2G Breakdown Table
+   ======================================== */
+
+
+#ev-v2g-table.ev-v2g-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.ev-v2g-table thead th {
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+
+.ev-v2g-table thead th .th-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin-top: 0.2rem;
+}
+
+.ev-v2g-table tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background var(--transition-fast);
+}
+
+.ev-v2g-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.ev-v2g-table tbody tr:hover {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.ev-v2g-table tbody td {
+  padding: 0.85rem 1.25rem;
+  vertical-align: middle;
+}
+
+.ev-v2g-table .metric-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.ev-v2g-table .metric-value {
+  display: inline;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.ev-v2g-table .metric-unit {
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.energy-status-label {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.ev-status-cell {
+  vertical-align: middle;
+}
+
+.ev-status-cell-content {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.ev-status-table-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.ev-status-table-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+/* ========================================
    Responsive Design
    ======================================== */
 
@@ -1813,13 +1987,16 @@ h3 {
 }
 
 .sidebar {
-  width: 300px;
+  width: 240px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-xs);
   margin-top: 4.5rem;
-  /* align below the nav-buttons row */
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-right: 4px;
 }
 
 .main-content {
@@ -1843,17 +2020,11 @@ h3 {
 }
 
 .sidebar-title {
-  padding: var(--spacing-md) var(--spacing-lg);
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: none;
 }
 
 .sidebar-block {
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-xs) var(--spacing-sm);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -1862,11 +2033,11 @@ h3 {
 }
 
 .sidebar-subtitle {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--text-secondary);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 2px;
   letter-spacing: 0.05em;
 }
 
@@ -1874,30 +2045,30 @@ h3 {
 .sidebar-item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 8px;
   background: var(--bg-primary);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: 4px 8px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   transition: all var(--transition-fast);
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 
 .sidebar-item img {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 
 .sidebar-item span {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-primary);
 }
 
 .sidebar-item--large img {
-  width: 64px;
-  height: 48px;
+  width: 48px;
+  height: 36px;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -1908,26 +2079,26 @@ h3 {
 }
 
 .sidebar-properties {
-  margin-top: var(--spacing-sm);
+  margin-top: 4px;
   background: var(--bg-primary);
-  padding: var(--spacing-sm);
+  padding: 6px 8px;
   border-radius: var(--radius-sm);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   color: var(--text-secondary);
-  line-height: 1.4;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  line-height: 1.3;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-properties p strong {
   color: var(--text-primary);
-  width: 60px;
+  width: 50px;
   display: inline-block;
 }
 
 .sidebar-buildings {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xs);
+  gap: 3px;
 }
 
 .sidebar-building-icon {
@@ -1951,7 +2122,7 @@ h3 {
 .sidebar-items-grid {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 4px;
 }
 
 /* Clickable interactive items */
@@ -1988,4 +2159,124 @@ h3 {
   .sidebar {
     width: 100%;
   }
+}
+
+/* ─────────────────────────────────────────────────────────
+   LPV Breakdown Page
+   ───────────────────────────────────────────────────────── */
+
+/* Visual header — 2-col × 2-row CSS grid
+   Col 1 (1fr): GI image top, neighbourhood image bottom
+   Col 2 (2fr): LPV.png spanning both rows                */
+.lpv-visual-header-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+/* Base card */
+.lpv-header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  overflow: hidden;
+}
+
+/* Grid placement */
+.lpv-card--gi           { grid-column: 1; grid-row: 1; }
+.lpv-card--neighbourhood { grid-column: 1; grid-row: 2; }
+.lpv-card--lpv          { grid-column: 2; grid-row: 1 / 3; }
+
+/* Empty placeholder — keeps grid shape when GI or neighbourhood is missing */
+.lpv-card--empty { background: rgba(0, 0, 0, 0.03); border-radius: var(--radius-sm); }
+
+/* Images */
+.lpv-header-card-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.lpv-card--lpv .lpv-header-card-img {
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+/* Labels */
+.lpv-header-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+/* LPV results table */
+#lpv-table.lpv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+#lpv-table.lpv-table thead th {
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  vertical-align: top;
+}
+
+#lpv-table.lpv-table tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background var(--transition-fast);
+}
+
+#lpv-table.lpv-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+#lpv-table.lpv-table tbody tr:hover {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+#lpv-table.lpv-table tbody td {
+  padding: 0.85rem 1.25rem;
+  vertical-align: middle;
+}
+
+/* metric-label: small uppercase caption — must be display:block to sit above the value */
+#lpv-table.lpv-table .metric-label {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+/* metric-value: the actual data value on its own line */
+#lpv-table.lpv-table .metric-value {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1rem;
 }

@@ -57,6 +57,7 @@ function setupCards() {
 
 /**
  * Setup submit button to navigate to output mobility page.
+ * If EV is selected, navigate directly to the EV & V2G breakdown page.
  */
 function setupSubmitButton() {
     const submitBtn = document.getElementById('view-mobility-btn');
@@ -65,11 +66,12 @@ function setupSubmitButton() {
         submitBtn.addEventListener('click', () => {
             const neighbourhoodCode = getNeighbourhoodFromURL();
 
-            // Store selections in sessionStorage (for future use)
+            // Store selections in sessionStorage
             sessionStorage.setItem('mobilitySelections', JSON.stringify(mobilitySelections));
 
             if (neighbourhoodCode) {
-                window.location.href = `layer2_output_mobility.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+                const evSelected = mobilitySelections.transportation.includes('ev');
+                window.location.href = `layer3_ev_v2g_mobility_output.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
             } else {
                 alert('No neighbourhood selected. Please go back and select a neighbourhood.');
             }
@@ -86,13 +88,13 @@ function initMobilitySelectionPage() {
     const backBtn = document.getElementById('back-btn');
 
     if (neighbourhoodCode) {
-        titleElement.textContent = `Layer 2: Mobility Selection for ${neighbourhoodCode}`;
+        titleElement.textContent = `Layer 3: Mobility Selection for ${neighbourhoodCode}`;
 
         if (backBtn) {
-            backBtn.href = `layer1_output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
+            backBtn.href = `layer2_output_energy.html?neighbourhood=${encodeURIComponent(neighbourhoodCode)}`;
         }
 
-        buildSidebar('layer2_selection', 'selection');
+        buildSidebar('layer3_selection', 'selection');
     }
 
     setupCards();
