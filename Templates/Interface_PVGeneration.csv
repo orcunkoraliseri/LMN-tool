@@ -1,8 +1,0 @@
-,,,,,,,,,COP 4,COP 3,COP 1
-Concept,Neighbourhood,Energy Status,PV Surface,PV Efficiency,Ground Coverage Ratio,PV Mounting,Buildings,"PV (Generation, kWh/m2)",RoP (Ratio of Performance),RoP (Ratio of Performance),RoP (Ratio of Performance)
-Rural Cluster,RC-R,Positive,Roof,18.68%,0.4,Fixed Roof Mounted,24 detached (two-storey house) homes,91.38,1.490,-,-
-Peripheral Community,RC-D,Positive,Roof,18.68%,0.4,Fixed Roof Mounted,48 detached (two-storey house) homes,91.2,1.47,-,-
-Peripheral Community,RC-T,Positive,Roof,18.68%,0.4,Fixed Roof Mounted,56 attached units,91.3,1.57,-,-
-Midrise Suburb,RC-MR2,Negative,Roof,18.68%,0.4,Fixed Open Rack,8 Midrise,48.1,0.60,-,-
-Urban Transition-Zone,RC-MR3,Negative,Roof,18.68%,0.4,Fixed Open Rack,12 Midrise,48.1,0.60,-,-
-Downtown Residential,RC-HR2,Negative,Roof + Facade,18.68%,0.4,Fixed Open Rack,4 Highrise,39.7,0.44,-,-
