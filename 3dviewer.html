@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NU Viewer</title>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #overlay {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255,255,255,0.9);
+            padding: 8px;
+            border-radius: 6px;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            z-index: 10;
+            width: 160px;
+        }
+
+        .btn {
+            display: block;
+            margin: 6px 0;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #222;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .status {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay" aria-hidden="false">
+        <div class="btn" onclick="setView(5,5,5)">Isometric</div>
+        <div class="btn" onclick="setView(0,10,0)">Top</div>
+        <div class="btn" onclick="setView(10,0,0)">Side</div>
+        <div id="status" class="status">Loading...</div>
+    </div>
+
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+          }
+        }
+    </script>
+
+    <script type="module">import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { IFCLoader } from 'three/addons/loaders/IFCLoader.js';
+
+        const statusEl = document.getElementById('status');
+
+        // Basic renderer/camera/scene
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xfaf9f6);
+
+        const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.01, 2000);
+        camera.position.set(5, 5, 5);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio || 1);
+        renderer.setSize(innerWidth, innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+
+        // Lights
+        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+        dir.position.set(10, 20, 10);
+        scene.add(dir);
+
+        // grid
+        const grid = new THREE.GridHelper(20, 40, 0x999999, 0xdddddd);
+        grid.material.opacity = 0.65;
+        grid.material.transparent = true;
+        scene.add(grid);
+
+        // Helper to parse ?model=RC1
+        function getModelCode() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('model') || params.get('model'.toUpperCase()) || null;
+        }
+
+        // IFCLoader setup
+        const ifcLoader = new IFCLoader();
+        // Use CDN web-ifc wasm � change to a local path if you host it
+        // Note: setWasmPath expects a folder containing web-ifc.wasm
+        ifcLoader.ifcManager.setWasmPath('https://cdn.jsdelivr.net/npm/web-ifc@0.0.38/');
+
+        // Load IFC file function
+        async function loadIfc(modelCode) {
+            if (!modelCode) {
+                statusEl.textContent = 'No model specified in URL.';
+                console.warn('viewer: no model query parameter provided.');
+                return;
+            }
+
+            // Map model code to file path. Adjust path/naming if yours differs.
+            const ifcPath = `Content/IFC_Models/${encodeURIComponent(modelCode)}.ifc`;
+
+            statusEl.textContent = `Loading ${modelCode}...`;
+
+            try {
+                await new Promise((resolve, reject) => {
+                    ifcLoader.load(
+                        ifcPath,
+                        (ifcModel) => {
+                            // remove previous model(s)
+                            const prev = scene.getObjectByName('ifc-model-root');
+                            if (prev) scene.remove(prev);
+
+                            const root = new THREE.Group();
+                            root.name = 'ifc-model-root';
+                            root.add(ifcModel);
+                            scene.add(root);
+
+                            // compute bounding box and fit camera
+                            const box = new THREE.Box3().setFromObject(root);
+                            const size = box.getSize(new THREE.Vector3());
+                            const center = box.getCenter(new THREE.Vector3());
+
+                            // set camera distance
+                            const maxDim = Math.max(size.x, size.y, size.z);
+                            const fitDistance = Math.max(5, maxDim * 1.5);
+                            camera.position.set(center.x + fitDistance, center.y + fitDistance, center.z + fitDistance);
+                            controls.target.copy(center);
+                            controls.update();
+
+                            statusEl.textContent = `Loaded ${modelCode}`;
+                            console.log('viewer: loaded', ifcPath, { size, center });
+                            resolve();
+                        },
+                        (xhr) => {
+                            // progress
+                            const pct = xhr.loaded && xhr.total ? Math.round((xhr.loaded / xhr.total) * 100) : null;
+                            if (pct) statusEl.textContent = `Loading ${modelCode}... ${pct}%`;
+                        },
+                        (err) => {
+                            console.error('IFC load error', err);
+                            statusEl.textContent = `Failed to load ${modelCode}`;
+                            reject(err);
+                        }
+                    );
+                });
+            } catch (e) {
+                // helpful failure message
+                statusEl.textContent = `Error loading ${modelCode}. Check console (CORS/404/wasm).`;
+            }
+        }
+
+        // set view helpers
+        window.setView = (x, y, z) => {
+            camera.position.set(x, y, z);
+            controls.target.set(0, 0, 0);
+            controls.update();
+        };
+
+        // Resize handling
+        window.addEventListener('resize', () => {
+            camera.aspect = innerWidth / innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(innerWidth, innerHeight);
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Kick off: load model from query string
+        (async () => {
+            const model = getModelCode();
+            console.log('viewer: requested model=', model);
+            await loadIfc(model);
+        })();</script>
+</body>
+</html>

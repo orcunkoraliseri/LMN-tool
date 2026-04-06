@@ -8,7 +8,8 @@ const activeFilters = {
     usage: null,
     context: null,
     density: null,
-    layout: null
+    layout: null,
+    envelope: null
 };
 
 // Selection state for navigation to Layer 2
@@ -23,6 +24,7 @@ function initWelcomePage() {
     setupContextCards();
     setupDensityCards();
     setupLayoutCards();
+    setupEnvelopeCards();
     setupSubmitButton();
 }
 
@@ -193,6 +195,41 @@ function setupLayoutCards() {
     });
 }
 
+
+/**
+ * Set up Envelope image card event listeners (single selection)
+ */
+function setupEnvelopeCards() {
+    const cards = document.querySelectorAll('.envelope-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            const value = card.dataset.value;
+
+            // Deselect all other cards in this category
+            cards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Toggle this card
+            card.classList.toggle('active');
+
+            // Update filter state (single value or null)
+            if (card.classList.contains('active')) {
+                activeFilters[category] = value;
+            } else {
+                activeFilters[category] = null;
+            }
+
+            // Update available options in other parameters
+            updateAvailableOptions();
+        });
+    });
+}
+
 /**
  * Update available options based on current selections
  * Disables cards that have no matching neighbourhoods
@@ -213,7 +250,8 @@ function updateAvailableOptions() {
         usage: new Set(),
         context: new Set(),
         density: new Set(),
-        layout: new Set()
+        layout: new Set(),
+        envelope: new Set()
     };
 
     matchingNeighbourhoods.forEach(n => {
@@ -221,6 +259,7 @@ function updateAvailableOptions() {
         availableValues.context.add(n.context);
         availableValues.density.add(n.density);
         availableValues.layout.add(n.layout);
+        availableValues.envelope.add(n.envelope);
     });
 
     // If no filters are active, enable all cards
@@ -266,6 +305,16 @@ function updateAvailableOptions() {
         }
     });
 
+    // Update envelope cards
+    document.querySelectorAll('.envelope-card').forEach(card => {
+        const value = card.dataset.value;
+        if (!hasActiveFilters || availableValues.envelope.has(value) || activeFilters.envelope === value) {
+            card.classList.remove('disabled');
+        } else {
+            card.classList.add('disabled');
+        }
+    });
+
     // Check if all filters are selected to enable results button
     checkAllFiltersSelected();
 }
@@ -297,6 +346,57 @@ function setupSubmitButton() {
     }
 }
 
+
+/**
+ * Ahmed: Setup the popup logic for the Neighbourhood images
+ */
+function setupNeighbourhoodModal() {
+    const modal = document.getElementById("nav-modal");
+    const resultsBody = document.getElementById("results-body");
+    const btnYes = document.getElementById("btn-yes");
+    const btnNo = document.getElementById("btn-no");
+
+    if (!modal || !resultsBody) return;
+
+    let selectedModelCode = ""; // Variable to store the code of the clicked neighborhood
+
+    // 1. Listen for clicks on the images inside the results table
+    resultsBody.addEventListener('click', (e) => {
+        // Check if the clicked element is an image inside a neighbourhood-cell
+        const cell = e.target.closest('.neighbourhood-cell');
+
+        if (e.target.tagName === 'IMG' && cell) {
+            e.stopPropagation();
+
+            // Get the text from the <span class="code"> inside that cell
+            selectedModelCode = cell.querySelector('.code').textContent.trim();
+
+            // Show the popup
+            modal.style.display = "block";
+        }
+    });
+
+    // 2. Handle the "No" button
+    btnNo.onclick = () => {
+        modal.style.display = "none";
+    };
+
+    // 3. Handle the "Yes" button - Opens 3dviewer.html in a new tab
+    btnYes.onclick = () => {
+        modal.style.display = "none";
+        if (selectedModelCode) {
+            // This will result in 3dviewer.html?model=RC1
+            window.open(`3dviewer.html?model=${selectedModelCode}`, '_blank');
+        }
+    };
+
+    // 4. Close if user clicks outside the white box
+    window.onclick = (event) => {
+        if (event.target == modal) { modal.style.display = "none"; }
+    };
+}
+
+
 /**
  * Initialize the Output Page
  */
@@ -312,6 +412,8 @@ function initOutputPage() {
     const filters = JSON.parse(filtersJson);
     renderOutputTable(filters);
     setupLayer2Button();
+
+    setupNeighbourhoodModal();
 }
 
 /**
@@ -535,6 +637,10 @@ function createResultRow(concept, neighbourhood) {
         <div class="property-icon" style="text-align: center; font-size: 0.8rem; display: flex; flex-direction: column; align-items: center;">
           <img src="Content/Images_Density_Parameters/${neighbourhood.density}.png" alt="${neighbourhood.density}" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 4px;" onerror="this.style.display='none'">
           <span>${neighbourhood.density}</span>
+        </div>
+        <div class="property-icon" style="text-align: center; font-size: 0.8rem; display: flex; flex-direction: column; align-items: center;">
+          <img src="Content/Images_Envelope_Parameters/${neighbourhood.envelope}.png" alt="${neighbourhood.envelope}" style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 4px;" onerror="this.style.display='none'">
+          <span>${neighbourhood.envelope}</span>
         </div>
       </div>
     `;

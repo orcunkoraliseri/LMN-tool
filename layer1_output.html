@@ -22,7 +22,7 @@
         <div class="nav-buttons">
             <a href="layer1_NUs_selection.html" class="back-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
@@ -31,7 +31,7 @@
             <button id="layer2-energy-btn" class="next-button" disabled>
                 Layer 2: Energy Selection
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
+                     stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
@@ -61,6 +61,18 @@
     <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- 3D Viewer Button -->
+    <div id="nav-modal" class="modal">
+        <div class="modal-content">
+            <h3>Neighborhood Navigation</h3>
+            <p>Would you like to navigate the Neighbourhood Unit?</p>
+            <div class="modal-buttons">
+                <button id="btn-yes" class="confirm-btn">Yes</button>
+                <button id="btn-no" class="cancel-btn">No</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
