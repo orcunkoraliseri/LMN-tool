@@ -101,6 +101,93 @@ h3 {
   font-size: 1.25rem;
 }
 
+
+/* ========================================
+   Zero Page Styles: Ahmed
+   ======================================== */
+
+
+.welcome-title {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    color: var(--usage-color);
+    margin-bottom: 0.25rem;
+}
+
+.welcome-subtitle {
+    color: var(--text-secondary);
+    max-width: 760px;
+    margin: 0 auto 0.5rem auto;
+    font-size: 0.95rem;
+}
+
+/* "Start From" / label override */
+.initial-label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: none;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+}
+
+.initial-btn {
+    background: var(--initial-btn-bg);
+    color: var(--initial-btn-text);
+}
+
+    .initial-btn .initial-btn-img {
+        width: 300px; /* image width */
+        height: 200px; /* image height */
+        object-fit: cover;
+        border-radius: var(--radius-sm);
+        transition: transform var(--transition-normal);
+        display: block;
+    }
+
+    .initial-btn span {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--usage-color);
+        text-transform: none;
+        margin-top: 0.125rem;
+    }
+
+    /* keep hover/active behavior */
+    .initial-btn:hover {
+        background: var(--usage-active);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-glow);
+        border-color: var(--usage-color);
+    }
+
+    .initial-btn.active,
+    .initial-btn.usage.active {
+        background: var(--usage-active);
+        border-color: var(--usage-color);
+        box-shadow: 0 0 20px rgba(196, 181, 253, 0.4);
+    }
+
+/* Responsive: scale initial buttons on narrow screens */
+@media (max-width: 768px) {
+    .initial-btn {
+        width: 140px;
+        min-height: auto;
+        padding: 0.5rem;
+    }
+
+        .initial-btn .initial-btn-img {
+            width: 120px;
+            height: 80px;
+        }
+
+        .initial-btn span {
+            font-size: 0.9rem;
+        }
+}
+
+
 /* ========================================
    Welcome Page Styles
    ======================================== */
@@ -397,9 +484,134 @@ h3 {
   box-shadow: 0 0 20px rgba(253, 164, 175, 0.4);
 }
 
+
+
+/* Envelope Image Cards - Compact */
+.envelope-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.envelope-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: var(--bg-card);
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    width: 140px;
+}
+
+.envelope-card img {
+    width: 120px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    transition: transform var(--transition-normal);
+}
+
+.envelope-card span {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--envelope-color);
+    text-transform: capitalize;
+}
+
+.envelope-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--envelope-color);
+}
+
+.envelope-card:hover img {
+    transform: scale(1.02);
+}
+
+.envelope-card.active {
+    border-color: var(--envelope-color);
+    background: var(--envelope-active);
+    box-shadow: 0 0 20px rgba(253, 164, 175, 0.4);
+}
+
 /* ========================================
    Energy Selection Page Cards
    ======================================== */
+
+/* Responsive Sidebar */
+@media (max-width: 1024px) {
+    .sidebar-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+
+
+/* Ahmed: Popup Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Dims the background */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 25px;
+    border-radius: 12px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.confirm-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.cancel-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* Add a hover effect to the image to show it's clickable */
+.neighbourhood-cell img {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+    .neighbourhood-cell img:hover {
+        transform: scale(1.05);
+    }
 
 /* Consumption Cards Container */
 .consumption-cards {
