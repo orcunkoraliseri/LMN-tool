@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Select green parameters for neighbourhood analysis.">
+    <title>Green Selection | Neighbourhood Design Interface</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1 id="neighbourhood-title">Layer 4: Green Selection</h1>
+        <p>Select green infrastructure and urban agriculture parameters for your analysis.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Navigation Back Button -->
+        <a id="back-btn" href="layer3_ev_v2g_mobility_output.html" class="back-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Layer 3 Results
+        </a>
+
+        <div class="sidebar-layout">
+            <aside id="sidebar" class="sidebar"></aside>
+
+            <div id="visual-content" class="main-content">
+                <!-- Parameters Section -->
+                <section class="parameters-section" id="selection-form">
+
+                    <!-- INFRASTRUCTURE -->
+                    <div class="parameter-group">
+                        <div class="parameter-label">Infrastructure</div>
+                        <div class="generation-container">
+                            <div class="generation-row">
+                                <button class="generation-card green-card" data-category="infrastructure"
+                                    data-value="green_roofs">
+                                    <img src="Content/Images_Layer4_Infrastructure/Green Roofs.png" alt="Green Roofs"
+                                        onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='100px';">
+                                    <span>Green Roofs</span>
+                                </button>
+                                <button class="generation-card green-card" data-category="infrastructure"
+                                    data-value="vertical_greening_systems">
+                                    <img src="Content/Images_Layer4_Infrastructure/Vertical Greening Systems.png"
+                                        alt="Vertical Greening Systems"
+                                        onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='100px';">
+                                    <span>Vertical Greening Systems</span>
+                                </button>
+                                <button class="generation-card green-card" data-category="infrastructure"
+                                    data-value="linear_greenery">
+                                    <img src="Content/Images_Layer4_Infrastructure/Linear Greenery.png"
+                                        alt="Linear Greenery"
+                                        onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='100px';">
+                                    <span>Linear Greenery</span>
+                                </button>
+                                <button class="generation-card green-card" data-category="infrastructure"
+                                    data-value="green_spaces">
+                                    <img src="Content/Images_Layer4_Infrastructure/Green Spaces.png" alt="Green Spaces"
+                                        onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='100px';">
+                                    <span>Green Spaces</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- URBAN AGRICULTURE -->
+                    <div class="parameter-group">
+                        <div class="parameter-label">Urban Agriculture</div>
+                        <div class="consumption-cards">
+                            <button class="consumption-card green-card" data-category="urban_agriculture"
+                                data-value="roof_gardens">
+                                <img src="Content/Images_Layer4_UrbanAgriculture/Roof Gardens.png" alt="Roof Gardens"
+                                    onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='80px';">
+                                <span>Roof Gardens</span>
+                            </button>
+                            <button class="consumption-card green-card" data-category="urban_agriculture"
+                                data-value="food_gardens">
+                                <img src="Content/Images_Layer4_UrbanAgriculture/Food Gardens.png" alt="Food Gardens"
+                                    onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='80px';">
+                                <span>Food Gardens</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ENERGY-INTEGRATED GI -->
+                    <div class="parameter-group">
+                        <div class="parameter-label">Energy-Integrated GI</div>
+                        <div class="consumption-cards">
+                            <button class="consumption-card green-card" data-category="energy_integrated"
+                                data-value="pv_green_roofs">
+                                <img src="Content/Images_Layer4_EnergyIntegratedGI/PV-Green Roofs Integrated Modules.png"
+                                    alt="PV-Green Roofs Integrated Modules"
+                                    onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='80px';">
+                                <span>PV-Green Roofs Integrated Modules</span>
+                            </button>
+                            <button class="consumption-card green-card" data-category="energy_integrated"
+                                data-value="pv_vgs">
+                                <img src="Content/Images_Layer4_EnergyIntegratedGI/LPV.png"
+                                    alt="Landscape PV"
+                                    onerror="this.src=''; this.style.backgroundColor='#e0e0e0'; this.style.minHeight='80px';">
+                                <span>Landscape PV</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="submit-section">
+                        <button id="view-green-btn" class="submit-btn"
+                            style="background-color: var(--primary-color);">View Green Performance</button>
+                    </div>
+                </section>
+            </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/green-selection.js"></script>
+</body>
+
+</html>
