@@ -82,7 +82,7 @@ function renderEnergyStatus(neighbourhoodCode) {
 
 /**
  * Split LPV_DATA rows by category for the given neighbourhood code.
- * @param {string} code - e.g. "RC1"
+ * @param {string} code - e.g. "RC-R"
  * @returns {{ configs: Array<{label:string, value:string}>, results: Array<{label:string, value:string}> }}
  */
 function getLPVDataForNeighbourhood(code) {
@@ -159,7 +159,7 @@ function makeLPVImageCard(src, label, gridClass) {
  *   top-left    → selected GI option image
  *   bottom-left → neighbourhood image
  *   right col   → LPV.png (spans both rows)
- * @param {string} code - neighbourhood code e.g. "RC1"
+ * @param {string} code - neighbourhood code e.g. "RC-R"
  */
 function renderLPVVisualHeader(code) {
     const container = document.getElementById('lpv-visual-header');

@@ -88,24 +88,196 @@ function renderEnergyStatus(neighbourhoodCode) {
     }
 }
 
+// ── Heatmap canvas renderer ─────────────────────────────────────────────────
+
+// RdYlBu_r colorscale stops (matplotlib equivalent)
+const RDYLBU_R = [
+    [0.000, [49,  54,  149]],
+    [0.125, [69,  117, 180]],
+    [0.250, [116, 173, 209]],
+    [0.375, [171, 217, 233]],
+    [0.500, [255, 255, 191]],
+    [0.625, [253, 174, 97 ]],
+    [0.750, [244, 109, 67 ]],
+    [0.875, [215, 48,  39 ]],
+    [1.000, [165, 0,   38 ]]
+];
+
+function heatmapColor(value, vmin, vmax) {
+    const t = Math.max(0, Math.min(1, (value - vmin) / (vmax - vmin)));
+    let lo = RDYLBU_R[0], hi = RDYLBU_R[RDYLBU_R.length - 1];
+    for (let i = 0; i < RDYLBU_R.length - 1; i++) {
+        if (t <= RDYLBU_R[i + 1][0]) { lo = RDYLBU_R[i]; hi = RDYLBU_R[i + 1]; break; }
+    }
+    const f = lo[0] === hi[0] ? 0 : (t - lo[0]) / (hi[0] - lo[0]);
+    return [
+        Math.round(lo[1][0] + f * (hi[1][0] - lo[1][0])),
+        Math.round(lo[1][1] + f * (hi[1][1] - lo[1][1])),
+        Math.round(lo[1][2] + f * (hi[1][2] - lo[1][2]))
+    ];
+}
+
 /**
- * Update PV profile images for specific neighbourhoods
+ * Draw a 4-season hourly heatmap on a canvas element.
+ * Replicates the matplotlib RdYlBu_r heatmap from the .py scripts.
+ * Data comes from HOURLY_HEATMAP_DATA (heatmap-data.js) — no fetch needed.
+ * @param {number[][]} rows - 24 rows × 4 seasons (row 0 = 12 AM)
+ * @param {string[]} seasons - season labels e.g. ['Mar 21', 'Jun 21', ...]
+ * @param {string} canvasId - target canvas element ID
+ */
+function drawHeatmapCanvas(rows, seasons, canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const container = canvas.parentElement;
+    const W = container ? container.clientWidth || 360 : 360;
+    const H = 260;
+    canvas.width  = W;
+    canvas.height = H;
+
+    const nHours   = rows.length;    // 24
+    const nSeasons = seasons.length; // 4
+
+    const ML = 50, MR = 66, MT = 14, MB = 28;
+    const plotW  = W - ML - MR;
+    const plotH  = H - MT - MB;
+    const colGap = 7;
+    const colW   = (plotW - colGap * (nSeasons - 1)) / nSeasons;
+    const cellH  = plotH / nHours;
+
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, W, H);
+
+    // Background
+    ctx.fillStyle = '#f5f7fa';
+    ctx.fillRect(0, 0, W, H);
+
+    // ── Heatmap cells ──────────────────────────────────────────
+    for (let s = 0; s < nSeasons; s++) {
+        const colX = ML + s * (colW + colGap);
+        for (let h = 0; h < nHours; h++) {
+            const val = rows[h][s];
+            const [r, g, b] = heatmapColor(val, 0, 900);
+            // origin='lower': hour 0 at bottom of plot
+            const cellY = MT + plotH - (h + 1) * cellH;
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+            ctx.fillRect(colX, cellY, colW, cellH + 0.5);
+        }
+    }
+
+    // ── Y-axis labels & ticks (left, origin=lower) ─────────────
+    ctx.fillStyle   = '#555';
+    ctx.font        = '10px Inter, sans-serif';
+    ctx.textAlign   = 'right';
+    ctx.textBaseline = 'middle';
+    const yTicks = [
+        { h: 0,  label: '12 AM' },
+        { h: 6,  label: '6 AM'  },
+        { h: 12, label: '12 PM' },
+        { h: 18, label: '6 PM'  },
+        { h: 24, label: '12 AM' }
+    ];
+    yTicks.forEach(({ h, label }) => {
+        const y = MT + plotH - h * cellH;
+        ctx.fillText(label, ML - 5, y);
+        ctx.strokeStyle = '#aaa';
+        ctx.lineWidth   = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(ML - 3, y);
+        ctx.lineTo(ML,     y);
+        ctx.stroke();
+    });
+
+    // ── Season labels (x-axis, below each column) ──────────────
+    ctx.fillStyle    = '#555';
+    ctx.font         = '10px Inter, sans-serif';
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'top';
+    for (let s = 0; s < nSeasons; s++) {
+        const colX = ML + s * (colW + colGap);
+        ctx.fillText(seasons[s], colX + colW / 2, MT + plotH + 6);
+    }
+
+    // ── Colorbar ────────────────────────────────────────────────
+    const cbX = W - MR + 12;
+    const cbW = 11;
+    const cbH = plotH;
+
+    // Gradient: top = red (900), bottom = blue (0)
+    for (let py = 0; py < cbH; py++) {
+        const val = (1 - py / cbH) * 900;
+        const [r, g, b] = heatmapColor(val, 0, 900);
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+        ctx.fillRect(cbX, MT + py, cbW, 1);
+    }
+
+    // Colorbar border
+    ctx.strokeStyle = '#bbb';
+    ctx.lineWidth   = 0.5;
+    ctx.strokeRect(cbX, MT, cbW, cbH);
+
+    // Colorbar ticks & labels
+    ctx.fillStyle    = '#555';
+    ctx.font         = '9px Inter, sans-serif';
+    ctx.textAlign    = 'left';
+    ctx.textBaseline = 'middle';
+    [0, 180, 360, 540, 720, 900].forEach(val => {
+        const ty = MT + cbH - (val / 900) * cbH;
+        ctx.fillText(val, cbX + cbW + 3, ty);
+        ctx.strokeStyle = '#aaa';
+        ctx.lineWidth   = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(cbX + cbW, ty);
+        ctx.lineTo(cbX + cbW + 3, ty);
+        ctx.stroke();
+    });
+
+    // Colorbar title
+    ctx.fillStyle    = '#555';
+    ctx.font         = '9px Inter, sans-serif';
+    ctx.textAlign    = 'left';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText('kWh/m²', cbX, MT - 3);
+}
+
+/**
+ * Render both wall and roof hourly heatmaps for a neighbourhood.
+ * @param {string} neighbourhoodCode
+ */
+function renderHourlyHeatmaps(neighbourhoodCode) {
+    if (!HOURLY_HEATMAP_DATA || !HOURLY_HEATMAP_DATA[neighbourhoodCode]) return;
+    const entry   = HOURLY_HEATMAP_DATA[neighbourhoodCode];
+    const seasons = HOURLY_HEATMAP_DATA.seasons;
+    drawHeatmapCanvas(entry.wall, seasons, 'wall-hourly-chart');
+    drawHeatmapCanvas(entry.roof, seasons, 'roof-hourly-chart');
+}
+
+// ── Image updater ────────────────────────────────────────────────────────────
+
+/**
+ * Update PV profile images for specific neighbourhoods.
+ * RC-HR2 uses the legacy layout with its own images; all others use the new 3-row layout.
+ * Hourly heatmaps are rendered to canvas from embedded data (no fetch).
  * @param {string} neighbourhoodCode - The neighbourhood code
  */
 function updatePVImages(neighbourhoodCode) {
-    const irradiationImg = document.getElementById('solar-irradiation-img');
-    const generationImg = document.getElementById('monthly-generation-img');
+    if (neighbourhoodCode === 'RC-HR2') return;
 
-    if (!irradiationImg || !generationImg) return;
+    const base = `Content/Images_PVpage/RC/${neighbourhoodCode}`;
+    const imgMap = {
+        'wall-ir-img':     `${base}/${neighbourhoodCode}_Wall_IR_compressed_cropped.png`,
+        'wall-dsh-img':    `${base}/${neighbourhoodCode}_Wall_DSH_compressed_cropped.png`,
+        'roof-ir-img':     `${base}/${neighbourhoodCode}_Roof_IR_compressed_cropped.png`,
+        'roof-dsh-img':    `${base}/${neighbourhoodCode}_Roof_DSH_compressed_cropped.png`,
+    };
 
-    if (neighbourhoodCode === 'RC1') {
-        irradiationImg.src = 'Content/Images_PVProfile/RC1_IncidentRadiation_Roof.png';
-        generationImg.src = 'Content/Images_PVProfile/RC1_DirectSunHours_Roof.png';
-    } else {
-        // Fallback to default mock-up images
-        irradiationImg.src = 'Content/Images_PVProfile/Solar Irradiation.png';
-        generationImg.src = 'Content/Images_PVProfile/Monthly Solar Generation.png';
+    for (const [id, src] of Object.entries(imgMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = src;
     }
+
+    // Render hourly heatmaps from embedded data
+    renderHourlyHeatmaps(neighbourhoodCode);
 }
 
 /**
@@ -135,20 +307,38 @@ function updatePVParameters(neighbourhoodCode) {
 
     const data = PV_GENERATION_DATA[neighbourhoodCode];
     const showRoP = isCOP4Selected();
+    const gcrValue = data.gcr ? (parseFloat(data.gcr) * 100).toFixed(0) + '%' : '';
+    const ropValue = showRoP ? data.rop : '—';
 
-    const elements = {
-        '#pv-surface-val': data.surface,
-        '#pv-efficiency-val': data.efficiency,
-        '#pv-mounting-val': data.mounting,
-        '#pv-gcr-val': data.gcr ? (parseFloat(data.gcr) * 100).toFixed(0) + '%' : '',
-        '#pv-generation-val': data.generation,
-        '#pv-rop-val': showRoP ? data.rop : '—'
-    };
+    const isLegacy = (neighbourhoodCode === 'RC-HR2');
 
-    for (const [selector, value] of Object.entries(elements)) {
-        const el = document.querySelector(selector);
-        if (el && value !== undefined) {
-            el.textContent = value;
+    if (isLegacy) {
+        // Populate legacy layout IDs
+        const legacyMap = {
+            '#pv-surface-val-legacy':    data.surface,
+            '#pv-efficiency-val-legacy': data.efficiency,
+            '#pv-mounting-val-legacy':   data.mounting,
+            '#pv-gcr-val-legacy':        gcrValue,
+            '#pv-generation-val-legacy': data.generation,
+            '#pv-rop-val-legacy':        ropValue
+        };
+        for (const [selector, value] of Object.entries(legacyMap)) {
+            const el = document.querySelector(selector);
+            if (el && value !== undefined) el.textContent = value;
+        }
+    } else {
+        // Populate new layout IDs
+        const newMap = {
+            '#pv-surface-val':    data.surface,
+            '#pv-efficiency-val': data.efficiency,
+            '#pv-mounting-val':   data.mounting,
+            '#pv-gcr-val':        gcrValue,
+            '#pv-generation-val': data.generation,
+            '#pv-rop-val':        ropValue
+        };
+        for (const [selector, value] of Object.entries(newMap)) {
+            const el = document.querySelector(selector);
+            if (el && value !== undefined) el.textContent = value;
         }
     }
 }
@@ -164,6 +354,13 @@ function initPVPage() {
 
     // Render scale with random value (0-100 range as proxy)
     renderPVScale(70.5);
+
+    // Toggle between new 3-row layout and legacy layout (RC-HR2 only)
+    const isLegacy = (neighbourhoodCode === 'RC-HR2');
+    const newLayout = document.getElementById('pv-new-layout');
+    const legacyLayout = document.getElementById('pv-legacy-layout');
+    if (newLayout) newLayout.style.display = isLegacy ? 'none' : 'block';
+    if (legacyLayout) legacyLayout.style.display = isLegacy ? 'block' : 'none';
 
     // Render Energy Status icon and PV Images
     if (neighbourhoodCode) {

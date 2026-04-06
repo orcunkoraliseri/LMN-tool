@@ -46,80 +46,122 @@
             <aside id="sidebar" class="sidebar"></aside>
 
             <div id="visual-content" class="main-content">
-                <!-- PV Profile Content -->
-                <div class="pv-profile-layout">
-                    <!-- Left Column: Inputs and KPIs -->
-                    <div class="pv-left-column">
-                        <!-- Inputs Section -->
-                        <div class="pv-section pv-inputs-section">
 
-                            <!-- PV Surface -->
-                            <div class="pv-input-bar">
-                                <span class="pv-input-label">PV Surface:</span>
-                                <span class="pv-input-value" id="pv-surface-val">Roof + Facade</span>
-                            </div>
+                <!-- NEW LAYOUT: RC-R, RC-D, RC-T, RC-MR2, RC-MR3 -->
+                <div id="pv-new-layout">
 
-                            <!-- PV Efficiency -->
-                            <div class="pv-input-bar">
-                                <span class="pv-input-label">PV Efficiency:</span>
-                                <span class="pv-input-value" id="pv-efficiency-val">18.65%</span>
-                            </div>
-
-                            <!-- PV Mounting -->
-                            <div class="pv-input-bar">
-                                <span class="pv-input-label">PV Mounting:</span>
-                                <span class="pv-input-value" id="pv-mounting-val">Fixed Open Rack</span>
-                            </div>
-
-                            <!-- Ground Coverage Ratio -->
-                            <div class="pv-input-bar">
-                                <span class="pv-input-label">Ground Coverage Ratio:</span>
-                                <span class="pv-input-value" id="pv-gcr-val">60%</span>
-                            </div>
+                    <!-- Row 1: Stats Bar -->
+                    <div class="pv-stats-bar">
+                        <div class="pv-stat-item">
+                            <span class="pv-stat-label">PV Surface</span>
+                            <span class="pv-stat-value" id="pv-surface-val">—</span>
                         </div>
-
-                        <!-- KPIs Section -->
-                        <div class="pv-section pv-kpis-section">
-
-                            <!-- Annual Generation -->
-                            <div class="pv-kpi-item">
-                                <h3 class="pv-kpi-label">PV Generation (kWh/m2)</h3>
-                                <div class="pv-kpi-value" id="pv-generation-val">MWh/year</div>
-                            </div>
-
-                            <!-- Ratio of Performance -->
-                            <div class="pv-kpi-item">
-                                <h3 class="pv-kpi-label">Ratio of Performance (RoP)</h3>
-                                <div class="pv-kpi-value" id="pv-rop-val">18.65%</div>
-                            </div>
+                        <div class="pv-stat-item">
+                            <span class="pv-stat-label">PV Efficiency</span>
+                            <span class="pv-stat-value" id="pv-efficiency-val">—</span>
+                        </div>
+                        <div class="pv-stat-item">
+                            <span class="pv-stat-label">PV Mounting</span>
+                            <span class="pv-stat-value" id="pv-mounting-val">—</span>
+                        </div>
+                        <div class="pv-stat-item">
+                            <span class="pv-stat-label">Ground Coverage Ratio</span>
+                            <span class="pv-stat-value" id="pv-gcr-val">—</span>
+                        </div>
+                        <div class="pv-stat-item">
+                            <span class="pv-stat-label">PV Generation (kWh/m²)</span>
+                            <span class="pv-stat-value" id="pv-generation-val">—</span>
+                        </div>
+                        <div class="pv-stat-item">
+                            <span class="pv-stat-label">Ratio of Performance (RoP)</span>
+                            <span class="pv-stat-value" id="pv-rop-val">—</span>
                         </div>
                     </div>
 
-                    <!-- Right Column: Visualization -->
-                    <div class="pv-right-column">
-                        <div class="pv-section">
+                    <!-- Row 2: Wall -->
+                    <div class="pv-image-row" id="pv-wall-row">
+                        <div class="pv-image-cell pv-canvas-cell">
+                            <canvas id="wall-hourly-chart" class="pv-hourly-canvas"></canvas>
+                        </div>
+                        <div class="pv-image-cell">
+                            <img id="wall-ir-img" src="" alt="Wall Incident Radiation" class="pv-chart-image">
+                        </div>
+                        <div class="pv-image-cell">
+                            <img id="wall-dsh-img" src="" alt="Wall Direct Sun Hours" class="pv-chart-image">
+                        </div>
+                    </div>
 
-                            <!-- Solar Irradiation 3D Model -->
-                            <div class="pv-chart-container">
-                                <img id="solar-irradiation-img" src="Content/Images_PVProfile/Solar Irradiation.png"
-                                    alt="Solar Irradiation 3D Model" class="pv-chart-image">
+                    <!-- Row 3: Roof -->
+                    <div class="pv-image-row" id="pv-roof-row">
+                        <div class="pv-image-cell pv-canvas-cell">
+                            <canvas id="roof-hourly-chart" class="pv-hourly-canvas"></canvas>
+                        </div>
+                        <div class="pv-image-cell">
+                            <img id="roof-ir-img" src="" alt="Roof Incident Radiation" class="pv-chart-image">
+                        </div>
+                        <div class="pv-image-cell">
+                            <img id="roof-dsh-img" src="" alt="Roof Direct Sun Hours" class="pv-chart-image">
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- LEGACY LAYOUT: RC-HR2 only -->
+                <div id="pv-legacy-layout" style="display:none;">
+                    <div class="pv-profile-layout">
+                        <div class="pv-left-column">
+                            <div class="pv-section pv-inputs-section">
+                                <div class="pv-input-bar">
+                                    <span class="pv-input-label">PV Surface:</span>
+                                    <span class="pv-input-value" id="pv-surface-val-legacy">Roof + Facade</span>
+                                </div>
+                                <div class="pv-input-bar">
+                                    <span class="pv-input-label">PV Efficiency:</span>
+                                    <span class="pv-input-value" id="pv-efficiency-val-legacy">18.65%</span>
+                                </div>
+                                <div class="pv-input-bar">
+                                    <span class="pv-input-label">PV Mounting:</span>
+                                    <span class="pv-input-value" id="pv-mounting-val-legacy">Fixed Open Rack</span>
+                                </div>
+                                <div class="pv-input-bar">
+                                    <span class="pv-input-label">Ground Coverage Ratio:</span>
+                                    <span class="pv-input-value" id="pv-gcr-val-legacy">60%</span>
+                                </div>
                             </div>
-
-                            <!-- Monthly Solar Generation Chart -->
-                            <div class="pv-chart-container">
-                                <img id="monthly-generation-img"
-                                    src="Content/Images_PVProfile/Monthly Solar Generation.png"
-                                    alt="Monthly Profile of Solar Generation" class="pv-chart-image">
+                            <div class="pv-section pv-kpis-section">
+                                <div class="pv-kpi-item">
+                                    <h3 class="pv-kpi-label">PV Generation (kWh/m2)</h3>
+                                    <div class="pv-kpi-value" id="pv-generation-val-legacy">—</div>
+                                </div>
+                                <div class="pv-kpi-item">
+                                    <h3 class="pv-kpi-label">Ratio of Performance (RoP)</h3>
+                                    <div class="pv-kpi-value" id="pv-rop-val-legacy">—</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pv-right-column">
+                            <div class="pv-section">
+                                <div class="pv-chart-container">
+                                    <img id="solar-irradiation-img" src="Content/Images_PVProfile/Solar Irradiation.png"
+                                        alt="Solar Irradiation 3D Model" class="pv-chart-image">
+                                </div>
+                                <div class="pv-chart-container">
+                                    <img id="monthly-generation-img"
+                                        src="Content/Images_PVProfile/Monthly Solar Generation.png"
+                                        alt="Monthly Profile of Solar Generation" class="pv-chart-image">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
     </main>
     </main>
 
     <!-- Scripts -->
     <script src="js/data.js"></script>
+    <script src="js/heatmap-data.js"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/pv.js"></script>
 </body>

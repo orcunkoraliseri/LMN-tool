@@ -23,7 +23,7 @@ const CONCEPTS = [
 // Each neighbourhood has its own parameters (context, usage, density, layout)
 const NEIGHBOURHOODS = [
   {
-    code: "RC1",
+    code: "RC-R",
     conceptId: 9,
     usage: "residential",
     context: "rural",
@@ -32,11 +32,11 @@ const NEIGHBOURHOODS = [
     eui: 65.098,
     energyStatus: "Positive",
     content: "24 detached (two-storey house) homes",
-    image: "Content/Images_Neighbourhoods/NUs_RC1.png",
+    image: "Content/Images_Neighbourhoods/NUs_RC-R.png",
     buildings: ["Two-Storey House"]
   },
   {
-    code: "RC2",
+    code: "RC-D",
     conceptId: 7,
     usage: "residential",
     context: "suburban",
@@ -45,11 +45,11 @@ const NEIGHBOURHOODS = [
     eui: 65.098,
     energyStatus: "Positive",
     content: "48 detached (two-storey house) homes",
-    image: "Content/Images_Neighbourhoods/NUs_RC2.png",
+    image: "Content/Images_Neighbourhoods/NUs_RC-D.png",
     buildings: ["Two-Storey House"]
   },
   {
-    code: "RC3",
+    code: "RC-T",
     conceptId: 8,
     usage: "residential",
     context: "suburban",
@@ -58,11 +58,11 @@ const NEIGHBOURHOODS = [
     eui: 60.082,
     energyStatus: "Positive",
     content: "56 attached units",
-    image: "Content/Images_Neighbourhoods/NUs_RC3.png",
+    image: "Content/Images_Neighbourhoods/NUs_RC-T.png",
     buildings: ["Attached House"]
   },
   {
-    code: "RC4",
+    code: "RC-MR2",
     conceptId: 6,
     usage: "residential",
     context: "suburban",
@@ -71,11 +71,11 @@ const NEIGHBOURHOODS = [
     eui: 68.829,
     energyStatus: "Negative",
     content: "8 Midrise",
-    image: "Content/Images_Neighbourhoods/NUS_RC4.png",
+    image: "Content/Images_Neighbourhoods/NUs_RC-MR2.png",
     buildings: ["midrise apartment"]
   },
   {
-    code: "RC5",
+    code: "RC-MR3",
     conceptId: 3,
     usage: "residential",
     context: "urban",
@@ -84,11 +84,11 @@ const NEIGHBOURHOODS = [
     eui: 69.837,
     energyStatus: "Negative",
     content: "12 Midrise",
-    image: "Content/Images_Neighbourhoods/NUS_RC5.png",
+    image: "Content/Images_Neighbourhoods/NUs_RC-MR3.png",
     buildings: ["midrise apartment"]
   },
   {
-    code: "RC6",
+    code: "RC-HR2",
     conceptId: 2,
     usage: "residential",
     context: "urban",
@@ -97,7 +97,7 @@ const NEIGHBOURHOODS = [
     eui: 154.3,
     energyStatus: "Negative",
     content: "4 Highrise (10-St)",
-    image: "Content/Images_Neighbourhoods/NUs_RC6.png",
+    image: "Content/Images_Neighbourhoods/NUs_RC-HR2.png",
     buildings: ["Highrise Apartment"]
   },
   /*
@@ -397,12 +397,12 @@ const BUILDING_IMAGES = {
 
 // PV parameters per neighbourhood
 const PV_GENERATION_DATA = {
-  "RC1": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.38, rop: 1.490 },
-  "RC2": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.20, rop: 1.47 },
-  "RC3": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.30, rop: 1.57 },
-  "RC4": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
-  "RC5": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
-  "RC6": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.70, rop: 0.44 }
+  "RC-R": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.38, rop: 1.490 },
+  "RC-D": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.20, rop: 1.47 },
+  "RC-T": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Roof Mounted", generation: 91.30, rop: 1.57 },
+  "RC-MR2": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
+  "RC-MR3": { surface: "Roof", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 48.10, rop: 0.60 },
+  "RC-HR2": { surface: "Roof + Facade", efficiency: "18.68%", gcr: "0.4", mounting: "Fixed Open Rack", generation: 39.70, rop: 0.44 }
 };
 
 // Energy category colors
@@ -424,7 +424,7 @@ const ENERGY_COLORS = {
 
 // Energy data per neighbourhood (kWh/m²-yr)
 const ENERGY_DATA = {
-  "RC1": {
+  "RC-R": {
     "1": {
       "total": 93.55,
       "breakdown": [
@@ -558,7 +558,7 @@ const ENERGY_DATA = {
       ]
     }
   },
-  "RC2": {
+  "RC-D": {
     "1": {
       "total": 95.7,
       "breakdown": [
@@ -692,7 +692,7 @@ const ENERGY_DATA = {
       ]
     }
   },
-  "RC3": {
+  "RC-T": {
     "1": {
       "total": 84.6,
       "breakdown": [
@@ -826,7 +826,7 @@ const ENERGY_DATA = {
       ]
     }
   },
-  "RC4": {
+  "RC-MR2": {
     "1": {
       "total": 120.1,
       "breakdown": [
@@ -960,7 +960,7 @@ const ENERGY_DATA = {
       ]
     }
   },
-  "RC5": {
+  "RC-MR3": {
     "1": {
       "total": 122.5,
       "breakdown": [
@@ -1094,7 +1094,7 @@ const ENERGY_DATA = {
       ]
     }
   },
-  "RC6": {
+  "RC-HR2": {
     "1": {
       "total": 154.3,
       "breakdown": [
@@ -1231,7 +1231,7 @@ const ENERGY_DATA = {
 };
 
   /*
-  "RC6": {
+  "RC-HR2": {
     total: 65.885,
     breakdown: [
       { name: "Heating", value: 21.189 },
@@ -1603,7 +1603,7 @@ const ENERGY_STATUS_IMAGES = {
 
 // EV & V2G data per neighbourhood, derived from Templates/NUS_EV.csv
 const EV_V2G_DATA = {
-  "RC1": {
+  "RC-R": {
     "EV1": {
       evPenetrationRate: "1.5 EVs / household",
       dailyEnergyDemand: "15 kWh / EV",
@@ -1634,7 +1634,7 @@ const EV_V2G_DATA = {
       systemStatusIndicator: "Grid Stressed - Deficit"
     }
   },
-  "RC2": {
+  "RC-D": {
     "EV1": {
       evPenetrationRate: "1.5 EVs / household",
       dailyEnergyDemand: "15 kWh / EV",
@@ -1665,7 +1665,7 @@ const EV_V2G_DATA = {
       systemStatusIndicator: "Grid Stressed - Deficit"
     }
   },
-  "RC3": {
+  "RC-T": {
     "EV1": {
       evPenetrationRate: "1.5 EVs / household",
       dailyEnergyDemand: "15 kWh / EV",
@@ -1696,7 +1696,7 @@ const EV_V2G_DATA = {
       systemStatusIndicator: "Grid Stressed - Deficit"
     }
   },
-  "RC4": {
+  "RC-MR2": {
     "EV1": {
       evPenetrationRate: "1.5 EVs / household",
       dailyEnergyDemand: "15 kWh / EV",
@@ -1727,7 +1727,7 @@ const EV_V2G_DATA = {
       systemStatusIndicator: "Grid Stressed - Deficit"
     }
   },
-  "RC5": {
+  "RC-MR3": {
     "EV1": {
       evPenetrationRate: "1.5 EVs / household",
       dailyEnergyDemand: "15 kWh / EV",
@@ -1758,7 +1758,7 @@ const EV_V2G_DATA = {
       systemStatusIndicator: "Grid Stressed - Deficit"
     }
   },
-  "RC6": {
+  "RC-HR2": {
     "EV1": {
       evPenetrationRate: "1.5 EVs / household",
       dailyEnergyDemand: "15 kWh / EV",
@@ -1793,32 +1793,32 @@ const EV_V2G_DATA = {
 
 // LPV (Land-PV) data derived from Templates/NUs_LPV.csv
 const LPV_DATA = {
-  columns: ["RC1", "RC2", "RC3", "RC4", "RC5", "RC6"],
+  columns: ["RC-R", "RC-D", "RC-T", "RC-MR2", "RC-MR3", "RC-HR2"],
   rows: [
     {
       category: "Config.",
       label: "Land Allocation",
-      values: { RC1: "20% (4046 m²)", RC2: "20% (4046 m²)", RC3: "20% (4046 m²)", RC4: "20% (4046 m²)", RC5: "20% (4046 m²)", RC6: "20% (4046 m²)" }
+      values: { "RC-R": "20% (4046 m²)", "RC-D": "20% (4046 m²)", "RC-T": "20% (4046 m²)", "RC-MR2": "20% (4046 m²)", "RC-MR3": "20% (4046 m²)", "RC-HR2": "20% (4046 m²)" }
     },
     {
       category: "Config.",
       label: "Usable Area",
-      values: { RC1: "10% (2023 m²)", RC2: "10% (2023 m²)", RC3: "10% (2023 m²)", RC4: "10% (2023 m²)", RC5: "10% (2023 m²)", RC6: "10% (2023 m²)" }
+      values: { "RC-R": "10% (2023 m²)", "RC-D": "10% (2023 m²)", "RC-T": "10% (2023 m²)", "RC-MR2": "10% (2023 m²)", "RC-MR3": "10% (2023 m²)", "RC-HR2": "10% (2023 m²)" }
     },
     {
       category: "Config.",
       label: "Module Capacity",
-      values: { RC1: "400W", RC2: "400W", RC3: "400W", RC4: "400W", RC5: "400W", RC6: "400W" }
+      values: { "RC-R": "400W", "RC-D": "400W", "RC-T": "400W", "RC-MR2": "400W", "RC-MR3": "400W", "RC-HR2": "400W" }
     },
     {
       category: "Config.",
       label: "Installed Capacity (kWp)",
-      values: { RC1: "475 kWp", RC2: "475 kWp", RC3: "475 kWp", RC4: "475 kWp", RC5: "475 kWp", RC6: "475 kWp" }
+      values: { "RC-R": "475 kWp", "RC-D": "475 kWp", "RC-T": "475 kWp", "RC-MR2": "475 kWp", "RC-MR3": "475 kWp", "RC-HR2": "475 kWp" }
     },
     {
       category: "Results",
       label: "Energy Generation",
-      values: { RC1: "608 MWh/year", RC2: "608 MWh/year", RC3: "608 MWh/year", RC4: "608 MWh/year", RC5: "608 MWh/year", RC6: "608 MWh/year" }
+      values: { "RC-R": "608 MWh/year", "RC-D": "608 MWh/year", "RC-T": "608 MWh/year", "RC-MR2": "608 MWh/year", "RC-MR3": "608 MWh/year", "RC-HR2": "608 MWh/year" }
     }
   ]
 };

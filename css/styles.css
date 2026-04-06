@@ -951,9 +951,109 @@ h3 {
   border-radius: var(--radius-sm);
 }
 
-/* Responsive for PV Profile */
+/* Responsive for PV Profile (legacy RC-HR2 layout) */
 @media (max-width: 992px) {
   .pv-profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── PV New 3-Row Layout ─────────────────────────────────────── */
+
+/* Row 1: Stats bar */
+.pv-stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+  background: var(--bg-card);
+}
+
+.pv-stat-item {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: center;
+  min-width: 110px;
+}
+
+.pv-stat-item:last-child {
+  border-right: none;
+}
+
+.pv-stat-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.pv-stat-value {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Canvas cell — overrides flex centering so canvas fills the cell */
+.pv-canvas-cell {
+  display: block;
+  padding: 0;
+}
+
+.pv-hourly-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Rows 2 & 3: Image rows */
+.pv-image-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.pv-image-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.pv-image-cell .pv-chart-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Responsive for new PV layout */
+@media (max-width: 768px) {
+  .pv-stats-bar {
+    flex-direction: column;
+  }
+  .pv-stat-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .pv-stat-item:last-child {
+    border-bottom: none;
+  }
+  .pv-image-row {
     grid-template-columns: 1fr;
   }
 }

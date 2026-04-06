@@ -1,4 +1,4 @@
-,Neighbourhood,RC1 ,RC1 ,RC2,RC2,RC3,RC3,RC4,RC4,RC5,RC5,RC6,RC6
+,Neighbourhood,RC-R ,RC-R ,RC-D,RC-D,RC-T,RC-T,RC-MR2,RC-MR2,RC-MR3,RC-MR3,RC-HR2,RC-HR2
 Config.,EV Integration Scenario,EV1 (Charging-Only),EV2 (V2G-Enabled),EV1 (Charging-Only),EV2 (V2G-Enabled),EV1 (Charging-Only),EV2 (V2G-Enabled),EV1 (Charging-Only),EV2 (V2G-Enabled),EV1 (Charging-Only),EV2 (V2G-Enabled),EV1 (Charging-Only),EV2 (V2G-Enabled)
 Config.,EV Penetration Rate,1.5 EVs / household,-,1.5 EVs / household,-,1.5 EVs / household,-,1.5 EVs / household,-,1.5 EVs / household,-,1.5 EVs / household,-
 Config.,Daily Energy Demand (200 km Range),15 kWh / EV,-,15 kWh / EV,-,15 kWh / EV,-,15 kWh / EV,-,15 kWh / EV,-,15 kWh / EV,-
