@@ -5,17 +5,22 @@
 /* CSS Variables - Design Tokens */
 :root {
   /* Colors - Light Theme */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f7fa;
-  --bg-card: rgba(245, 247, 250, 0.95);
+  --bg-primary: #FAFAFA;
+  --bg-secondary: #F1F2F4;
+  --bg-card: rgba(255, 255, 255, 0.98);
   --text-primary: #1a1a2e;
   --text-secondary: #5c6370;
-  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --accent-gradient: linear-gradient(135deg, #F5C400 0%, #C93D0A 100%);
+  --accent-gold: #F5C400;
+  --accent-amber: #E8860A;          /* alias of --usage-color */
+  --accent-burnt: #C93D0A;
+  --bg-inactive-tile: #ECEAE3;       /* light warm greige for parameter card frames */
+  --border-subtle: rgba(0, 0, 0, 0.08);
 
   /* Parameter Button Colors - Adjusted for light theme */
-  --usage-color: #7c3aed;
-  --usage-bg: rgba(124, 58, 237, 0.1);
-  --usage-active: rgba(124, 58, 237, 0.25);
+  --usage-color: #E8860A;
+  --usage-bg: rgba(232, 134, 10, 0.1);
+  --usage-active: rgba(232, 134, 10, 0.25);
 
   --context-color: #e11d48;
   --context-bg: rgba(225, 29, 72, 0.1);
@@ -51,7 +56,7 @@
 
   /* Shadows - Adjusted for light theme */
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 0 30px rgba(102, 126, 234, 0.2);
+  --shadow-glow: 0 0 30px rgba(232, 134, 10, 0.2);
 
   /* Transitions */
   --transition-fast: 0.15s ease;
@@ -164,9 +169,9 @@ h3 {
 
     .initial-btn.active,
     .initial-btn.usage.active {
-        background: var(--usage-active);
-        border-color: var(--usage-color);
-        box-shadow: 0 0 20px rgba(196, 181, 253, 0.4);
+        background: rgba(245, 196, 0, 0.30);
+        border-color: #E8860A;
+        box-shadow: 0 0 20px rgba(232, 134, 10, 0.35);
     }
 
 /* Responsive: scale initial buttons on narrow screens */
@@ -263,7 +268,7 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
+  background: var(--bg-inactive-tile);
   border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -283,7 +288,7 @@ h3 {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--usage-color);
+  color: var(--text-primary);
   text-transform: capitalize;
 }
 
@@ -298,9 +303,9 @@ h3 {
 }
 
 .usage-card.active {
-  border-color: var(--usage-color);
-  background: var(--usage-active);
-  box-shadow: 0 0 20px rgba(196, 181, 253, 0.4);
+  border: 2px solid #E8860A;
+  background: rgba(245, 196, 0, 0.35);
+  box-shadow: 0 0 20px rgba(232, 134, 10, 0.35);
 }
 
 /* Disabled state for all parameter cards */
@@ -336,7 +341,7 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
+  background: var(--bg-inactive-tile);
   border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -356,7 +361,7 @@ h3 {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--context-color);
+  color: var(--text-primary);
   text-transform: capitalize;
 }
 
@@ -390,7 +395,7 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
+  background: var(--bg-inactive-tile);
   border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -410,7 +415,7 @@ h3 {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--layout-color);
+  color: var(--text-primary);
   text-transform: capitalize;
 }
 
@@ -444,7 +449,7 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
+  background: var(--bg-inactive-tile);
   border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -464,7 +469,7 @@ h3 {
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--density-color);
+  color: var(--text-primary);
   text-transform: capitalize;
 }
 
@@ -500,7 +505,7 @@ h3 {
     align-items: center;
     gap: 0.25rem;
     padding: 0.5rem;
-    background: var(--bg-card);
+    background: var(--bg-inactive-tile);
     border: 2px solid transparent;
     border-radius: var(--radius-sm);
     cursor: pointer;
@@ -520,7 +525,7 @@ h3 {
     font-family: var(--font-display);
     font-size: 0.8rem;
     font-weight: 500;
-    color: var(--envelope-color);
+    color: var(--text-primary);
     text-transform: capitalize;
 }
 
@@ -628,7 +633,7 @@ h3 {
   align-items: center;
   gap: 0.35rem;
   padding: 0.75rem;
-  background: var(--bg-card);
+  background: var(--bg-inactive-tile);
   border: 2px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -654,8 +659,8 @@ h3 {
 
 .consumption-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 4px 15px rgba(232, 134, 10, 0.3);
+  border-color: rgba(232, 134, 10, 0.5);
 }
 
 .consumption-card:hover img {
@@ -663,9 +668,9 @@ h3 {
 }
 
 .consumption-card.active {
-  border-color: var(--accent-start);
-  background: rgba(102, 126, 234, 0.1);
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  border-color: #E8860A;
+  background: rgba(245, 196, 0, 0.30);
+  box-shadow: 0 0 20px rgba(232, 134, 10, 0.3);
 }
 
 /* Generation Cards Container */
@@ -699,7 +704,7 @@ h3 {
   align-items: center;
   gap: 0.35rem;
   padding: 0.75rem;
-  background: var(--bg-card);
+  background: var(--bg-inactive-tile);
   border: 2px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -762,17 +767,17 @@ h3 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
-  background: var(--accent-gradient);
+  background: #F5A742;
   border: none;
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--transition-normal);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px rgba(232, 134, 10, 0.4);
 }
 
 .submit-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 6px 25px rgba(232, 134, 10, 0.5);
 }
 
 .submit-btn:active {
@@ -888,7 +893,7 @@ h3 {
 .concept-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-glow);
-  border-color: rgba(102, 126, 234, 0.5);
+  border-color: rgba(232, 134, 10, 0.5);
 }
 
 .concept-card.hidden {
@@ -973,19 +978,19 @@ h3 {
   align-items: center;
   gap: var(--spacing-xs);
   padding: 0.75rem 1.5rem;
-  background: var(--accent-gradient);
+  background: #F5A742;
   border: none;
   border-radius: var(--radius-md);
-  color: white;
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 600;
   transition: all var(--transition-normal);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(232, 134, 10, 0.3);
 }
 
 .next-button:hover {
   transform: translateX(5px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(232, 134, 10, 0.4);
 }
 
 .next-button:disabled {
@@ -1542,19 +1547,19 @@ h3 {
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-normal);
-  background: rgba(180, 160, 200, 0.2);
+  background: rgba(245, 196, 0, 0.15);
   color: var(--text-primary);
 }
 
 .lpv-toggle-btn:hover {
-  background: rgba(180, 160, 200, 0.4);
+  background: rgba(245, 196, 0, 0.35);
   transform: translateY(-2px);
 }
 
 .lpv-toggle-btn.active {
-  background: rgba(150, 120, 180, 0.5);
-  border-color: rgba(120, 80, 160, 0.6);
-  box-shadow: 0 2px 8px rgba(120, 80, 160, 0.2);
+  background: rgba(232, 134, 10, 0.45);
+  border-color: rgba(201, 61, 10, 0.6);
+  box-shadow: 0 2px 8px rgba(201, 61, 10, 0.2);
 }
 
 /* KPIs Section */
@@ -1741,7 +1746,7 @@ h3 {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.1rem;
-  border-bottom: 2px solid rgba(102, 126, 234, 0.5);
+  border-bottom: 2px solid rgba(201, 61, 10, 0.5);
 }
 
 .results-table td {
@@ -1755,8 +1760,8 @@ h3 {
 }
 
 .results-table tr.selected td {
-  background: rgba(102, 126, 234, 0.1);
-  border-bottom: 2px solid rgba(102, 126, 234, 0.5);
+  background: rgba(245, 196, 0, 0.20);
+  border-bottom: 2px solid rgba(201, 61, 10, 0.5);
 }
 
 /* Table Interaction Styles */
@@ -1767,7 +1772,7 @@ h3 {
 }
 
 .clickable-cell:hover {
-  background-color: rgba(99, 102, 241, 0.08) !important;
+  background-color: rgba(245, 196, 0, 0.08) !important;
 }
 
 .clickable-cell:active {
@@ -2162,13 +2167,14 @@ h3 {
 }
 
 .ev-v2g-table thead th {
-  background: var(--accent-gradient);
-  color: #fff;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 1rem 1.25rem;
   text-align: left;
   font-weight: 600;
   font-size: 0.95rem;
   vertical-align: top;
+  border-bottom: 2px solid rgba(201, 61, 10, 0.5);
 }
 
 .ev-v2g-table thead th .th-sub {
@@ -2189,7 +2195,7 @@ h3 {
 }
 
 .ev-v2g-table tbody tr:hover {
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(232, 134, 10, 0.05);
 }
 
 .ev-v2g-table tbody td {
@@ -2324,11 +2330,11 @@ h3 {
 }
 
 .sidebar-section--purple {
-  background: rgba(196, 181, 253, 0.4);
+  background: rgba(245, 196, 0, 0.10);
 }
 
 .sidebar-section--pink {
-  background: rgba(253, 164, 175, 0.4);
+  background: rgba(201, 61, 10, 0.08);
 }
 
 .sidebar-title {
@@ -2449,7 +2455,7 @@ h3 {
 
 .sidebar-item--active {
   border-color: var(--accent-primary);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(232, 134, 10, 0.3);
 }
 
 /* Sidebar Error */
@@ -2547,13 +2553,14 @@ h3 {
 }
 
 #lpv-table.lpv-table thead th {
-  background: var(--accent-gradient);
-  color: #fff;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 1rem 1.25rem;
   text-align: left;
   font-weight: 600;
   font-size: 0.9rem;
   vertical-align: top;
+  border-bottom: 2px solid rgba(201, 61, 10, 0.5);
 }
 
 #lpv-table.lpv-table tbody tr {
@@ -2566,7 +2573,7 @@ h3 {
 }
 
 #lpv-table.lpv-table tbody tr:hover {
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(232, 134, 10, 0.05);
 }
 
 #lpv-table.lpv-table tbody td {
