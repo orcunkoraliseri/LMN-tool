@@ -14,18 +14,8 @@
   --accent-gold: #F5C400;
   --accent-amber: #E8860A;          /* alias of --usage-color */
   --accent-burnt: #C93D0A;
-  --bg-inactive-tile: #F1F2F4;       /* cool light-gray; reserved for explicit inactive-variant modifier */
+  --bg-inactive-tile: #ECEAE3;       /* light warm greige for parameter card frames */
   --border-subtle: rgba(0, 0, 0, 0.08);
-
-  /* Banner Bar Tokens */
-  --banner-gradient-warm: linear-gradient(90deg, #F5C400 0%, #E8860A 50%, #C93D0A 100%);
-  --banner-infra: #4A4E57;
-  --banner-emphasis: #C93D0A;
-  --banner-mobility: linear-gradient(90deg, #8AA88A 0%, #E8860A 70%, #C93D0A 100%);
-  --banner-green: #8AA88A;
-  --banner-text: #FFFFFF;
-  --accent-teal: #6BA8B8;
-  --accent-sage: #8AA88A;
 
   /* Parameter Button Colors - Adjusted for light theme */
   --usage-color: #E8860A;
@@ -255,7 +245,6 @@ h3 {
   letter-spacing: 0.1em;
   color: var(--text-primary);
   margin-bottom: var(--spacing-xs);
-  text-align: center;
 }
 
 .parameter-buttons {
@@ -279,8 +268,8 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-inactive-tile);
+  border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -293,14 +282,6 @@ h3 {
   object-fit: cover;
   border-radius: var(--radius-sm);
   transition: transform var(--transition-normal);
-}
-
-.usage-card:hover img,
-.context-card:hover img,
-.layout-card:hover img,
-.density-card:hover img,
-.envelope-card:hover img {
-  box-shadow: 0 0 20px rgba(107, 168, 184, 0.35);
 }
 
 .usage-card span {
@@ -360,8 +341,8 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-inactive-tile);
+  border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -414,8 +395,8 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-inactive-tile);
+  border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -468,8 +449,8 @@ h3 {
   align-items: center;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-inactive-tile);
+  border: 2px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -524,8 +505,8 @@ h3 {
     align-items: center;
     gap: 0.25rem;
     padding: 0.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
+    background: var(--bg-inactive-tile);
+    border: 2px solid transparent;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all var(--transition-normal);
@@ -652,8 +633,8 @@ h3 {
   align-items: center;
   gap: 0.35rem;
   padding: 0.75rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-inactive-tile);
+  border: 2px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -723,8 +704,8 @@ h3 {
   align-items: center;
   gap: 0.35rem;
   padding: 0.75rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-inactive-tile);
+  border: 2px solid transparent;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-normal);
