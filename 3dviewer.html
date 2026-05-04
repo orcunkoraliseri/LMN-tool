@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Neighborhood Viewer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f4f4f4;
+        }
+
+        .viewer-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* The 3D Canvas */
+        model-viewer {
+            width: 100%;
+            flex-grow: 1;
+            background-color: #e0e0e0;
+            --poster-color: transparent;
+        }
+
+        /* Overlay UI */
+        .viewer-header {
+            padding: 15px 25px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .model-label {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .controls-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="viewer-container">
+        <header class="viewer-header">
+            <div>
+                <span class="model-label">Viewing Configuration: </span>
+                <span id="model-id-display" style="color: #007bff;">Loading...</span>
+            </div>
+            <button onclick="window.close()" class="back-button" style="margin:0;">Close Viewer</button>
+        </header>
+
+        <model-viewer id="main-viewer"
+                      camera-controls
+                      auto-rotate
+                      shadow-intensity="1"
+                      environment-image="neutral"
+                      exposure="1"
+                      ar>
+
+            <div class="controls-hint">Click & Drag to Rotate | Scroll to Zoom</div>
+        </model-viewer>
+    </div>
+
+    <script>
+        // 1. Get the model code from the URL (e.g., ?model=RC1)
+        const urlParams = new URLSearchParams(window.location.search);
+        const modelCode = urlParams.get('model');
+        const displayLabel = document.getElementById('model-id-display');
+        const viewer = document.getElementById('main-viewer');
+
+        if (modelCode) {
+            displayLabel.textContent = modelCode;
+
+            // 2. UPDATED PATH: Points to Content/Glb_Models/
+            // This will result in: Content/Glb_Models/RC1.glb
+            viewer.src = `Content/Glb_Models/${modelCode}.glb`;
+
+        } else {
+            displayLabel.textContent = "No model selected";
+        }
+
+        // Error handling
+        viewer.addEventListener('error', () => {
+            displayLabel.textContent = "Error: File not found in Content/Glb_Models/";
+        });
+    </script>
+</body>
+</html>

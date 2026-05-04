@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Select energy parameters for neighbourhood energy analysis.">
+    <title>Energy Selection | Neighbourhood Design Interface</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Navigation Back Button -->
+        <a id="back-btn" href="layer1_output.html" class="back-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Layer 2
+        </a>
+
+        <div class="sidebar-layout">
+            <aside id="sidebar" class="sidebar"></aside>
+
+            <div id="visual-content" class="main-content">
+                <!-- Header -->
+                <header class="header">
+                    <h1 id="neighbourhood-title">Layer 2: Energy Selection</h1>
+                    <p>Select energy and generation parameters for your analysis.</p>
+                </header>
+
+                <!-- Parameters Section -->
+                <section class="parameters-section" id="selection-form">
+
+                    <!-- LOAD -->
+                    <div class="parameter-group">
+                        <div class="parameter-label">Load</div>
+                        <div class="generation-container">
+                            <div class="generation-row">
+                                <button class="load-card" data-category="load" data-value="thermal_load">
+                                    <img src="Content/Images_Layer2_ThermalLoad/ThermalLoad.png" alt="Thermal Load">
+                                    <span>Thermal Load</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENERGY DEMAND -->
+                    <div class="parameter-group">
+                        <div class="parameter-label">ENERGY SYSTEMS</div>
+                        <div class="generation-container">
+                            <div class="generation-row">
+                                <button class="demand-card" data-category="demand" data-value="cop4">
+                                    <img src="Content/Images_Layer2_EnergyDemand/HeatPump_COP4.png" alt="COP 4 Heat Pump">
+                                    <span>Heat Pump<br>(COP 4)</span>
+                                </button>
+
+                                <button class="demand-card" data-category="demand" data-value="cop3">
+                                    <img src="Content/Images_Layer2_EnergyDemand/HVAC_COP3.png" alt="COP 3 HVAC">
+                                    <span>Ideal Loads</span>
+                                </button>
+                                <button class="demand-card" data-category="demand" data-value="appliances">
+                                    <img src="Content/Images_Layer2_EnergyDemand/AppliancesEquipment.png"
+                                        alt="Appliances and Equipment">
+                                    <span>Appliances and Equipment</span>
+                                </button>
+                                <button class="demand-card" data-category="demand" data-value="other_tba" disabled>
+                                    <img src="Content/Images_Layer2_EnergyDemand/AppliancesEquipment.png" alt="Other TBA" style="opacity:0.4;">
+                                    <span>Other (TBA)</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENERGY GENERATION -->
+                    <div class="parameter-group">
+                        <div class="parameter-label">Energy Generation</div>
+                        <div class="generation-container">
+                            <div class="generation-row">
+                                <button class="generation-card" data-category="generation" data-value="pv_roof">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/PV on roof.png" alt="PV on Roof">
+                                    <span>PV on Roof</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="pv_facade">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/PV on facade.png"
+                                        alt="PV on Facade">
+                                    <span>PV on Facade</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="pvt_roof">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/PV-T on roof.png"
+                                        alt="PV-T on Roof">
+                                    <span>PV-T on Roof</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="pvt_facade">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/PV-T on facade.png"
+                                        alt="PV-T on Facade">
+                                    <span>PV-T on Facade</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="stc_roof">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/STC on roof.png" alt="STC on Roof">
+                                    <span>STC on Roof</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="stc_facade">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/STC on facade.png"
+                                        alt="STC on Facade">
+                                    <span>STC on Facade</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="biomass">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/Biomass.png" alt="Biomass">
+                                    <span>Biomass</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="wind">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/Wind.png" alt="Wind">
+                                    <span>Wind</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="geothermal">
+                                    <img src="Content/Images_Layer2_EnergyGeneration/Geothermal.png" alt="Geothermal">
+                                    <span>Geothermal</span>
+                                </button>
+                                <button class="generation-card" data-category="generation" data-value="other_tba" disabled>
+                                    <img src="Content/Images_Layer2_EnergyGeneration/Geothermal.png" alt="Other TBA" style="opacity:0.4;">
+                                    <span>Other (TBA)</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="submit-section">
+                        <button id="view-energy-btn" class="submit-btn">View Energy Performance</button>
+                    </div>
+                </section>
+            </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/energy-selection.js"></script>
+</body>
+
+</html>

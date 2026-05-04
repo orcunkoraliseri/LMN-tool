@@ -1,0 +1,7 @@
+Concept,Neighbourhood,Function,Context,Density,Layout,Envelope,Energy Status,Buildings
+8. Rural Cluster,RC-R,Residential,Rural,Low,Curvilinear,High-Performance Construction,Positive,24 detached (two-storey house) homes
+7. Peripheral Community,RC-D,Residential,Suburban,Low,Curvilinear,High-Performance Construction,Positive,48 detached (two-storey house) homes
+7. Peripheral Community,RC-T,Residential,Suburban,Low,Curvilinear,High-Performance Construction,Positive,56 attached units
+6. Midrise Suburb,RC-MR2,Residential,Suburban,Medium,Grid,High-Performance Construction,Negative,8 Midrise
+3. Urban Transition-Zone,RC-MR3,Residential,Urban,High,Grid,High-Performance Construction,Negative,12 Midrise
+2.Downtown Residential,RC-HR2,Residential,Urban,High,Grid,High-Performance Construction,Negative,4 Highrise (10-St)

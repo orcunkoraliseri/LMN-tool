@@ -1,0 +1,6 @@
+Concepts,1. Financial Dist,2. Dense Residential,3. Urban Transition-Zone,4. Suburban Transit-Zone,5. Streetcar Suburb,6. Modern Suburb,7. Suburban Outer,8. Townhouse Cluster,9. Rural Cluster,10. Commercial Park,11. Data Center Node,12. Logistics/Industrial
+Context,Urban,Urban,Urban,Suburban,Suburban,Suburban,Suburban,Suburban,Rural,Suburban,Suburban,Suburban
+Usage,Commercial,Mixed-use,Mixed-use,Mixed-use,Mixed-use,Mixed-use,Mixed-use,Residential,Residential,Commercial,Industrial,Industrial
+Layout,Grid,Grid,Grid,Grid,Grid,Grid,Curvilinear,Curvilinear,Curvilinear,Superblock,Superblock,Superblock
+Density,High,Very High,High,High,Medium,Medium,Low,Low,Low,Low,High,Low
+Envelope,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction,High-Performance Construction
