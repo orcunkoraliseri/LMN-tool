@@ -211,16 +211,37 @@ h3 {
 .header {
   text-align: center;
   padding: var(--spacing-md) var(--spacing-lg) var(--spacing-sm);
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, transparent 100%);
+  background: transparent;
 }
 
+/* ── Title decoration: dark bold uppercase flanked by orange rules (titles.png) ── */
 .header h1 {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  /* Remove old gradient clip-text */
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
   margin-bottom: 0.25rem;
+}
+
+.header h1::before,
+.header h1::after {
+  content: '';
+  flex: 1;
+  max-width: 72px;
+  height: 2px;
+  background: var(--accent-burnt);
+  border-radius: 1px;
 }
 
 .header p {
@@ -966,23 +987,26 @@ h3 {
    Output Page Styles
    ======================================== */
 
+/* Back button — outlined dark (buttons.png) */
 .back-button {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-xs);
-  padding: 0.75rem 1.5rem;
-  background: var(--bg-card);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius-md);
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: #ffffff;
+  border: 1.5px solid var(--text-primary);
+  border-radius: var(--radius-sm);
   color: var(--text-primary);
   text-decoration: none;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
   transition: all var(--transition-normal);
 }
 
 .back-button:hover {
-  background: rgba(0, 0, 0, 0.05);
-  transform: translateX(-5px);
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateX(-3px);
 }
 
 /* Navigation Buttons Container */
@@ -993,28 +1017,32 @@ h3 {
   margin-bottom: var(--spacing-lg);
 }
 
+/* Next button — outlined orange (buttons.png) */
 .next-button {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-xs);
-  padding: 0.75rem 1.5rem;
-  background: #F5A742;
-  border: none;
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: #ffffff;
+  border: 1.5px solid var(--accent-burnt);
+  border-radius: var(--radius-sm);
+  color: var(--accent-burnt);
   text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
   font-weight: 600;
   transition: all var(--transition-normal);
-  box-shadow: 0 4px 15px rgba(232, 134, 10, 0.3);
+  box-shadow: none;
 }
 
 .next-button:hover {
-  transform: translateX(5px);
-  box-shadow: 0 6px 20px rgba(232, 134, 10, 0.4);
+  background: rgba(201, 61, 10, 0.06);
+  transform: translateX(3px);
+  box-shadow: none;
 }
 
 .next-button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
   filter: grayscale(1);
@@ -1637,11 +1665,19 @@ h3 {
   }
 }
 
+/* Table container — outer frame (frames.png) */
+.table-container {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: var(--spacing-lg);
+}
+
 /* Results Table - Extended Width */
 .results-table {
   width: 100%;
   max-width: 1600px;
-  margin: var(--spacing-lg) auto 0 auto;
+  margin: 0 auto;
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
@@ -1759,14 +1795,19 @@ h3 {
   object-fit: contain;
 }
 
+/* Table header frame (frames.png) — transparent bg, bold uppercase, orange bottom rule */
 .results-table th {
   text-align: center;
-  padding: var(--spacing-md);
-  background: var(--bg-secondary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.1rem;
-  border-bottom: 2px solid rgba(201, 61, 10, 0.5);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-burnt);
+  border-top: none;
 }
 
 .results-table td {
@@ -2186,15 +2227,19 @@ h3 {
   box-shadow: var(--shadow-card);
 }
 
+/* EV/V2G table header — matches frames.png update */
 .ev-v2g-table thead th {
-  background: var(--bg-secondary);
+  background: transparent;
   color: var(--text-primary);
-  padding: 1rem 1.25rem;
+  padding: var(--spacing-sm) 1.25rem;
   text-align: left;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   vertical-align: top;
-  border-bottom: 2px solid rgba(201, 61, 10, 0.5);
+  border-bottom: 2px solid var(--accent-burnt);
 }
 
 .ev-v2g-table thead th .th-sub {
@@ -2592,15 +2637,19 @@ h3 {
   overflow: hidden;
 }
 
+/* LPV table header — matches frames.png update */
 #lpv-table.lpv-table thead th {
-  background: var(--bg-secondary);
+  background: transparent;
   color: var(--text-primary);
-  padding: 1rem 1.25rem;
+  padding: var(--spacing-sm) 1.25rem;
   text-align: left;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   vertical-align: top;
-  border-bottom: 2px solid rgba(201, 61, 10, 0.5);
+  border-bottom: 2px solid var(--accent-burnt);
 }
 
 #lpv-table.lpv-table tbody tr {
