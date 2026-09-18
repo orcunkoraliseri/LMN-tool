@@ -1,6 +1,6 @@
 ---
 name: ev-lpv-data-pipeline
-description: How EV/V2G and LPV neighbourhood data is generated, stored, and consumed in the NEXA
+description: How EV/V2G and LPV neighbourhood data is generated, stored, and consumed in the NEXA-web
 metadata:
   type: project
 ---
