@@ -34,7 +34,7 @@ Check the current `?v=N` stamp with a grep before assuming anything (it was `?v=
 
 ## 2. Stage 5, Web (once the gate passes)
 
-Mirror `LMN-tool-main/docs_implementation/DONE/DONE-1983-NECB-Zone6/walkthrough.md` step by
+Mirror `NEXA-web/docs_implementation/DONE/DONE-1983-NECB-Zone6/walkthrough.md` step by
 step. The Zone 6 tooling lives in `Templates/1983-Quebec/` (`convert_1983_csv.py`,
 `add_vintage_to_neighbourhoods.py`, `insert_data.py`); copy them into
 `Templates/1983-National/` and parameterise by arm, do not edit the Zone 6 copies.

@@ -1,4 +1,4 @@
-# LMN-tool (web)
+# NEXA (web)
 
 ## TOP RULES (no exceptions)
 1. **Chat:** reply in **English** (the user may write in French). 1-3 short plain sentences. Answer first, then offer detail. Never dump it.
